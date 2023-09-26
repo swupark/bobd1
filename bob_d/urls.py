@@ -16,15 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf.urls import include
 from signupapp.views import Signupview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('signup/',Signupview.as_view()),
     path('account/',include('accountapp.urls'))
-
-=======
->>>>>>> parent of 45ecb78 (signupp create)
 ]
