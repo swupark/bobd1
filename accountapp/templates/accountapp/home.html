@@ -4,28 +4,27 @@
 
 
 {% block static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?after">
 {% endblock %}
 
 {% block content %}
 
-    <div class="search">
-        <input type="text">
-        <button type="submit">검색</button>
+    <div class="wrapper">
+        <div class="search">
+            <input type="text">
+            <button type="submit">검색</button>
+        </div>
+        <div class="h_img">
+            <img src="./homeImg/bobd.png">
+            <img src="./homeImg/bobd2.png">
+            <img src="./homeImg/logo.png">
+        </div>
+         <div class="member">
+            <div>이민경</div>
+            <div>김나희</div>
+            <div>박규리</div>
+            <div>현소정</div>
+        </div>
     </div>
-    <div class="h_img">
-        <img src="./homeImg/bobd.png">
-        <img src="./homeImg/bobd2.png">
-        <img src="./homeImg/logo.png">
-    </div>
-     <div class="member">
-        <ul>
-            <li>이민경</li>
-            <li>김나희</li>
-            <li>박규리</li>
-            <li>현소정</li>
-        </ul>
-    </div>
-
 
 {% endblock %}

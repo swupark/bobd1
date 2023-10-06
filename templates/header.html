@@ -1,8 +1,14 @@
+{% load static %}
+
 <header>
-    <div class="h_login" style="display:flex;justify-content: flex-end;">
-        <a href="{% url 'accountapp:login' %}">로그인</a>
-        <a href="{% url 'signup' %}">회원가입</a>
+    <div class="header_wrapper" style="padding-left: 200px; padding-right: 200px;">
+        <div class="h_login" style="display:flex;justify-content: flex-end; gap:8px;">
+            <a href="{% url 'accountapp:login' %}" style="text-decoration: none; color:#000;">로그인</a>
+            <a href="{% url 'signup' %}" style="text-decoration: none; color:#000;">회원가입</a>
+        </div>
+        <div style="display:flex;justify-content: center";>
+            <a href="{% url 'accountapp:home' %}"><img src="{% static 'image/bobdlogo1.png' %}"/></a>
+        </div>
     </div>
-    <a href="{% url 'accountapp:home' %}"><h1>BOB.D</h1></a>
     <hr>
 </header>
