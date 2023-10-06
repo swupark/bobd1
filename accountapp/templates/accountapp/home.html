@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
-
+{% load bootstrap4 %}
 
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}?after">
@@ -12,19 +12,80 @@
     <div class="wrapper">
         <div class="search">
             <input type="text">
-            <button type="submit">검색</button>
+            <button type="submit" id="btn-search"><img src="{% static 'image/search.png' %}" alt="대체 텍스트"></button>
         </div>
-        <div class="h_img">
-            <img src="./homeImg/bobd.png">
-            <img src="./homeImg/bobd2.png">
-            <img src="./homeImg/logo.png">
+        <div class="carousel_main">
+            <!-- 캐러셀 이미지 삽입 -->
+            <div class="carousel_wrapper">
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg1.jpg' %}" alt="#" />
+                </div>
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg2.jpeg' %}" alt="#" />
+                </div>
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg3.jpg' %}" alt="#" />
+                </div>
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg4.jpg' %}" alt="#" />
+                </div>
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg5.jpeg' %}" alt="#" />
+                </div>
+                <div class="carousel_slide">
+                    <img src="{% static 'image/testimg6.jpg' %}" alt="#" />
+                </div>
+            </div>
+
+            <!-- 캐러셀 사이드 버튼 -->
+            <div class="carousel_button_container">
+                <button type="button" class="carousel_prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </button>
+                <button type="button" class="carousel_next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 캐러셀 중앙 버튼 -->
+            <div class="carousel_pagination">
+                <div class="carousel_circle"></div>
+                <div class="carousel_circle"></div>
+                <div class="carousel_circle"></div>
+                <div class="carousel_circle"></div>
+                <div class="carousel_circle"></div>
+                <div class="carousel_circle"></div>
+            </div>
         </div>
-         <div class="member">
-            <div>이민경</div>
-            <div>김나희</div>
-            <div>박규리</div>
-            <div>현소정</div>
+        <div class="member">
+            <div>
+                이민경
+                <hr>
+                <a href="https://github.com/mrri-18"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                김나희
+                <hr>
+                <a href="https://github.com/umsienrt"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                박규리
+                <hr>
+                <a href="https://github.com/Gyuree01"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                현소정
+                <hr>
+                <a href="https://github.com/SJ-Hyun"><img src="{% static 'image/github.png' %}"></a>
+            </div>
         </div>
     </div>
 
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 {% endblock %}

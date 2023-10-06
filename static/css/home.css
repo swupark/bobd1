@@ -16,17 +16,34 @@ a{
 	justify-content: center;
 	text-align: center;
 	margin-top: 50px;
-
+    margin-bottom: 50px;
 }
 
+.search {
+    display:flex;
+    align-items: center;
+}
 .search input{
 	background-color: rgb(30, 143, 90, 0.16);
 	width: 700px;
 	height: 50px;
 	border: 0px;
 	border-radius: 25px;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	box-shadow: 0px 4px 4px 0px rgb(0,0,0,0.25);
 	outline: none;
+}
+
+#btn-search {
+    width: 28px;
+    height: 26px;
+    border: 0px;
+    background-color: #FFF;
+    margin-left: 7px;
+}
+
+#btn-search img{
+    width: 28px;
+    height: 26px;
 }
 
 .h_img img{
@@ -38,16 +55,112 @@ a{
 .member{
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    gap: 40px;
     margin-top: 20px;
 }
 
 .member div{
-    padding-top: 10px;
+    padding: 10px;
     background-color: rgb(30, 143, 90, 0.16);
-	width: 200px;
 	width: 150px;
-	height: 100px;
+	height: 80px;
+    border-radius: 5px;
+	box-shadow: 0px 4px 4px 0px rgb(0,0,0,0.25);
+}
+
+.member div a img{
+    width: 34px;
+    height: 34px;
+}
+
+/* 캐러셀 전체 구조  */
+.carousel_main {
+    width: 800px; /* 이미지 크기 설정  */
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.carousel_wrapper {
+    display: flex;
+    transition: transform 1s;
+}
+
+.carousel_slide {
+    flex: 0 0 800px; /* 이미지 크기 설정  */
+    position: relative;
+}
+
+.carousel_slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 캐러셀 사이드 버튼 */
+.carousel_button_container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.carousel_button {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.carousel_prev {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.carousel_next {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* 캐러셀 중앙 버튼 */
+.carousel_pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.carousel_circle {
+    width: 10px;
+    height: 10px;
+    background-color: #aaa;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.carousel_circle.active {
+    background-color: #333;
 }
 
 
