@@ -1,13 +1,5 @@
 
-hr{
-	background-color: rgb(228, 228, 228);
-	height: 2px;
-	border: 0px;
-}
-a{
-	text-decoration: none;
-	color: #000;
-}
+
 
 .wrapper {
 	display:flex;
@@ -25,7 +17,7 @@ a{
 }
 .search input{
 	background-color: rgb(30, 143, 90, 0.16);
-	width: 700px;
+	width: 770px;
 	height: 50px;
 	border: 0px;
 	border-radius: 25px;
@@ -46,10 +38,20 @@ a{
     height: 26px;
 }
 
-.h_img img{
-	margin-top: 50px;
-	width: 250px;
-	height: 350px;
+#searchbar {
+    width: 770px;
+    height: 70px;
+
+    padding-top: 20px;
+}
+
+#checkbox{
+    width: 770px;
+    height: 520px;
+    border-radius: 25px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: none;
 }
 
 .member{
@@ -57,6 +59,8 @@ a{
     justify-content: space-between;
     gap: 40px;
     margin-top: 20px;
+
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .member div{
@@ -67,7 +71,6 @@ a{
     border-radius: 5px;
 	box-shadow: 0px 4px 4px 0px rgb(0,0,0,0.25);
 }
-
 .member div a img{
     width: 34px;
     height: 34px;
@@ -162,5 +165,4 @@ a{
 .carousel_circle.active {
     background-color: #333;
 }
-
 

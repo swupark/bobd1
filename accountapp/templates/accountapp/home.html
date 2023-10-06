@@ -5,6 +5,7 @@
 
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}?after">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,6 +14,19 @@
         <div class="search">
             <input type="text">
             <button type="submit" id="btn-search"><img src="{% static 'image/search.png' %}" alt="대체 텍스트"></button>
+        </div>
+        <div class="check">
+            <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            <div id='checkbox'></div>
+            <script  type="text/javascript">
+                function dis(){
+                      if($('#checkbox').css('display') == 'none'){
+                      $('#checkbox').show();
+                    }else{
+                      $('#checkbox').hide();
+                    }
+                    }
+            </script>
         </div>
         <div class="carousel_main">
             <!-- 캐러셀 이미지 삽입 -->
@@ -86,6 +100,6 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'js/app.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 {% endblock %}

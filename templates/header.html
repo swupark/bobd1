@@ -1,10 +1,16 @@
 {% load static %}
 
 <header>
-    <div class="header_wrapper" style="padding-left: 200px; padding-right: 200px;">
-        <div class="h_login" style="display:flex;justify-content: flex-end; gap:8px;">
-            <a href="{% url 'accountapp:login' %}" style="text-decoration: none; color:#000;">로그인</a>
-            <a href="{% url 'signup' %}" style="text-decoration: none; color:#000;">회원가입</a>
+    <div class="header_wrapper" style="padding: 15px 200px 0px 200px">
+        <div class="h_menu">
+            <div class="h_menu_item">
+                <img src="{% static 'image/spoon.svg' %}" style="width: 16px"/>
+                <a href="{% url 'accountapp:login' %}">로그인</a>
+            </div>
+            <div class="h_menu_item">
+                <img src="{% static 'image/chopsticks.svg' %}" style="width: 12px"/>
+                <a href="{% url 'signup' %}">회원가입</a>
+            </div>
         </div>
         <div style="display:flex;justify-content: center";>
             <a href="{% url 'accountapp:home' %}"><img src="{% static 'image/BOB_D.png' %}"/></a>
