@@ -24,3 +24,12 @@ a{
 .h_menu_item a{
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+.h_logo{
+    display: flex;
+    justify-content: center;
+}
+
+.h_logo a img{
+    width: 200px;
+}

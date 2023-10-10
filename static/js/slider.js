@@ -41,3 +41,4 @@ bullets.forEach((bullet, index) => {
 });
 
 showSlide(0);
+
