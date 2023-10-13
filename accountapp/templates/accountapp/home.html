@@ -24,57 +24,8 @@
                     }
             </script>
         </div>
-        <div class="carousel_main" >
-            <!-- 캐러셀 이미지 삽입 -->
-            <div class="carousel_wrapper">
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg1.jpg' %}" alt="#" />
-                </div>
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg2.jpeg' %}" alt="#" />
-                </div>
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg3.jpg' %}" alt="#" />
-                </div>
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg4.jpg' %}" alt="#" />
-                </div>
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg5.jpeg' %}" alt="#" />
-                </div>
-                <div class="carousel_slide">
-                    <img src="{% static 'image/testimg6.jpg' %}" alt="#" />
-                </div>
-            </div>
 
-            <!-- 캐러셀 사이드 버튼 -->
-            <div class="carousel_button_container">
-                <button type="button" class="carousel_prev">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>
-                </button>
-                <button type="button" class="carousel_next">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- 캐러셀 중앙 버튼 -->
-            <div class="carousel_pagination">
-                <div class="carousel_circle"></div>
-                <div class="carousel_circle"></div>
-                <div class="carousel_circle"></div>
-                <div class="carousel_circle"></div>
-                <div class="carousel_circle"></div>
-                <div class="carousel_circle"></div>
-            </div>
-        </div>
-
-        <div class="slider" style="margin-top: 50px;">
+        <div class="slider" style="margin-top: 50px; margin-bottom: 50px;">
             <input type="radio" name="slide" id="slide1" checked>
             <input type="radio" name="slide" id="slide2">
             <input type="radio" name="slide" id="slide3">
@@ -92,23 +43,6 @@
                 <label for="slide4">&nbsp;</label>
             </div>
         </div>
-
-        <div style="margin-top: 50px;">
-            <figure class="icon-cards mt-3">
-                <div class="icon-cards__content">
-                    <div class="icon-cards__item d-flex align-items-center justify-content-center"><img src="{% static 'image/testimg1.jpg' %}"></span></div>
-                    <div class="icon-cards__item d-flex align-items-center justify-content-center"><img src="{% static 'image/testimg2.jpeg' %}"></span></div>
-                    <div class="icon-cards__item d-flex align-items-center justify-content-center"><img src="{% static 'image/testimg3.jpg' %}"></span></div>
-                </div>
-            </figure>
-
-            <div class="checkbox">
-                <input class="d-none" id="toggle-animation" type="checkbox" checked />
-                <label class="checkbox__checkbox" for="toggle-animation"></label>
-                <label class="checkbox__label" for="toggle-animation">Toggle animation</label>
-            </div>
-        </div>
-
 
 
         <div class="member">
@@ -135,7 +69,4 @@
         </div>
     </div>
 
-
-    <script src="{% static 'js/slider.js' %}"></script>
-    <script src="{% static 'js/new.js' %}"></script>
 {% endblock %}
