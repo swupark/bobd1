@@ -230,8 +230,7 @@ ul.imgs li img{
     justify-content: space-between;
     gap: 40px;
     margin-top: 20px;
-
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .member div{
