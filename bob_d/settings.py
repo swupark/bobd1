@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accountapp',
     'signupapp',
+    'mypageapp',
     'bootstrap4'
 ]
 

@@ -1,0 +1,36 @@
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  width: 200px;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+}
+li {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+li a {
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  color: #000;
+  font-weight: bold;
+}
+
+li a:hover {
+  background: #333;
+  color: #fff;
+}
+
+li a.home {
+  background : #333;
+  color: #fff;
+}
+
+.cd1 {
+  margin-left: 250px;
+  width: 750px;
+}
