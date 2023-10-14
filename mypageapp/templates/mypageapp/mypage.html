@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}?after">
+{% endblock %}
+
+
+{% block content %}
+<div class="mypage_wrapper" style="display: flex; justify-content: center;">
+    <div>
+
+        <ul>
+            <li><a href="#"> 개인정보수정 </a></li>
+            <li><a href="#"> 찜 목록 </a></li>
+            <li><a href="#"> 작성 게시글 목록 </a></li>
+            <li><a href="#"> 작성 댓글 목록 </a></li>
+        </ul>
+
+    </div>
+
+    <div class="cd1">
+      {% include 'mypageapp/info-modify.html' %}
+
+    </div>
+</div>
+
+{% endblock %}
