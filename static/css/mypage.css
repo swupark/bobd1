@@ -1,36 +1,27 @@
-ul {
-  list-style-type: none;
-  padding: 0px;
-  margin: 0px;
-  width: 200px;
-  height: 100%;
-  overflow: auto;
-  position: fixed;
-}
-li {
-    margin-top: 20px;
-    margin-bottom: 20px;
+input[type="radio"] {
+    display: none;
 }
 
-li a {
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-  color: #000;
-  font-weight: bold;
+input[type="radio"] + label {
+    display: inline-block;
+    padding: 20px;
+    cursor: pointer;
+    color: #000;
 }
 
-li a:hover {
-  background: #333;
-  color: #fff;
+input[type="radio"]:checked + label {
+    color: #006838;
+    font-weight: bold;
 }
 
-li a.home {
-  background : #333;
-  color: #fff;
+.conbox {
+    width: 770px;
+    margin: 0 auto;
+    display: none;
 }
 
-.cd1 {
-  margin-left: 250px;
-  width: 750px;
-}
+
+input[id="tab01"]:checked ~ .tab_box .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
+input[id="tab02"]:checked ~ .tab_box .con2 {display:block;}
+input[id="tab03"]:checked ~ .tab_box .con3 {display:block;}
+input[id="tab04"]:checked ~ .tab_box .con4 {display:block;}
