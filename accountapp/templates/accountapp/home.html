@@ -1,42 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
 
-
+{% extends 'base.html' %}
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>home</title>
-    <link rel="stylesheet" href="{% static '/home.css' %}">
-</head>
-<body>
-<header>
-    <div class="h_login">
-        <a href="#로그인">로그인</a>
-        <a href="#회원가입">회원가입</a>
+{% load bootstrap4 %}
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?after">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="search">
+            <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            <div id='checkbox'></div>
+            <script  type="text/javascript">
+                function dis(){
+                      if($('#checkbox').css('display') == 'none'){
+                      $('#checkbox').show();
+                    }else{
+                      $('#checkbox').hide();
+                    }
+                    }
+            </script>
+        </div>
+
+        <div class="slider" style="margin-top: 50px; margin-bottom: 50px;">
+            <input type="radio" name="slide" id="slide1" checked>
+            <input type="radio" name="slide" id="slide2">
+            <input type="radio" name="slide" id="slide3">
+            <input type="radio" name="slide" id="slide4">
+            <ul id="imgholder" class="imgs">
+                <li><img src="{% static 'image/testimg1.jpg' %}"></li>
+                <li><img src="{% static 'image/testimg2.jpeg' %}"></li>
+                <li><img src="{% static 'image/testimg3.jpg' %}"></li>
+                <li><img src="{% static 'image/testimg4.jpg' %}"></li>
+            </ul>
+            <div class="bullets">
+                <label for="slide1">&nbsp;</label>
+                <label for="slide2">&nbsp;</label>
+                <label for="slide3">&nbsp;</label>
+                <label for="slide4">&nbsp;</label>
+            </div>
+        </div>
+
+
+        <div class="member">
+            <div>
+                BOB.D
+                <hr>
+                <a href="https://github.com/swupark"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                이민경
+                <hr>
+                <a href="https://github.com/mrri-18"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                김나희
+                <hr>
+                <a href="https://github.com/umsienrt"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                박규리
+                <hr>
+                <a href="https://github.com/Gyuree01"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+            <div>
+                현소정
+                <hr>
+                <a href="https://github.com/SJ-Hyun"><img src="{% static 'image/github.png' %}"></a>
+            </div>
+        </div>
     </div>
-    <h1>BOB.D</h1>
-    <hr>
-</header>
-<main>
-    <div class="search">
-        <input type="text">
-        <button type="submit">검색</button>
-    </div>
-    <div class="h_img">
-        <img src="./homeImg/bobd.png">
-        <img src="./homeImg/bobd2.png">
-        <img src="./homeImg/logo.png">
-    </div>
-</main>
-<footer>
-    <div class="member">
-        <ul>
-            <li>이민경</li>
-            <li>김나희</li>
-            <li>박규리</li>
-            <li>현소정</li>
-        </ul>
-    </div>
-</footer>
-</body>
-</html>
+
+{% endblock %}
