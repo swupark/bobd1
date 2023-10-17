@@ -5,3 +5,6 @@ from django.shortcuts import render
 def mypage(request) :
     return render(request, 'mypageapp/mypage.html', {})
 
+def loading(request) :
+    return render(request, 'loading.html', {})
+
