@@ -7,8 +7,6 @@ from signupapp.forms import SignuppForm
 from signupapp.models import Account
 
 
-#from signupapp.models import Member
-
 
 
 class Signupview(CreateView):
