@@ -14,13 +14,11 @@ input::placeholder{
 	width: 30px;
 	height: 38px;
 	margin-bottom: -14px;
-	opacity: 0.8;
 }
 .pwdbox img{
 	width: 30px;
 	height: 43px;
 	margin-bottom: -14px;
-	opacity: 0.8;
 }
 form .id,.pwd{
 	width: 333px;
@@ -41,7 +39,7 @@ form .log{
 	border: none;
 	opacity: 0.7;
 	margin-top: 50px;
-	background-color: rgb(80, 143, 90);
+	background-color: rgb(0, 104, 56);
 	color: white;
 	font-size: 20px;
 }
