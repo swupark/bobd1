@@ -4,31 +4,37 @@
 
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}?after">
-
-<style>
-</style>
 {% endblock %}
 
 
 {% block content %}
 <div class="mypage_wrapper" style="display: flex; justify-content: center; margin: 0 auto;">
-    <div class="tab_content">
-        <input type="radio" name="tabmenu" id="tab01" checked>
-        <label for="tab01"> 개인정보수정 </label>
-        <input type="radio" name="tabmenu" id="tab02">
-        <label for="tab02"> 찜 목록 </label>
-        <input type="radio" name="tabmenu" id="tab03">
-        <label for="tab03"> 작성 게시글 목록 </label>
-        <input type="radio" name="tabmenu" id="tab04">
-        <label for="tab04"> 작성 댓글 목록 </label>
+    <div class="tabs">
+        <div class="tab-header">
+            <div class="active">개인정보수정</div>
+            <div>찜 목록</div>
+            <div>작성 후기</div>
+            <div>작성 댓글</div>
+        </div>
+        <div class="tab-content">
+            <div class="active">
+                {% include 'mypageapp/info-modify.html' %}
+            </div>
 
-        <div class="tab_box">
-            <div class="conbox con1">{% include 'mypageapp/info-modify.html' %}</div>
-            <div class="conbox con2">{% include 'mypageapp/dib-list.html' %}</div>
-            <div class="conbox con3">{% include 'mypageapp/info-modify.html' %}</div>
-            <div class="conbox con4">{% include 'mypageapp/dib-list.html' %}</div>
+            <div>
+                {% include 'mypageapp/dib-list.html' %}
+            </div>
+
+            <div>
+                {% include 'mypageapp/info-modify.html' %}
+            </div>
+
+            <div>
+                {% include 'mypageapp/dib-list.html' %}
+            </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript" src="{% static 'js/tab.js' %}"></script>
 {% endblock %}

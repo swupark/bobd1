@@ -1,27 +1,44 @@
-input[type="radio"] {
-    display: none;
+.tabs {
+  display: flex;
+  justify-content: center;
+  width:980px;
+  overflow:hidden;
 }
 
-input[type="radio"] + label {
-    display: inline-block;
-    padding: 20px;
-    cursor: pointer;
-    color: #000;
+.tabs .tab-header {
+  width:160px;
+  border-right:1px solid #ccc;
+  padding:50px 0px;
 }
 
-input[type="radio"]:checked + label {
-    color: #006838;
-    font-weight: bold;
+.tabs .tab-header > div {
+  height:50px;
+  line-height:50px;
+  font-size:16px;
+  font-weight:600;
+  color:#888;
+  cursor:pointer;
+  padding-left:10px;
 }
 
-.conbox {
-    width: 770px;
-    margin: 0 auto;
-    display: none;
+.tabs .tab-header > div:hover,
+.tabs .tab-header > div.active {
+  color:#006838;
 }
 
+.tabs .tab-content {
+  width: 820px;
+  height: 550px;
+  overflow:auto;
+}
 
-input[id="tab01"]:checked ~ .tab_box .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
-input[id="tab02"]:checked ~ .tab_box .con2 {display:block;}
-input[id="tab03"]:checked ~ .tab_box .con3 {display:block;}
-input[id="tab04"]:checked ~ .tab_box .con4 {display:block;}
+.tabs .tab-content > div {
+  text-align:center;
+  padding:40px 20px;
+  display: none;
+}
+
+.tabs .tab-content > div.active {
+  top:0px;
+  display: block;
+}
