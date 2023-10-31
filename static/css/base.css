@@ -34,13 +34,13 @@ a{
     gap:14px;
 }
 
-.h_menu_item {
+.h_nav {
     display: flex;
     gap: 5px;
     padding-top: 28px;
 }
 
-.h_menu_item a{
+.h_nav a{
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: bold;
 }
@@ -67,24 +67,24 @@ a{
     width: 180px;
 }
 
-.h_login{
+.nav-menu1{
     display:flex;
     align-items: center;
     padding-right: 15px;
     align-items: center;
 }
 
-.h_login img{
+.nav-menu1 img{
     height: 25px;
     padding-right: 2px;
 }
 
-.h_signup{
+.nav-menu2{
     display:flex;
     align-items: center;
 }
 
-.h_signup img{
+.nav-menu2 img{
     height: 25px;
     padding-right: 1px;
 }
