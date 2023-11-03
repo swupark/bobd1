@@ -23,5 +23,6 @@ from signupapp.views import Signupview
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/',Signupview.as_view(), name='signup'),
-    path('account/',include('accountapp.urls'))
+    path('account/',include('accountapp.urls')),
+    path('excel_import/', include('excel_import.urls')),
 ]

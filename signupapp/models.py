@@ -2,7 +2,6 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 #
-#
 # class MyAccountManager(BaseUserManager):
 #     # 일반 user 생성, username 이 userID를 의미함
 #     def create_user(self, username, nickname, password=None):
@@ -59,8 +58,7 @@ class Account(AbstractBaseUser):
         (false, '아니오')
     ]
     id = models.AutoField(primary_key=True)
-    #username = models.CharField(max_length=30, unique=True,blank=False)
-    #nickname = models.CharField(max_length=40, unique=True, blank=False)
+    nickname = models.CharField(max_length=40, unique=True, blank=False)
     #password = models.CharField( max_length=128,blank=False)
     create_at = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)

@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accountapp',
     'signupapp',
-    'bootstrap4'
+    'bootstrap4',
+    'excel_import',
 ]
 
 MIDDLEWARE = [
