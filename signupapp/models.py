@@ -58,8 +58,7 @@ class Account(AbstractBaseUser):
         (false, '아니오')
     ]
     id = models.AutoField(primary_key=True)
-    nickname = models.CharField(max_length=40, unique=True, blank=False)
-    #password = models.CharField( max_length=128,blank=False)
+    nickname = models.CharField(max_length=40, unique=True,null=True)
     create_at = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     age = models.IntegerField(choices=age_choices, default=younger)
@@ -68,10 +67,7 @@ class Account(AbstractBaseUser):
     issue_hp = models.IntegerField(choices=choices, default=false)
     issue_lk = models.IntegerField(choices=choices, default=false)
     issue_vg = models.IntegerField(choices=choices, default=false)
-    is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
 
     # object = MyAccountManager()  # 헬퍼 클래스 사용
     #
@@ -82,5 +78,5 @@ class Account(AbstractBaseUser):
     # USERNAME_FIELD = 'username'  # 로그인 ID로 사용할 필드
     # REQUIRED_FIELDS = ['nickname']  # 필수 작성 필드
     #
-    # def __str__(self):
-    #     return self.username
+    def __str__(self):
+         return self.nickname
