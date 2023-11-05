@@ -8,22 +8,33 @@
 
 
 {% block content %}
-<div class="mypage_wrapper" style="display: flex; justify-content: center;">
-    <div>
+<div class="mypage_wrapper" style="display: flex; justify-content: center; margin: 0 auto;">
+    <div class="tabs">
+        <div class="tab-header">
+            <div class="active">개인정보수정</div>
+            <div>찜 목록</div>
+            <div>작성 후기</div>
+            <div>작성 댓글</div>
+        </div>
+        <div class="tab-content">
+            <div class="active">
+                {% include 'mypageapp/info-modify.html' %}
+            </div>
 
-        <ul>
-            <li><a href="#"> 개인정보수정 </a></li>
-            <li><a href="#"> 찜 목록 </a></li>
-            <li><a href="#"> 작성 게시글 목록 </a></li>
-            <li><a href="#"> 작성 댓글 목록 </a></li>
-        </ul>
+            <div>
+                {% include 'mypageapp/dib-list.html' %}
+            </div>
 
-    </div>
+            <div>
+                {% include 'mypageapp/info-modify.html' %}
+            </div>
 
-    <div class="cd1">
-      {% include 'mypageapp/info-modify.html' %}
-
+            <div>
+                {% include 'mypageapp/dib-list.html' %}
+            </div>
+        </div>
     </div>
 </div>
 
+<script type="text/javascript" src="{% static 'js/tab.js' %}"></script>
 {% endblock %}
