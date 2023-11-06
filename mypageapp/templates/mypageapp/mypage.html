@@ -11,25 +11,25 @@
 <div class="mypage_wrapper" style="display: flex; justify-content: center; margin: 0 auto;">
     <div class="tabs">
         <div class="tab-header">
-            <div class="active">개인정보수정</div>
-            <div>찜 목록</div>
-            <div>작성 후기</div>
-            <div>작성 댓글</div>
+            <div class="tab-header-item active">개인정보수정</div>
+            <div class="tab-header-item">찜 목록</div>
+            <div class="tab-header-item">작성 후기</div>
+            <div class="tab-header-item">작성 댓글</div>
         </div>
         <div class="tab-content">
-            <div class="active">
+            <div class="tab-content-item active">
                 {% include 'mypageapp/info-modify.html' %}
             </div>
 
-            <div>
+            <div class="tab-content-item">
                 {% include 'mypageapp/dib-list.html' %}
             </div>
 
-            <div>
+            <div class="tab-content-item">
                 {% include 'mypageapp/info-modify.html' %}
             </div>
 
-            <div>
+            <div class="tab-content-item">
                 {% include 'mypageapp/dib-list.html' %}
             </div>
         </div>
