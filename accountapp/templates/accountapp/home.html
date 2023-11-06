@@ -14,6 +14,54 @@
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
+                <div class="name">
+                    <li class="v">비건</li>
+                    <li class="f">저지방</li>
+                    <li class="s">저염식</li>
+                    <li class="p">고단백</li>
+                </div>
+                <div class="check">
+                    <input type="checkbox" id="vegun" name="vegun" onclick="
+                    if(this.checked==true){
+                        document.querySelector('.name .v').style.borderColor='rgb(93,186,109)';
+                        document.querySelector('.name .v').style.color='white';
+                        document.querySelector('.name .v').style.backgroundColor='rgb(132,206,145)';}
+                    else{
+                        document.querySelector('.name .v').style.borderColor='rgb(234,234,234)';
+                        document.querySelector('.name .v').style.color='rgb(140,140,140)'
+                        document.querySelector('.name .v').style.backgroundColor='rgb(246,246,246)';}">
+                    <label for="vegun"></label>
+                    <input type="checkbox" id="l_fat" name="l_fat" onclick="
+                    if(this.checked==true){
+                        document.querySelector('.name .f').style.borderColor='rgb(93,186,109)';
+                        document.querySelector('.name .f').style.color='white';
+                        document.querySelector('.name .f').style.backgroundColor='rgb(132,206,145)';}
+                    else{
+                        document.querySelector('.name .f').style.borderColor='rgb(234,234,234)';
+                        document.querySelector('.name .f').style.color='rgb(140,140,140)';
+                        document.querySelector('.name .f').style.backgroundColor='rgb(246,246,246)';}">
+                    <label for="l_fat"></label>
+                    <input type="checkbox" id="l_salt" name="l_salt" onclick="
+                    if(this.checked==true){
+                        document.querySelector('.name .s').style.borderColor='rgb(93,186,109)';
+                        document.querySelector('.name .s').style.color='white';
+                        document.querySelector('.name .s').style.backgroundColor='rgb(132,206,145)';}
+                    else{
+                        document.querySelector('.name .s').style.borderColor='rgb(234,234,234)';
+                        document.querySelector('.name .s').style.color='rgb(140,140,140)';
+                        document.querySelector('.name .s').style.backgroundColor='rgb(246,246,246)';}">
+                    <label for="l_salt"></label>
+                    <input type="checkbox" id="h_protein" name="h_protein" onclick="
+                    if(this.checked==true){
+                        document.querySelector('.name .p').style.borderColor='rgb(93,186,109)';
+                        document.querySelector('.name .p').style.color='white';
+                        document.querySelector('.name .p').style.backgroundColor='rgb(132,206,145)';}
+                    else{
+                        document.querySelector('.name .p').style.borderColor='rgb(234,234,234)';
+                        document.querySelector('.name .p').style.color='rgb(140,140,140)';
+                        document.querySelector('.name .p').style.backgroundColor='rgb(246,246,246)';}">
+                    <label for="h_protein"></label>
+                </div>
                   <button onclick="displayImage()">Show Image</button>
                 <!-- 이미지가 나타나는 부분 -->
                 <div id="imageContainer" style="display: none;">
