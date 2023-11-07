@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+    <div style="margin: 4rem auto;">
+        <h2>ID | {{ user.username }}</h2>
+    </div>
+    <hr>
+    <div style="margin: 4rem auto;">
+        <a href="{% url 'mypageapp:update' pk=user.pk%}">비밀번호변경</a> |
+        <a href="{% url 'mypageapp:delete' pk=user.pk%}">탈퇴하기</a>
+    </div>
+</div>
+{% endblock %}
