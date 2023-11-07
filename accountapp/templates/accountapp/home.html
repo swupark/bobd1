@@ -13,20 +13,28 @@
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
+                 <form method="get" >
+                 <label for="dislike_ingredient">싫어하는 재료:</label>
+                 <input type="text" name="dislike_ingredient" id="dislike_ingredient">
+
+                 </form>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
                     <li class="s">저염식</li>
                     <li class="p">고단백 식단</li>
                 </div>
+                <button type="submit">적용</button>
+                 <h1>Recipe List</h1>
                 <div class="check">
                     <input type="checkbox" id="vegun" name="vegun" onclick="
-                    displayImage('vegan_img');
                     if(this.checked==true){
+                        displayImage('vegan_img');
                         document.querySelector('.name .v').style.borderColor='rgb(93,186,109)';
                         document.querySelector('.name .v').style.color='white';
                         document.querySelector('.name .v').style.backgroundColor='rgb(132,206,145)';}
                     else{
+                        deleteTimage();
                         document.querySelector('.name .v').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .v').style.color='rgb(140,140,140)'
                         document.querySelector('.name .v').style.backgroundColor='rgb(246,246,246)';}">
@@ -38,6 +46,7 @@
                         document.querySelector('.name .f').style.color='white';
                         document.querySelector('.name .f').style.backgroundColor='rgb(132,206,145)';}
                     else{
+                        deleteTimage();
                         document.querySelector('.name .f').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .f').style.color='rgb(140,140,140)';
                         document.querySelector('.name .f').style.backgroundColor='rgb(246,246,246)';}">
@@ -49,6 +58,7 @@
                         document.querySelector('.name .s').style.color='white';
                         document.querySelector('.name .s').style.backgroundColor='rgb(132,206,145)';}
                     else{
+                        deleteTimage();
                         document.querySelector('.name .s').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .s').style.color='rgb(140,140,140)';
                         document.querySelector('.name .s').style.backgroundColor='rgb(246,246,246)';}">
@@ -60,6 +70,7 @@
                         document.querySelector('.name .p').style.color='white';
                         document.querySelector('.name .p').style.backgroundColor='rgb(132,206,145)';}
                     else{
+                        deleteTimage();
                         document.querySelector('.name .p').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .p').style.color='rgb(140,140,140)';
                         document.querySelector('.name .p').style.backgroundColor='rgb(246,246,246)';}">
@@ -67,9 +78,6 @@
                 </div>
                 <!-- 이미지가 나타나는 부분 -->
                 <div id="imageContainer" style="display: none;">
-                    {% for item in data_list|slice:":3" %}
-                    <img src="{{ item.ATT_FILE_NO_MAIN }}" alt="Image">
-                    {% endfor %}
                 </div>
             </div>
 
@@ -89,12 +97,9 @@
                     'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
                 function displayImage(category) {
-
-                 $('#imageContainer').empty();
                 var categoryImages = imageLists[category];
                 // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
                  var categoryImages = imageLists[category];
-
                  for (var i = 0; i <7; i+=3) {
                     var imageId = categoryImages[i];
                     var imageUrl = categoryImages[i + 1];
@@ -107,9 +112,11 @@
                `    );
                    }
                 //이미지가 표시되는 부분을 토글
-
-                $('#imageContainer').toggle();
+                $('#imageContainer').show();
         }
+              function deleteTimage(){
+                   $('#imageContainer').empty();
+                   }
             </script>
         </div>
         </div>
