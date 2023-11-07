@@ -1,0 +1,62 @@
+<!-- menu_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title> {{ menu.RCP_NM }}</title>
+</head>
+<body>
+    <h1> {{ menu.RCP_NM }} </h1>
+    <ul>
+            <li>
+                <img src="{{ menu.MANUAL_IMG01 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL01 }}</p>
+
+                <img src="{{ menu.MANUAL_IMG02 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL02 }}</p>
+
+                <img src="{{ menu.MANUAL_IMG03 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL03 }}</p>
+
+                {% if menu.MANUAL_IMG04 != "0" %}
+                    <img src="{{ menu.MANUAL_IMG04 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL04 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG05 != "0" %}
+                <img src="{{ menu.MANUAL_IMG05 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL05 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG06 != "0" %}
+                <img src="{{ menu.MANUAL_IMG06 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL06 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG07 != "0" %}
+                <img src="{{ menu.MANUAL_IMG07 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL07 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG08 != "0" %}
+                <img src="{{ menu.MANUAL_IMG08 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL08 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG09 != "0" %}
+                <img src="{{ menu.MANUAL_IMG09 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL09 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG10 != "0" %}
+                <img src="{{ menu.MANUAL_IMG10 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL10 }}</p>
+                {% endif %}
+
+                {% if menu.MANUAL_IMG11 != "0.0" %}
+                <img src="{{ menu.MANUAL_IMG11 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL11 }}</p>
+                {% endif %}
+            </li>
+    </ul>
+</body>
+</html>

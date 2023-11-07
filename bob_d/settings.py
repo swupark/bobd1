@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'signupapp',
     'bootstrap4',
     'excel_import',
+    'recipesapp',
 ]
 
 MIDDLEWARE = [

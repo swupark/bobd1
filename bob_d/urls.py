@@ -25,4 +25,6 @@ urlpatterns = [
     path('signup/',Signupview.as_view(), name='signup'),
     path('account/',include('accountapp.urls')),
     path('excel_import/', include('excel_import.urls')),
+    path('recipes/', include('recipesapp.urls')),
+
 ]
