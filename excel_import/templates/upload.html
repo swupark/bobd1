@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<<!-- upload.html -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">CSV 파일 업로드</button>
+</form>
+</html>

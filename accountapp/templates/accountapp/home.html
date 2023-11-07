@@ -13,7 +13,16 @@
     <div class="wrapper">
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
-            <div id='checkbox'></div>
+            <div id='checkbox'>
+                  <button onclick="displayImage()">Show Image</button>
+                <!-- 이미지가 나타나는 부분 -->
+                <div id="imageContainer" style="display: none;">
+                    {% for item in data_list|slice:":3" %}
+                    <img src="{{ item.ATT_FILE_NO_MAIN }}" alt="Image">
+                    {% endfor %}
+                </div>
+            </div>
+
             <script  type="text/javascript">
                 function dis(){
                       if($('#checkbox').css('display') == 'none'){
@@ -22,6 +31,10 @@
                       $('#checkbox').hide();
                     }
                     }
+                function displayImage() {
+            //이미지가 표시되는 부분을 토글
+            $('#imageContainer').toggle();
+        }
             </script>
         </div>
 
