@@ -42,3 +42,30 @@
   top:0px;
   display: block;
 }
+
+.dib-item {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.recipe_content{
+    text-align: left;
+}
+.recipe_image img{
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.recipe_short {
+    color: #BBC1C7;
+}
+
+.recipe_delete img{
+    width: 30px;
+    height: 30px;
+    filter: invert(51%) sepia(20%) saturate(219%) hue-rotate(169deg) brightness(95%) contrast(93%);
+}
