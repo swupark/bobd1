@@ -9,7 +9,6 @@ from django.contrib.auth.hashers import check_password
 #from mypageapp.decorators import account_ownership_required
 from django.contrib.auth.decorators import login_required
 
-from mypageapp.forms import AccountUpdateForm
 
 #has_ownership = [account_ownership_required, login_required]
 # Create your views here.
@@ -34,12 +33,6 @@ def change_pw(request,pk):
 
     return render(request,"mypageapp/update.html")
 
-class AccountUpdateView(UpdateView):
-    model = User
-    context_object_name = 'target_user'
-    form_class = AccountUpdateForm
-    success_url = reverse_lazy('mypageapp:mypage')
-    template_name = 'mypageapp/update.html'
 
 class AccountDeleteView(DeleteView):
     model = User
