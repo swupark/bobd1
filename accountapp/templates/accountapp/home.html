@@ -3,7 +3,7 @@
 {% load bootstrap4 %}
 
 {% block static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}?after">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 {% endblock %}
 
@@ -11,12 +11,16 @@
 
     <div class="wrapper">
         <div class="search">
+            {% if user.is_authenticated %}
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            {% else %}
+            <img src="{% static 'image/searchbar.png' %}">
+             {% endif %}
             <div id='checkbox'>
-                 <form method="get" >
+                <form method="get" >
                  <label for="dislike_ingredient">싫어하는 재료:</label>
-                 <input type="text" name="dislike_ingredient" id="dislike_ingredient">
-
+                 <input type="search" name="dislike_ingredient" id="dislike_ingredient">
+                 <button type="submit">적용</button>
                  </form>
                 <div class="name">
                     <li class="v">비건식</li>
@@ -24,17 +28,15 @@
                     <li class="s">저염식</li>
                     <li class="p">고단백 식단</li>
                 </div>
-                <button type="submit">적용</button>
-                 <h1>Recipe List</h1>
                 <div class="check">
                     <input type="checkbox" id="vegun" name="vegun" onclick="
-                    if(this.checked==true){
                         displayImage('vegan_img');
+                    if(this.checked==true){
                         document.querySelector('.name .v').style.borderColor='rgb(93,186,109)';
                         document.querySelector('.name .v').style.color='white';
                         document.querySelector('.name .v').style.backgroundColor='rgb(132,206,145)';}
                     else{
-                        deleteTimage();
+                        deleteTimage()
                         document.querySelector('.name .v').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .v').style.color='rgb(140,140,140)'
                         document.querySelector('.name .v').style.backgroundColor='rgb(246,246,246)';}">
@@ -46,7 +48,7 @@
                         document.querySelector('.name .f').style.color='white';
                         document.querySelector('.name .f').style.backgroundColor='rgb(132,206,145)';}
                     else{
-                        deleteTimage();
+                        deleteTimage()
                         document.querySelector('.name .f').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .f').style.color='rgb(140,140,140)';
                         document.querySelector('.name .f').style.backgroundColor='rgb(246,246,246)';}">
@@ -58,7 +60,7 @@
                         document.querySelector('.name .s').style.color='white';
                         document.querySelector('.name .s').style.backgroundColor='rgb(132,206,145)';}
                     else{
-                        deleteTimage();
+                        deleteTimage()
                         document.querySelector('.name .s').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .s').style.color='rgb(140,140,140)';
                         document.querySelector('.name .s').style.backgroundColor='rgb(246,246,246)';}">
@@ -70,14 +72,15 @@
                         document.querySelector('.name .p').style.color='white';
                         document.querySelector('.name .p').style.backgroundColor='rgb(132,206,145)';}
                     else{
-                        deleteTimage();
+                       deleteTimage()
                         document.querySelector('.name .p').style.borderColor='rgb(234,234,234)';
                         document.querySelector('.name .p').style.color='rgb(140,140,140)';
                         document.querySelector('.name .p').style.backgroundColor='rgb(246,246,246)';}">
                     <label for="h_protein"></label>
                 </div>
                 <!-- 이미지가 나타나는 부분 -->
-                <div id="imageContainer" style="display: none;">
+                <div id="pageContainer" class="pagination"></div>
+                <div id="imageContainer">
                 </div>
             </div>
 
@@ -97,23 +100,53 @@
                     'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
                 function displayImage(category) {
-                var categoryImages = imageLists[category];
-                // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
-                 var categoryImages = imageLists[category];
-                 for (var i = 0; i <7; i+=3) {
-                    var imageId = categoryImages[i];
-                    var imageUrl = categoryImages[i + 1];
-                    var imageNm=categoryImages[i+2];
-                     $('#imageContainer').append(`
-                    <a href="http://127.0.0.1:8000/account/details/${imageId}/">
-                        <img src="${imageUrl}" alt="Image">
-                        <p>${imageNm}</p>
-                    </a>
-               `    );
-                   }
-                //이미지가 표시되는 부분을 토글
-                $('#imageContainer').show();
-        }
+                    var imagesPerPage = 3;
+                    var categoryImages = imageLists[category];
+                    var pageContainer = $('<div class="imagePage">');
+                    // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
+                    var categoryImages = imageLists[category];
+
+                    // 이미지를 저장
+                   for (var i = 0; i <12; i+=3) {
+                       var imageId = categoryImages[i];
+                       var imageUrl = categoryImages[i + 1];
+                       var imageNm=categoryImages[i+2];
+                       var imageElement = `
+                       <a href="http://127.0.0.1:8000/account/details/${imageId}/">
+                       <img src="${imageUrl}" alt="Image">
+                       <p>${imageNm}</p>
+                       </a>`;
+                       pageContainer.append(imageElement);
+                       }
+                   for(i=0;i<pageContainer.length;i+=9)$('#imageContainer').append(pageContainer);
+                   //var totalPages = Math.ceil($('#imageContainer').length);
+                    // 이미지가 표시되는 부분을 보여짐
+                    $('#imageContainer').show();
+                    createPagination(4)
+                    showPage(1);
+                    }
+                function createPagination(request) {
+                var paginationContainer = $('#pageContainer');
+                paginationContainer.empty();
+                for (var i=1;i<=request;i++){
+                     var pageLink = $('<a href="#" onclick="showPage(' + i + ')">' +i+ '</a>');
+                     paginationContainer.append(pageLink);
+
+                }
+                }
+
+                function showPage(pageNumber) {
+                    var pages = $('.imagePage');
+
+                    pages.hide();
+                    $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
+
+                    // 페이지네이션 활성화 스타일 설정
+                    $('#pageContainer a').removeClass('active');
+                    $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
+                }
+
+
               function deleteTimage(){
                    $('#imageContainer').empty();
                    }

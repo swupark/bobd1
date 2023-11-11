@@ -1,7 +1,13 @@
 from random import shuffle
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
+from django.utils.decorators import method_decorator
+
+from accountapp.decorator import account_ownership_required
 from excel_import.models import FoodModel
+
+has_ownership=[account_ownership_required, login_required]
 def homepage(request):
     dislike_ingredient = request.GET.get('dislike_ingredient', '')
     vegan_img,hp_img,ln_img,dt_img=dislike(dislike_ingredient)
@@ -17,10 +23,10 @@ def homepage(request):
 
     return render(request, 'accountapp/home.html',{'vegan_img': vegan_img, 'hp_img': hp_img, 'ln_img': ln_img, 'dt_img': dt_img})
 
-
 def details(request,imageId):
     rcp = get_object_or_404(FoodModel, id=imageId)
     return render(request,'accountapp/details.html',{'post':imageId, 'rcp':rcp})
+
 def dislike(dislike_igt):
     # 싫어하는 재료를 입력받습니다.
     dislike_ingredient = dislike_igt
@@ -39,9 +45,9 @@ def dislike(dislike_igt):
         dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
 
     # 레시피 리스트를 섞습니다.
-    shuffle(vegan_img)
-    shuffle(hp_img)
-    shuffle(ln_img)
-    shuffle(dt_img)
+    #shuffle(vegan_img)
+    #shuffle(hp_img)
+    #shuffle(ln_img)
+    #shuffle(dt_img)
 
     return (vegan_img,  hp_img,  ln_img, dt_img)
