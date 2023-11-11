@@ -1,0 +1,144 @@
+<!-- menu_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ menu.RCP_NM }}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .recipe-item {
+            margin-bottom: 20px;
+        }
+        .recipe-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        .container h1,
+        .container p {
+            margin-bottom: 20px;
+        }
+        .details {
+            display: none;
+        }
+        .toggle-details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ menu.RCP_NM }}</h1>
+
+         <p> * 주요 재료: {{ menu.RCP_PARTS_DTLS }}</p>
+
+        <div class="row">
+            <div class="col-md-3 recipe-item">
+                <img src="{{ menu.MANUAL_IMG01 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL01 }}</p>
+            </div>
+
+            <div class="col-md-3 recipe-item">
+                <img src="{{ menu.MANUAL_IMG02 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL02 }}</p>
+            </div>
+
+            <div class="col-md-3 recipe-item">
+                <img src="{{ menu.MANUAL_IMG03 }}" alt="Recipe Image">
+                <p>{{ menu.MANUAL03 }}</p>
+            </div>
+
+            {% if menu.MANUAL_IMG04 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG04 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL04 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG05 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG05 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL05 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG06 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG06 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL06 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG07 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG07 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL07 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG08 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG08 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL08 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG09 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG09 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL09 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG10 != "0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG10 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL10 }}</p>
+                </div>
+            {% endif %}
+
+            {% if menu.MANUAL_IMG11 != "0.0" %}
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG11 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL11 }}</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="toggle-details">
+            <button class="btn btn-primary" onclick="toggleAllDetails()">상세정보</button>
+            <div id="all-details" class="details">
+                <p>영양성분 상세정보</p>
+                <p>나트륨: Ng, 단백질 Ag 등등</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js CDN (for some Bootstrap functionality) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function toggleDetails(detailsId) {
+            var details = document.getElementById(detailsId);
+            if (details.style.display === "none") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+        function toggleAllDetails() {
+            var allDetails = document.getElementById('all-details');
+            if (allDetails.style.display === "none") {
+                allDetails.style.display = "block";
+            } else {
+                allDetails.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

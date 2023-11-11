@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'mypageapp',
     'bootstrap4',
     'excel_import',
+    'recipesapp',
 ]
 
 MIDDLEWARE = [
