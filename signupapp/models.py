@@ -65,10 +65,10 @@ class UserInfo(models.Model):
     #last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     age = models.IntegerField(choices=age_choices, default=younger)
     gender = models.CharField(max_length=1, choices=gender_choices, default=Female)
-    issue_ls = models.IntegerField(choices=choices, default=false)
+    issue_ln = models.IntegerField(choices=choices, default=false)
     issue_hp = models.IntegerField(choices=choices, default=false)
-    issue_lk = models.IntegerField(choices=choices, default=false)
     issue_vg = models.IntegerField(choices=choices, default=false)
+    issue_di = models.IntegerField(choices=choices, default=false)
     is_active = models.BooleanField(default=True)
 
 

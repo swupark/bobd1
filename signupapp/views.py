@@ -32,10 +32,10 @@ def signup(request):
         'form': form,
     }
     return render(request, 'signupapp/signup.html', context)
-class UserInfoView(CreateView):
+class UserInfoCreateView(CreateView):
     model = UserInfo
     form_class = UserInfoForm
-    context_object_name = 'target_user'
+    context_object_name = 'target_userinfo'
     success_url = reverse_lazy('accountapp:home')
     template_name = 'signupapp/info.html'
     def form_valid(self, form):

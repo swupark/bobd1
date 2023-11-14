@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, DetailView, DeleteView
 from django.contrib.auth.hashers import check_password
@@ -8,6 +8,9 @@ from django.contrib.auth.hashers import check_password
 
 #from mypageapp.decorators import account_ownership_required
 from django.contrib.auth.decorators import login_required
+
+from signupapp.forms import UserInfoForm
+from signupapp.models import UserInfo
 
 
 #has_ownership = [account_ownership_required, login_required]
@@ -39,3 +42,12 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:home')
     template_name = 'mypageapp/delete.html'
+
+class UserInfoUpdateView(UpdateView):
+    model = UserInfo
+    form_class = UserInfoForm
+    context_object_name = 'target_userinfo'
+    template_name = 'mypageapp/infoupdate.html'
+
+    def get_success_url(self):
+        return reverse('mypageapp:mypage', kwargs={'pk': self.object.pk})
