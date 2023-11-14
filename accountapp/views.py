@@ -43,6 +43,8 @@ def dislike(dislike_igt):
         hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
         ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
         dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    else:
+        return (vegan_img, hp_img, ln_img, dt_img)
 
     # 레시피 리스트를 섞습니다.
     #shuffle(vegan_img)

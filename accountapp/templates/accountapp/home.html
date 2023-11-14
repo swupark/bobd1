@@ -93,19 +93,18 @@
                     }
                  }
 
-                 var imageLists = {
+
+                function displayImage(category) {
+                var imageLists = {
                     'vegan_img': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
                     'hp_img': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                     'ln_img': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                     'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
-                function displayImage(category) {
                     var imagesPerPage = 3;
                     var categoryImages = imageLists[category];
                     var pageContainer = $('<div class="imagePage">');
                     // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
-                    var categoryImages = imageLists[category];
-
                     // 이미지를 저장
                    for (var i = 0; i <12; i+=3) {
                        var imageId = categoryImages[i];
