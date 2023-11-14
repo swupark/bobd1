@@ -14,6 +14,7 @@
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
+                <p>원하는 카테고리를 모두 선택하세요</p>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
@@ -21,64 +22,147 @@
                     <li class="p">고단백식</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="vegun" name="vegun" onclick="
-
+                    <input type="checkbox" id="vegun" name="chk_list" onclick="
                     if(this.checked==true){
                         displayImage('vegan_img');
-                        document.querySelector('.name .v').style.borderColor='rgb(93,186,109)';
-                        document.querySelector('.name .v').style.color='white';
-                        document.querySelector('.name .v').style.backgroundColor='rgb(132,206,145)';}
+                        $('.name .v').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(118,202,113)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(118,202,113)'
+                        });
+                        this.disabled = true;
+                       }
                     else{
-                        btn_reset('vegan_img');
-                        document.querySelector('.name .v').style.borderColor='rgb(234,234,234)';
-                        document.querySelector('.name .v').style.color='rgb(140,140,140)'
-                        document.querySelector('.name .v').style.backgroundColor='rgb(246,246,246)';}">
+                        $('.name .v').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                    }
+                     enableBtnOk();">
                     <label for="vegun"></label>
-                    <input type="checkbox" id="l_fat" name="l_fat" onclick="
+                    <input type="checkbox" id="l_fat" name="chk_list" onclick="
                     if(this.checked==true){
                         displayImage('dt_img');
-                        document.querySelector('.name .f').style.borderColor='rgb(93,186,109)';
-                        document.querySelector('.name .f').style.color='white';
-                        document.querySelector('.name .f').style.backgroundColor='rgb(132,206,145)';}
+                        $('.name .f').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(118,202,113)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(118,202,113)'
+                        });
+                        this.disabled = true;
+                    }
                     else{
-                        btn_reset('dt_img');
-                        document.querySelector('.name .f').style.borderColor='rgb(234,234,234)';
-                        document.querySelector('.name .f').style.color='rgb(140,140,140)';
-                        document.querySelector('.name .f').style.backgroundColor='rgb(246,246,246)';}">
+                        $('.name .f').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
                     <label for="l_fat"></label>
-                    <input type="checkbox" id="l_salt" name="l_salt" onclick="
+                    <input type="checkbox" id="l_salt" name="chk_list" onclick="
                     if(this.checked==true){
                         displayImage('ln_img');
-                        document.querySelector('.name .s').style.borderColor='rgb(93,186,109)';
-                        document.querySelector('.name .s').style.color='white';
-                        document.querySelector('.name .s').style.backgroundColor='rgb(132,206,145)';}
+                        $('.name .s').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(118,202,113)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(118,202,113)'
+                        });
+                        this.disabled = true;
+                    }
                     else{
-                        btn_reset('ln_img');
-                        document.querySelector('.name .s').style.borderColor='rgb(234,234,234)';
-                        document.querySelector('.name .s').style.color='rgb(140,140,140)';
-                        document.querySelector('.name .s').style.backgroundColor='rgb(246,246,246)';}">
+                        $('.name .s').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
                     <label for="l_salt"></label>
-                    <input type="checkbox" id="h_protein" name="h_protein" onclick="
+                    <input type="checkbox" id="h_protein" name="chk_list" onclick="
                     if(this.checked==true){
                         displayImage('hp_img');
-                        document.querySelector('.name .p').style.borderColor='rgb(93,186,109)';
-                        document.querySelector('.name .p').style.color='white';
-                        document.querySelector('.name .p').style.backgroundColor='rgb(132,206,145)';}
+                        $('.name .p').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(118,202,113)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(118,202,113)'
+                        });
+                        this.disabled = true;
+                    }
                     else{
-                        btn_reset('hp_img');
-                        document.querySelector('.name .p').style.borderColor='rgb(234,234,234)';
-                        document.querySelector('.name .p').style.color='rgb(140,140,140)';
-                        document.querySelector('.name .p').style.backgroundColor='rgb(246,246,246)';}">
+                        $('.name .p').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
                     <label for="h_protein"></label>
                 </div>
-                  <button onclick="btn_show()">Show Image</button>
-                  <button onclick="btn_reset()">reset</button>
+                  <button class="btn_ok" disabled onclick="
+                    $('.check input').prop('disabled', true);
+                    pageContainer.style.display = 'block';
+                    imageContainer.style.display = 'block';">&#10004;</button>
+                  <button class="btn_reset" onclick="
+                    $('.btn_ok').prop('disabled',true);
+                    $('.btn_ok').css({
+                      'borderColor': 'rgb(234,234,234)',
+                      'color': 'rgb(140,140,140)',
+                      'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('#pageContainer').empty();
+                    $('#imageContainer').empty();
+                    pageContainer.style.display = 'none';
+                    imageContainer.style.display = 'none';
+                    $('.check input').prop('disabled', false);
+                    $('.check input').prop('checked', false);
+                    $('.name .v').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .f').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .s').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .p').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                  ">&#8634;</button>
                 <!-- 이미지가 나타나는 부분 -->
-                <div id="imageContainer" style="display: none;">
-                    {% for item in data_list|slice:":3" %}
-                    <img src="{{ item.ATT_FILE_NO_MAIN }}" alt="Image">
-                    {% endfor %}
+                <div id="pageContainer" class="pagination" style="display: none"></div>
+                <div id="imageContainer" style="display: none">
                 </div>
+            </div>
+
             </div>
 
             <script  type="text/javascript">
@@ -97,54 +181,58 @@
                     'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
 
-
-
                 function displayImage(category) {
 
                 // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
 
-                var categoryImages = imageLists[category];
+                    var imagesPerPage = 3;
+                    var categoryImages = imageLists[category];
+                    var pageContainer = $('<div class="imagePage">');
+                    // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
 
-                 for (var i = 0; i <7; i+=3) {
-                    var imageId = categoryImages[i];
-                    var imageUrl = categoryImages[i + 1];
-                    var imageNm=categoryImages[i+2];
-                     $('#imageContainer').append(`
-                    <a href="http://127.0.0.1:8000/account/details/${imageId}/">
-                        <img src="${imageUrl}" alt="Image">
-                        <p>${imageNm}</p>
-                    </a>
-               `    );
-                   }
+                    // 이미지를 저장
+                       for (var i = 0; i <12; i+=3) {
+                           var imageId = categoryImages[i];
+                           var imageUrl = categoryImages[i + 1];
+                           var imageNm=categoryImages[i+2];
+                           var imageElement = `
+                               <a href="http://127.0.0.1:8000/account/details/${imageId}/">
+                               <img src="${imageUrl}" alt="Image">
+                               <p>${imageNm}</p>
+                               </a>`;
+                           pageContainer.append(imageElement);
+                           }
 
+                       for(i=0;i<pageContainer.length;i+=9)$('#imageContainer').append(pageContainer);
 
-        }
-
-                function btn_show(){
-                //이미지가 표시
-                 $('#imageContainer').show();
+                       // 이미지가 표시되는 부분을 보여짐
+                       createPagination(4)
+                       showPage(1);
                 }
+                        function createPagination(request) {
+                            var paginationContainer = $('#pageContainer');
+                            paginationContainer.empty();
+                            for (var i=1;i<=request;i++){
+                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ')">' +i+ '</a>');
+                                 paginationContainer.append(pageLink);
+                            }
+                        }
 
-                function btn_reset(category){
-                var categoryImages = imageLists[category];
+                        function showPage(pageNumber) {
+                            var pages = $('.imagePage');
 
-                 for (var i = 0; i <7; i+=3) {
-                    var imageId = categoryImages[i];
-                    var imageUrl = categoryImages[i + 1];
-                    var imageNm=categoryImages[i+2];
-                     $('#imageContainer').splice()(`
-                    <a href="http://127.0.0.1:8000/account/details/${imageId}/">
-                        <img src="${imageUrl}" alt="Image">
-                        <p>${imageNm}</p>
-                    </a>
-               `    );
-                   }
+                            pages.hide();
+                            $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
 
+                            // 페이지네이션 활성화 스타일 설정
+                            $('#pageContainer a').removeClass('active');
+                            $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
+                        }
 
-
-
-                }
-
+                        function enableBtnOk() {
+                            var atLeastOneChecked = $('.check input:checked').length > 0;
+                            $('.btn_ok').prop('disabled', !atLeastOneChecked);
+                        }
             </script>
         </div>
 
