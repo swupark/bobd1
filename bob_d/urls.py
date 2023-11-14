@@ -18,11 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
-from signupapp.views import Signupview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/',Signupview.as_view(), name='signup'),
+    path('signup/', include('signupapp.urls')),
     path('account/',include('accountapp.urls')),
     path('mypage/',include('mypageapp.urls')),
     path('excel_import/', include('excel_import.urls')),

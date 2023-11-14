@@ -1,5 +1,5 @@
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
 from django.db import models
 #
 # class MyAccountManager(BaseUserManager):
@@ -31,7 +31,7 @@ from django.db import models
 #         return user
 
 
-class Account(AbstractBaseUser):
+class UserInfo(models.Model):
     teen = 18
     younger = 29
     middle = 64
@@ -57,10 +57,12 @@ class Account(AbstractBaseUser):
         (true, '네'),
         (false, '아니오')
     ]
-    id = models.AutoField(primary_key=True)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userinfo')
+    #id = models.AutoField(primary_key=True)
     nickname = models.CharField(max_length=40, unique=True,null=True)
-    create_at = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
-    last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
+    #create_at = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    #last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     age = models.IntegerField(choices=age_choices, default=younger)
     gender = models.CharField(max_length=1, choices=gender_choices, default=Female)
     issue_ls = models.IntegerField(choices=choices, default=false)
@@ -68,6 +70,7 @@ class Account(AbstractBaseUser):
     issue_lk = models.IntegerField(choices=choices, default=false)
     issue_vg = models.IntegerField(choices=choices, default=false)
     is_active = models.BooleanField(default=True)
+
 
     # object = MyAccountManager()  # 헬퍼 클래스 사용
     #
@@ -78,5 +81,5 @@ class Account(AbstractBaseUser):
     # USERNAME_FIELD = 'username'  # 로그인 ID로 사용할 필드
     # REQUIRED_FIELDS = ['nickname']  # 필수 작성 필드
     #
-    def __str__(self):
-         return self.nickname
+    #def __str__(self):
+    #     return self.nickname
