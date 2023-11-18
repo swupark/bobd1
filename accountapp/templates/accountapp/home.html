@@ -119,6 +119,13 @@
                      enableBtnOk();">
                     <label for="h_protein"></label>
                 </div>
+                <div class="dislike_ingredient">
+                    <form method="get">
+                        <p>빼고 싶은 재료가 있다면 입력해 주세요.</p>
+                        <label for="dislike_ingredient"></label>
+                        <input type="search" name="dislike_ingredient" id="dislike_ingredient">
+                    </form>
+                </div>
                   <button class="btn_ok" disabled onclick="
                     $('.check input').prop('disabled', true);
                     pageContainer.style.display = 'block';
