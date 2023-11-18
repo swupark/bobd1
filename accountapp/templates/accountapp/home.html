@@ -158,11 +158,9 @@
                     });
                   ">&#8634;</button>
                 <!-- 이미지가 나타나는 부분 -->
+                <div id="imageContainer" style="display: none"></div>
                 <div id="pageContainer" class="pagination" style="display: none"></div>
-                <div id="imageContainer" style="display: none">
-                </div>
             </div>
-
             </div>
 
             <script  type="text/javascript">
@@ -181,34 +179,52 @@
                     'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
 
+                function shuffleArray(array) {
+                    for (var i = array.length - 1; i > 0; i--) {
+                        var j = Math.floor(Math.random() * (i + 1));
+                        var temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                    return array;
+                }
+
                 function displayImage(category) {
-
-                // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
-
                     var imagesPerPage = 3;
                     var categoryImages = imageLists[category];
-                    var pageContainer = $('<div class="imagePage">');
-                    // 이미지 리스트에서 해당 카테고리에 대한 이미지를 가져오기
+                    var imageSet = [];
 
-                    // 이미지를 저장
-                       for (var i = 0; i <18; i+=3) {
-                           var imageId = categoryImages[i];
-                           var imageUrl = categoryImages[i + 1];
-                           var imageNm=categoryImages[i+2];
-                           var imageElement = `
+                    for(var i=0; i<categoryImages.length; i+=3){
+                        var imageId = categoryImages[i];
+                        var imageUrl = categoryImages[i+1];
+                        var imageNm = categoryImages[i+2];
+                        imageSet.push({imageId, imageUrl, imageNm});
+                    }
+
+                    var shuffledImages = shuffleArray(imageSet);
+                    var page = $('<div class="imagePage">');
+
+                    for(var i=0; i<6; i++){
+                        var imageSet = shuffledImages[i];
+                        var imageId = imageSet.imageId;
+                        var imageUrl = imageSet.imageUrl;
+                        var imageNm = imageSet.imageNm;
+                        var imageElement = `
+                             <div class="imageElement">
                                <a href="http://127.0.0.1:8000/account/details/${imageId}/">
-                               <img src="${imageUrl}" alt="Image" style="width: 150px;, height: 150px;">
+                               <img src="${imageUrl}" alt="Image">
                                <p>${imageNm}</p>
-                               </a>`;
-                           pageContainer.append(imageElement);
-                           }
+                               </a>
+                             </div>`;
+                        page.append(imageElement);
+                    }
+                    for (i = 0; i < page.length; i += 6) $('#imageContainer').append(page);
 
-                       for(i=0;i<pageContainer.length;i+=9)$('#imageContainer').append(pageContainer);
-
-                       // 이미지가 표시되는 부분을 보여짐
-                       createPagination(4)
-                       showPage(1);
+                    // 페이지네이션 및 첫 번째 페이지 표시
+                    createPagination($('.check input:checked').length);
+                    showPage(1);
                 }
+
                         function createPagination(request) {
                             var paginationContainer = $('#pageContainer');
                             paginationContainer.empty();
