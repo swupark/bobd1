@@ -14,7 +14,7 @@
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
-                <p>원하는 카테고리를 모두 선택하세요</p>
+                <p>1. 원하는 카테고리를 모두 선택하세요</p>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
@@ -31,9 +31,9 @@
                             'backgroundColor': 'rgb(132,206,145)'
                         });
                         $('.btn_ok').css({
-                            'borderColor': 'rgb(118,202,113)',
+                            'borderColor': 'rgb(232,170,61)',
                             'color': 'white',
-                            'backgroundColor': 'rgb(118,202,113)'
+                            'backgroundColor': 'rgb(232,170,61)'
                         });
                         this.disabled = true;
                        }
@@ -55,9 +55,9 @@
                             'backgroundColor': 'rgb(132,206,145)'
                         });
                         $('.btn_ok').css({
-                            'borderColor': 'rgb(118,202,113)',
+                            'borderColor': 'rgb(232,170,61)',
                             'color': 'white',
-                            'backgroundColor': 'rgb(118,202,113)'
+                            'backgroundColor': 'rgb(232,170,61)'
                         });
                         this.disabled = true;
                     }
@@ -79,9 +79,9 @@
                             'backgroundColor': 'rgb(132,206,145)'
                         });
                         $('.btn_ok').css({
-                            'borderColor': 'rgb(118,202,113)',
+                            'borderColor': 'rgb(232,170,61)',
                             'color': 'white',
-                            'backgroundColor': 'rgb(118,202,113)'
+                            'backgroundColor': 'rgb(232,170,61)'
                         });
                         this.disabled = true;
                     }
@@ -103,9 +103,9 @@
                             'backgroundColor': 'rgb(132,206,145)'
                         });
                         $('.btn_ok').css({
-                            'borderColor': 'rgb(118,202,113)',
+                            'borderColor': 'rgb(232,170,61)',
                             'color': 'white',
-                            'backgroundColor': 'rgb(118,202,113)'
+                            'backgroundColor': 'rgb(232,170,61)'
                         });
                         this.disabled = true;
                     }
@@ -120,12 +120,15 @@
                     <label for="h_protein"></label>
                 </div>
                 <div class="dislike_ingredient">
-                    <form method="get">
-                        <p>빼고 싶은 재료가 있다면 입력해 주세요.</p>
+                    <form method="get" id="di_form">
+                        <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
                         <label for="dislike_ingredient"></label>
-                        <input type="search" name="dislike_ingredient" id="dislike_ingredient">
+                        <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
+                        onclick="this.style.borderColor='rgb(93,186,109)'">
+                        <button type="submit">확인</button>
                     </form>
                 </div>
+                <div class="buttons">
                   <button class="btn_ok" disabled onclick="
                     $('.check input').prop('disabled', true);
                     pageContainer.style.display = 'block';
@@ -163,7 +166,11 @@
                         'color': 'rgb(140,140,140)',
                         'backgroundColor': 'rgb(246,246,246)'
                     });
-                  ">&#8634;</button>
+                    $('.dislike_ingredient input').css({
+                        'borderColor': 'rgb(234,234,234)'
+                    });
+                  ">초기화</button>
+                </div>
                 <!-- 이미지가 나타나는 부분 -->
                 <div id="imageContainer" style="display: none"></div>
                 <div id="pageContainer" class="pagination" style="display: none"></div>
@@ -236,7 +243,7 @@
                             var paginationContainer = $('#pageContainer');
                             paginationContainer.empty();
                             for (var i=1;i<=request;i++){
-                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ')">' +i+ '</a>');
+                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
                                  paginationContainer.append(pageLink);
                             }
                         }
