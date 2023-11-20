@@ -28,6 +28,34 @@
         .toggle-details {
             margin-top: 20px;
         }
+        #all-details p {
+        margin-bottom: 10px;
+        }
+        .hashtags {
+        margin-top: 10px;
+        margin-left: 20px;
+        }
+        .hashtags span {
+        margin-right: 5px;
+        color: #888;
+        }
+        .toggle-details {
+         margin-top: 20px;
+         display: flex;
+         align-items: center;
+        }
+        .additional-content {
+         margin-left: auto;
+        }
+
+        .additional-content-container {
+         margin-left: auto;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         max-width: 300px;
+         word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
@@ -108,12 +136,41 @@
                 </div>
             {% endif %}
         </div>
+
         <div class="toggle-details">
             <button class="btn btn-primary" onclick="toggleAllDetails()">상세정보</button>
-            <div id="all-details" class="details">
-                <p>영양성분 상세정보</p>
-                <p>나트륨: Ng, 단백질 Ag 등등</p>
+
+            <div class="hashtags">
+                {% if menu.LOW_NA != 0 %}
+                    <span>#저염식</span>
+                {% endif %}
+                {% if menu.HIGH_PRO != 0 %}
+                    <span>#고단백식</span>
+                {% endif %}
+                {% if menu.VEGAN != 0 %}
+                    <span>#비건식</span>
+                {% endif %}
+                {% if menu.DIETS != 0 %}
+                    <span>#식단조절식</span>
+                {% endif %}
             </div>
+
+            <div class="additional-content-container">
+                <div class="additional-content">
+                    {% if menu.RCP_NA_TIP != "0" %}
+                        <p> {{ menu.RCP_NA_TIP }} </p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        <div id="all-details" class="details" style="display: none;">
+            <p>영양성분 상세정보</p>
+            <p>탄수화물: {{ menu.INFO_CAR_x }} g</p>
+            <p>에너지: {{ menu.INFO_ENG_x }} g</p>
+            <p>지질량: {{ menu.INFO_FAT_x }} g</p>
+            <p>나트륨: {{ menu.INFO_CAR_x }} g</p>
+            <p>지질량: {{ menu.INFO_NA }} g</p>
         </div>
     </div>
 
