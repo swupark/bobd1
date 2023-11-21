@@ -120,11 +120,11 @@
                     <label for="h_protein"></label>
                 </div>
                 <div class="dislike_ingredient">
-                    <form method="get" id="di_form">
+                    <form method="get" id="di_form" >
                         <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
                         <label for="dislike_ingredient"></label>
                         <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
-                        onclick="this.style.borderColor='rgb(93,186,109)'">
+                        onclick="this.style.borderColor='rgb(93,186,109)';" onsubmit="handleFormSubmit(event)">
                         <button type="submit">확인</button>
                     </form>
                 </div>
@@ -259,10 +259,15 @@
                             $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
                         }
 
-                        function enableBtnOk() {
-                            var atLeastOneChecked = $('.check input:checked').length > 0;
-                            $('.btn_ok').prop('disabled', !atLeastOneChecked);
+                        async function onSubmit() {
+                            console.log("Form submitted!");
                         }
+
+                        function handleFormSubmit(event) {
+                            event.preventDefault();
+                            onSubmit();
+                        }
+
             </script>
         </div>
 
