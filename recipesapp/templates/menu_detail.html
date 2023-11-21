@@ -8,6 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+        .container h1{
+            margin-top: 50px;
+        }
+        .row{
+            display: block;
+            margin: 0 auto;s
+        }
         .recipe-item {
             margin-bottom: 20px;
         }
@@ -62,7 +69,7 @@
     <div class="container">
         <h1>{{ menu.RCP_NM }}</h1>
 
-         <p> * 주요 재료: {{ menu.RCP_PARTS_DTLS }}</p>
+         <p> * 주요 재료 <br> {{ menu.RCP_PARTS_DTLS }}</p>
 
         <div class="row">
             <div class="col-md-3 recipe-item">

@@ -14,13 +14,167 @@
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
-                  <button onclick="displayImage()">Show Image</button>
-                <!-- 이미지가 나타나는 부분 -->
-                <div id="imageContainer" style="display: none;">
-                    {% for item in data_list|slice:":3" %}
-                    <img src="{{ item.ATT_FILE_NO_MAIN }}" alt="Image">
-                    {% endfor %}
+                <p>1. 원하는 카테고리를 모두 선택하세요</p>
+                <div class="name">
+                    <li class="v">비건식</li>
+                    <li class="f">식단 조절</li>
+                    <li class="s">저염식</li>
+                    <li class="p">고단백식</li>
                 </div>
+                <div class="check">
+                    <input type="checkbox" id="vegun" name="chk_list" onclick="
+                    if(this.checked==true){
+                        displayImage('vegan_img');
+                        $('.name .v').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(232,170,61)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(232,170,61)'
+                        });
+                        this.disabled = true;
+                       }
+                    else{
+                        $('.name .v').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                    }
+                     enableBtnOk();">
+                    <label for="vegun"></label>
+                    <input type="checkbox" id="l_fat" name="chk_list" onclick="
+                    if(this.checked==true){
+                        displayImage('dt_img');
+                        $('.name .f').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(232,170,61)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(232,170,61)'
+                        });
+                        this.disabled = true;
+                    }
+                    else{
+                        $('.name .f').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
+                    <label for="l_fat"></label>
+                    <input type="checkbox" id="l_salt" name="chk_list" onclick="
+                    if(this.checked==true){
+                        displayImage('ln_img');
+                        $('.name .s').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(232,170,61)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(232,170,61)'
+                        });
+                        this.disabled = true;
+                    }
+                    else{
+                        $('.name .s').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
+                    <label for="l_salt"></label>
+                    <input type="checkbox" id="h_protein" name="chk_list" onclick="
+                    if(this.checked==true){
+                        displayImage('hp_img');
+                        $('.name .p').css({
+                            'borderColor': 'rgb(93,186,109)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(132,206,145)'
+                        });
+                        $('.btn_ok').css({
+                            'borderColor': 'rgb(232,170,61)',
+                            'color': 'white',
+                            'backgroundColor': 'rgb(232,170,61)'
+                        });
+                        this.disabled = true;
+                    }
+                    else{
+                        $('.name .p').css({
+                            'borderColor': 'rgb(234,234,234)',
+                            'color': 'rgb(140,140,140)',
+                            'backgroundColor': 'rgb(246,246,246)'
+                        });
+                     }
+                     enableBtnOk();">
+                    <label for="h_protein"></label>
+                </div>
+                <div class="dislike_ingredient">
+                    <form method="get" id="di_form">
+                        <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
+                        <label for="dislike_ingredient"></label>
+                        <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
+                        onclick="this.style.borderColor='rgb(93,186,109)'">
+                        <button type="submit">확인</button>
+                    </form>
+                </div>
+                <div class="buttons">
+                  <button class="btn_ok" disabled onclick="
+                    $('.check input').prop('disabled', true);
+                    pageContainer.style.display = 'block';
+                    imageContainer.style.display = 'block';">적용</button>
+                  <button class="btn_reset" onclick="
+                    $('.btn_ok').prop('disabled',true);
+                    $('.btn_ok').css({
+                      'borderColor': 'rgb(234,234,234)',
+                      'color': 'rgb(140,140,140)',
+                      'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('#pageContainer').empty();
+                    $('#imageContainer').empty();
+                    pageContainer.style.display = 'none';
+                    imageContainer.style.display = 'none';
+                    $('.check input').prop('disabled', false);
+                    $('.check input').prop('checked', false);
+                    $('.name .v').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .f').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .s').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.name .p').css({
+                        'borderColor': 'rgb(234,234,234)',
+                        'color': 'rgb(140,140,140)',
+                        'backgroundColor': 'rgb(246,246,246)'
+                    });
+                    $('.dislike_ingredient input').css({
+                        'borderColor': 'rgb(234,234,234)'
+                    });
+                  ">초기화</button>
+                </div>
+                <!-- 이미지가 나타나는 부분 -->
+                <div id="imageContainer" style="display: none"></div>
+                <div id="pageContainer" class="pagination" style="display: none"></div>
+            </div>
             </div>
 
             <script  type="text/javascript">
@@ -30,11 +184,85 @@
                     }else{
                       $('#checkbox').hide();
                     }
+                 }
+
+                 var imageLists = {
+                    'vegan_img': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
+                    'hp_img': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'ln_img': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                };
+
+                function shuffleArray(array) {
+                    for (var i = array.length - 1; i > 0; i--) {
+                        var j = Math.floor(Math.random() * (i + 1));
+                        var temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
                     }
-                function displayImage() {
-            //이미지가 표시되는 부분을 토글
-            $('#imageContainer').toggle();
-        }
+                    return array;
+                }
+
+                function displayImage(category) {
+                    var imagesPerPage = 3;
+                    var categoryImages = imageLists[category];
+                    var imageSet = [];
+
+                    for(var i=0; i<categoryImages.length; i+=3){
+                        var imageId = categoryImages[i];
+                        var imageUrl = categoryImages[i+1];
+                        var imageNm = categoryImages[i+2];
+                        imageSet.push({imageId, imageUrl, imageNm});
+                    }
+
+                    var shuffledImages = shuffleArray(imageSet);
+                    var page = $('<div class="imagePage">');
+
+                    for(var i=0; i<6; i++){
+                        var imageSet = shuffledImages[i];
+                        var imageId = imageSet.imageId;
+                        var imageUrl = imageSet.imageUrl;
+                        var imageNm = imageSet.imageNm;
+                        var imageElement = `
+                             <div class="imageElement">
+                               <a href="http://127.0.0.1:8000/account/details/${imageId}/">
+                               <img src="${imageUrl}" alt="Image">
+                               <p>${imageNm}</p>
+                               </a>
+                             </div>`;
+                        page.append(imageElement);
+                    }
+                    for (i = 0; i < page.length; i += 6) $('#imageContainer').append(page);
+
+                    // 페이지네이션 및 첫 번째 페이지 표시
+                    createPagination($('.check input:checked').length);
+                    showPage(1);
+                }
+
+                        function createPagination(request) {
+                            var paginationContainer = $('#pageContainer');
+                            paginationContainer.empty();
+                            for (var i=1;i<=request;i++){
+                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
+                                 paginationContainer.append(pageLink);
+                            }
+                        }
+
+                        function showPage(pageNumber) {
+                            var pages = $('.imagePage');
+
+                            pages.hide();
+                            $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
+
+                            // 페이지네이션 활성화 스타일 설정
+                            $('#pageContainer a').removeClass('active');
+                            $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
+                        }
+
+                        function enableBtnOk() {
+                            var atLeastOneChecked = $('.check input:checked').length > 0;
+                            $('.btn_ok').prop('disabled', !atLeastOneChecked);
+                        }
             </script>
         </div>
 
