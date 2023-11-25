@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
+
+{% block static %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
 {% block content %}
-<h3> 메일 발송 완료! </h3>
+<div class="form-container my-3">
+    <h4 class="border-bottom pb-2 my-3">이메일 전송 완료</h4>
+    <p> 사용자의 이메일로 아이디를 전송했습니다. </p>
+
+    <a href="{% url 'accountapp:home' %}" class="btn btn-primary">처음으로</a>
+</div>
 
 {% endblock %}

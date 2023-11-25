@@ -36,7 +36,7 @@ def details(request,imageId):
     return render(request,'accountapp/details.html',{'post':imageId, 'rcp':rcp})
 
 
-
+#아이디 찾기
 def FindIDview(request):
     context = {}
     if request.method == 'POST':
@@ -46,39 +46,30 @@ def FindIDview(request):
             if user is not None:
                 template = render_to_string('accountapp/email_template.html', {'nickname':user.userinfo.nickname, 'id':user.username})
                 method_email = EmailMessage(
-                    'Your ID is in the email',
-                    template,
-                    settings.EMAIL_HOST_USER,
+                    'Your ID is in the email', #메일 제목
+                    template, #메일 내용 html
+                    settings.EMAIL_HOST_USER, #메일 보내는 사람
                     [email],
                     )
-                method_email.send(fail_silently=False)
-                return render(request, 'accountapp/id_sent.html', context)
+                method_email.send(fail_silently=False) #메일 보내는 동안 오류 발생해도 무시하고 보냄
+                return render(request, 'accountapp/id_sent.html', context) #메일 발송 시 성공 페이지로 연결
         except:
-            messages.info(request, "There is no username along with the email")
+            messages.info(request, "해당 이메일로 가입한 아이디가 존재하지 않습니다.")
     context = {}
-    return render(request, 'accountapp/find_id.html', context)
+    return render(request, 'accountapp/id_find.html', context)
 
-
+#비밀번호 찾기 (사용자ID, email 입력)
 class PasswordResetView(auth_views.PasswordResetView):
-    """
-    비밀번호 초기화 - 사용자ID, email 입력
-    """
     template_name = 'accountapp/password_reset.html'
     # success_url = reverse_lazy('password_reset_done')
     form_class = PasswordResetForm
     # email_template_name = 'common/password_reset_email.html'
 
-
+#비밀번호 찾기 (메일 전송 완료)
 class PasswordResetDoneView(auth_views.PasswordResetDoneView):
-    """
-    비밀번호 초기화 - 메일 전송 완료
-    """
     template_name = 'accountapp/password_reset_done.html'
 
-
+#비밀번호 찾기 (새로운 비밀번호 입력)
 class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
-    """
-    비밀번호 초기화 - 새로운 비밀번호 입력
-    """
     template_name = 'accountapp/password_reset_confirm.html'
     success_url = reverse_lazy('accountapp:login')
