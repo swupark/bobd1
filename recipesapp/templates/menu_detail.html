@@ -56,9 +56,25 @@
          max-width: 300px;
          word-wrap: break-word;
         }
+        .img-container {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-start;
+        }
+       .img-container img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        margin-right: 650px;
+        margin-left: 0;
+        }
     </style>
 </head>
 <body>
+    <div class="img-container">
+        <img src="{{ menu.ATT_FILE_NO_MK }}">
+    </div>
     <div class="container">
         <h1>{{ menu.RCP_NM }}</h1>
 

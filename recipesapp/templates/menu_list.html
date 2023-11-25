@@ -1,0 +1,108 @@
+<!-- menu_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu List</title>
+    <style>
+        li {
+            position: relative;
+            list-style: none;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            width: 100%;
+        }
+        .img-container {
+            max-width: 100px;
+            margin-right: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .menu-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-info p {
+            margin: 0;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+        .toggle-container {
+            position: relative;
+            margin-left: 10px;
+        }
+        .toggle-background {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 300%;
+            z-index: 1;
+        }
+        .toggle-content {
+            display: none;
+        }
+        .toggle-button {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu List</h1>
+    <ul>
+        {% for menu in menus %}
+            <li>
+                <a href="{% url 'menu_detail' menu.id %}">
+                    <div class="img-container">
+                        <img src="{{ menu.ATT_FILE_NO_MK }}" alt="{{ menu.RCP_NM }}">
+                    </div>
+                    <div class="menu-info">
+                        <p>{{ menu.RCP_NM }}</p>
+                        <div class="toggle-container">
+                            <div class="toggle-background">
+                                <p class="toggle-content">{{ menu.RCP_PARTS_DTLS }}</p>
+                            </div>
+                            <div class="toggle-button" onclick="toggleContent(event, this)">주요재료</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function toggleContent(event, button) {
+            event.preventDefault();
+            var container = button.parentElement;
+            var background = container.firstElementChild;
+            var content = background.firstElementChild;
+            var displayStyle = background.style.display === "none" ? "block" : "none";
+            background.style.display = displayStyle;
+            content.style.display = displayStyle;
+
+            if (displayStyle === "block") {
+                button.style.marginTop = "0";
+            } else {
+                button.style.marginTop = "5px";
+            }
+        }
+    </script>
+</body>
+</html>
