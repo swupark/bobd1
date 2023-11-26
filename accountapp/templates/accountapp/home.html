@@ -124,7 +124,7 @@
                         <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
                         <label for="dislike_ingredient"></label>
                         <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
-                        onclick="this.style.borderColor='rgb(93,186,109)';" onsubmit="handleFormSubmit(event)">
+                        onclick="this.style.borderColor='rgb(93,186,109)';">
                         <button type="submit">확인</button>
                     </form>
                 </div>
@@ -239,35 +239,30 @@
                     showPage(1);
                 }
 
-                        function createPagination(request) {
-                            var paginationContainer = $('#pageContainer');
-                            paginationContainer.empty();
-                            for (var i=1;i<=request;i++){
-                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
-                                 paginationContainer.append(pageLink);
-                            }
-                        }
+                    function createPagination(request) {
+                         var paginationContainer = $('#pageContainer');
+                         paginationContainer.empty();
+                         for (var i=1;i<=request;i++){
+                         var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
+                         paginationContainer.append(pageLink);
+                         }
+                    }
 
-                        function showPage(pageNumber) {
-                            var pages = $('.imagePage');
+                    function showPage(pageNumber) {
+                         var pages = $('.imagePage');
 
-                            pages.hide();
-                            $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
+                         pages.hide();
+                         $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
 
-                            // 페이지네이션 활성화 스타일 설정
-                            $('#pageContainer a').removeClass('active');
-                            $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
-                        }
+                         // 페이지네이션 활성화 스타일 설정
+                         $('#pageContainer a').removeClass('active');
+                         $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
+                    }
 
-                        async function onSubmit() {
-                            console.log("Form submitted!");
-                        }
-
-                        function handleFormSubmit(event) {
-                            event.preventDefault();
-                            onSubmit();
-                        }
-
+                    function enableBtnOk() {
+                         var atLeastOneChecked = $('.check input:checked').length > 0;
+                         $('.btn_ok').prop('disabled', !atLeastOneChecked);
+                    }
             </script>
         </div>
 
