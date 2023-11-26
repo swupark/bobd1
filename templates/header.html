@@ -8,11 +8,7 @@
             </div>
             <div class="h_menu_item">
                 <div class="h_login">
-                    {% if user.is_authenticated %}
-                    <img src="{% static 'image/spoon2.png' %}" style="width: 16px"/><a href="{% url 'accountapp:logout' %}">로그아웃</a>
-                    {% else %}
                     <img src="{% static 'image/spoon2.png' %}" style="width: 16px"/><a href="{% url 'accountapp:login' %}">로그인</a>
- {% endif %}
                 </div>
                 <div class="h_signup">
                     <img src="{% static 'image/chopstick2.png' %}" style="width: 16px"/><a href="{% url 'signup' %}">회원가입</a>

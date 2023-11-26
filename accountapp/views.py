@@ -4,10 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 
-from accountapp.decorator import account_ownership_required
 from excel_import.models import FoodModel
 
-has_ownership=[account_ownership_required, login_required]
 def homepage(request):
     dislike_ingredient = request.GET.get('dislike_ingredient', '')
     vegan_img,hp_img,ln_img,dt_img=dislike(dislike_ingredient)
@@ -16,10 +14,10 @@ def homepage(request):
     #     hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
     #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
     #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    # shuffle(vegan_img)
-    # shuffle(hp_img)
-    # shuffle(ln_img)
-    # shuffle(dt_img)
+    shuffle(vegan_img)
+    shuffle(hp_img)
+    shuffle(ln_img)
+    shuffle(dt_img)
 
     return render(request, 'accountapp/home.html',{'vegan_img': vegan_img, 'hp_img': hp_img, 'ln_img': ln_img, 'dt_img': dt_img})
 
@@ -43,8 +41,6 @@ def dislike(dislike_igt):
         hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
         ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
         dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    else:
-        return (vegan_img, hp_img, ln_img, dt_img)
 
     # 레시피 리스트를 섞습니다.
     #shuffle(vegan_img)
