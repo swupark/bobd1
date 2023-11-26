@@ -7,11 +7,16 @@
     <title>{{ menu.RCP_NM }}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 
     <style>
         body{
-            max-width: 2000px;
+            max-width: 1500px;
+            font-family: 'IBM Plex Sans KR', sans-serif;
         }
+
         #ch_color{
             float: left;
             margin-left: 151.9px;
@@ -31,6 +36,7 @@
         .container {
             margin-bottom: 20px;
             margin-left: 200px;
+            margin-right: 100px;
             border-left: 2px solid rgb(141,185,170,0.7);
             max-width: 1200px;
         }
@@ -39,7 +45,19 @@
             margin-bottom: 20px;
         }
         .upper{
-            margin: 50px 0px 100px 550px;
+            display: flex;
+            margin: 50px 0px 0px 115px;
+            width: 900px;
+        }
+        .upper_right{
+            width: 530px;
+        }
+        .img-container img{
+            width: 370px;
+            height: auto;
+            margin-top: 40px;
+            margin-right: 50px;
+            border-radius: 5px;
         }
         .hashtags {
             margin-top: 10px;
@@ -49,17 +67,30 @@
             color: #888;
             font-size: 15px;
         }
-        .menuname_toggle{
-            display: flex;
-        }
         .main_menu{
             font-size: 35px;
         }
-        .toggle-details {
-            margin-top: 10px;
+        .ingredient{
+            width: 80%;
+            height: auto;
+            margin-top: 70px;
+            margin-bottom: 50px;
+        }
+        .main_ingre{
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+        }
+        .detail_ingre{
+            font-size: 16px;
         }
         .details{
             margin-top: 15px;
+        }
+        .nourish{
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+            margin-bottom: 10px;
         }
         .details b{
             color: rgb(30, 143, 90);
@@ -68,86 +99,34 @@
             margin-bottom: 10px;
             font-size: 15px;
         }
-        .btn.btn-primary{
-            width: 80px;
-            height: 35px;
-            font-size: 13px;
-            margin-left: 10px;
-            background-color: rgb(30, 143, 90);
-            border: none;
-        }
-        .btn.btn-primary:hover{
-            background-color: rgb(30, 143, 90, 0.8);
-        }
-        .ingredient{
-            width: 30%;
-            height: auto;
-            margin-top: 50px;
-        }
-        .main_ingre{
-            margin-bottom: 10px;
-            font-size: 20px;
-            color: rgb(30, 143, 90);
-        }
+
         .hr1{
-            width: 870px;
+            width: 1000px;
             margin-left: 65px;
         }
         .hr2{
-            width: 870px;
+            width: 1000px;
             margin-left: 65px;
         }
+
         .recipe_step{
             font-size: 20px;
             color: rgb(30, 143, 90);
             margin-left: 65px;
         }
-        .row{
-            margin-top: 100px;
-            text-align: left;
-        }
-        .left{
-            display: inline-block;
-            width: 568px;
-            height: 100%;
-        }
-        .right{
-            display: inline-block;
-            width: 568px;
-            height: 100%;
-        }
-        .left .recipe-item{
-            margin: 0px 80px 10px 130px;
-        }
-        .right .recipe-item{
-            margin-bottom: 10px;
-        }
-        .recipe-item{
-            height: 450px;
-        }
-        .recipe-item img {
-            width: 330px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .recipe-item p{
-            width: 300px;
-            height: auto;
-            margin-bottom: 50px;
+        .step_add{
+            display: flex;
+            justify-content: space-between;
         }
         .additional-content {
-            float: right;
-            position:relative;
-            top: 350px;
-            max-width: 250px;
+            position: relative;
+            max-width: 200px;
             height:auto;
             word-wrap: break-word;
             margin: 50px 0px;
             padding: 10px;
             color: black;
             border-radius: 10px;
-            margin-left: auto;
         }
         .additional-content p{
             font-size: 13px;
@@ -160,15 +139,43 @@
             font-size: 15px;
         }
         .additional-content:hover{
-            animation: motion 0.3s linear 0s infinite alternate;
+            transition: 0.3s;
+	        transform: scale(1.1);
         }
-        @keyframes motion {
-             0% {margin-top: 0px;}
-             100% {margin-top: 10px;}
+        .row{
+            max-width: 1000px;
+            margin-left: 65px;
+            text-align: left;
         }
+        .left{
+            display: inline-block;
+            width: 500px;
+            height: 100%;
+        }
+        .right{
+            display: inline-block;
+            width: 500px;
+            height: 100%;
+        }
+        .recipe-item{
+            height: 500px;
+            margin: 0px 0px 10px 37.5px;
+        }
+        .recipe-item img {
+            width: 395px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .recipe-item p{
+            width: 365px;
+            height: auto;
+            margin-bottom: 50px;
+        }
+
         .comment{
             width: 950px;
-            margin-left: 75px;
+            margin-left: 117px;
         }
         .comment_name{
             font-size: 20px;
@@ -185,7 +192,7 @@
             margin-top: 10px;
         }
         .c_text{
-            width: 800px;
+            width: 830px;
             border: 1px solid rgb(141,185,170);
             border-radius: 10px;
         }
@@ -216,54 +223,58 @@
             this.name='empty';
         }
     ">
-    <div class="additional-content-container">
-        <div class="additional-content">
-            {% if menu.RCP_NA_TIP != "0" %}
-            <p><mark>{{ menu.RCP_NA_TIP }}</mark></p>
-            {% endif %}
-        </div>
-    </div>
+
     <div class="container">
         <div class="upper">
-            <div class="hashtags">
-                    {% if menu.LOW_NA != 0 %}
-                        <span>#저염식</span>
-                    {% endif %}
-                    {% if menu.HIGH_PRO != 0 %}
-                        <span>#고단백식</span>
-                    {% endif %}
-                    {% if menu.VEGAN != 0 %}
-                        <span>#비건식</span>
-                    {% endif %}
-                    {% if menu.DIETS != 0 %}
-                        <span>#식단조절식</span>
-                    {% endif %}
+            <div class="img-container">
+                <img src="{{ menu.ATT_FILE_NO_MK }}">
             </div>
-            <div class="menuname_toggle">
+            <div class="upper_right">
+                <div class="hashtags">
+                        {% if menu.LOW_NA != 0 %}
+                            <span>#저염식</span>
+                        {% endif %}
+                        {% if menu.HIGH_PRO != 0 %}
+                            <span>#고단백식</span>
+                        {% endif %}
+                        {% if menu.VEGAN != 0 %}
+                            <span>#비건식</span>
+                        {% endif %}
+                        {% if menu.DIETS != 0 %}
+                            <span>#식단조절식</span>
+                        {% endif %}
+                </div>
                 <div class="main_menu">{{ menu.RCP_NM }}</div>
-                    <div class="toggle">
-                        <div class="toggle-details">
-                            <button class="btn btn-primary" onclick="toggleAllDetails()">영양성분</button>
-                        </div>
-                        <div id="all-details" class="details" style="display: none;">
-                            <p><b>탄수화물</b>&nbsp;&nbsp;{{ menu.INFO_CAR_x }} g</p>
-                            <p><b>에너지</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_ENG_x }} g</p>
-                            <p><b>지방량</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_FAT_x }} g</p>
-                            <p><b>나트륨</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_NA }} g</p>
-                        </div>
+                <div class="ingredient">
+                    <div class="main_ingre">
+                         |재료
+                    </div>
+                    <div class="detail_ingre">
+                         {{ menu.RCP_PARTS_DTLS }}
                     </div>
                 </div>
-            <div class="ingredient">
-                <div class="main_ingre">
-                     |재료
-                </div>
-                <div class="detail_ingre">
-                     {{ menu.RCP_PARTS_DTLS }}
+                <div id="all-details" class="details">
+                    <div class="nourish">
+                         |영양성분
+                    </div>
+                    <p><b>탄수화물</b>&nbsp;&nbsp;{{ menu.INFO_CAR_x }} g</p>
+                    <p><b>에너지</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_ENG_x }} g</p>
+                    <p><b>지방량</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_FAT_x }} g</p>
+                    <p><b>나트륨</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_NA }} g</p>
                 </div>
             </div>
         </div>
         <hr class="hr1">
-        <p class="recipe_step">|조리 과정</p>
+        <div class="step_add">
+            <p class="recipe_step">|조리 과정</p>
+            <div class="additional-content-container">
+                <div class="additional-content">
+                    {% if menu.RCP_NA_TIP != "0" %}
+                    <p><mark>{{ menu.RCP_NA_TIP }}</mark></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="left">
                 <div class="col-md-3 recipe-item">
@@ -348,15 +359,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function toggleDetails(detailsId) {
-            var details = document.getElementById(detailsId);
-            if (details.style.display === "none") {
-                details.style.display = "block";
-            } else {
-                details.style.display = "none";
-            }
-        }
-
         function toggleAllDetails() {
             var allDetails = document.getElementById('all-details');
             if (allDetails.style.display === "none") {
