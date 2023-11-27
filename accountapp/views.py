@@ -17,7 +17,7 @@ from django.contrib import messages
 
 from django.conf import settings
 
-from accountapp.forms import PasswordResetForm
+from accountapp.forms import PasswordResetForm, CustomAuthenticationForm
 from excel_import.models import FoodModel
 
 def homepage(request):
@@ -34,12 +34,6 @@ def homepage(request):
     shuffle(ln_img)
     shuffle(dt_img)
     return render(request, 'accountapp/home.html',{'vegan_img': vegan_img, 'hp_img': hp_img, 'ln_img': ln_img, 'dt_img': dt_img})
-
-
-def details(request,imageId):
-    rcp = get_object_or_404(FoodModel, id=imageId)
-    return render(request,'accountapp/details.html',{'post':imageId, 'rcp':rcp})
-
 def details(request,imageId):
     rcp = get_object_or_404(FoodModel, id=imageId)
     return render(request,'accountapp/details.html',{'post':imageId, 'rcp':rcp})
@@ -62,12 +56,15 @@ def dislike(dislike_igt):
         dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
 
     # 레시피 리스트를 섞습니다.
-    #shuffle(vegan_img)
-    #shuffle(hp_img)
-    #shuffle(ln_img)
-    #shuffle(dt_img)
+    shuffle(vegan_img)
+    shuffle(hp_img)
+    shuffle(ln_img)
+    shuffle(dt_img)
 
     return (vegan_img,  hp_img,  ln_img, dt_img)
+
+class CustomLoginView(auth_views.LoginView):
+    form_class = CustomAuthenticationForm
 
 #아이디 찾기
 def FindIDview(request):
@@ -106,16 +103,3 @@ class PasswordResetDoneView(auth_views.PasswordResetDoneView):
 class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = 'accountapp/password_reset_confirm.html'
     success_url = reverse_lazy('accountapp:login')
-    dislike_ingredient = request.GET.get('dislike_ingredient', '')
-    vegan_img,hp_img,ln_img,dt_img=dislike(dislike_ingredient)
-    # if dislike_ingredient:
-    #     vegan_img = [recipe for recipe in vegan_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    #     hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-    shuffle(vegan_img)
-    shuffle(hp_img)
-    shuffle(ln_img)
-    shuffle(dt_img)
-
-    return render(request, 'accountapp/home.html',{'vegan_img': vegan_img, 'hp_img': hp_img, 'ln_img': ln_img, 'dt_img': dt_img})

@@ -1,49 +1,46 @@
-.content{
-	text-align: center;
-	/*margin: 0 auto;*/
-	margin-top: 150px;
+.form-container{
+    margin-top: 7rem;
 }
-a{
-	text-decoration: none;
-	color: #000;
-}
-input::placeholder{
-	color: rgb(140, 140, 140);
-}
-.idbox img{
-	width: 30px;
-	height: 38px;
-	margin-bottom: -14px;
-}
-.pwdbox img{
-	width: 30px;
-	height: 43px;
-	margin-bottom: -14px;
-}
-form .id,.pwd{
+
+#username, #password{
 	width: 333px;
 	height: 45px;
 	border-radius: 20px;
-	margin-left: 10px;
 	font-size: 15px;
 	border: 1px solid rgb(189, 189, 189);
 }
 
-form .id{
-	margin-bottom: 20px;
+.idbox, .pwdbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
-form .log{
-	width: 404px;
-	height: 55px;
+
+.idbox img{
+	width: 30px;
+	height: 38px;
+}
+.pwdbox img{
+	width: 30px;
+	height: 43px;
+}
+#form-button{
+	width: 380px;
+	height: 45px;
 	border-radius: 20px;
-	border: none;
-	opacity: 0.7;
-	margin-top: 50px;
-	background-color: rgb(0, 104, 56);
 	color: white;
 	font-size: 20px;
 }
 .l_list{
 	margin-top: 32px;
 	margin-bottom: 69px;
+	text-align: center;
+}
+
+.l_list a,
+.l_list a:hover {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.8rem;
 }

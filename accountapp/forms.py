@@ -1,6 +1,23 @@
+from django import forms
 from django.core.exceptions import ValidationError
 import django.contrib.auth.forms as auth_forms
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+
+class CustomAuthenticationForm(auth_forms.AuthenticationForm):
+    error_messages = {
+        'required': "빈 칸을 채워주세요.",
+        'invalid_login': (
+            "아이디가 존재하지 않거나 비밀번호가 틀렸습니다. 다시 입력해 주세요."
+        ),
+        'inactive': ("이 계정은 인증되지 않았습니다. 인증을 먼저 진행해 주세요."),
+    }
+
+    def __init__(self, request=None, *args, **kwargs):
+        super(CustomAuthenticationForm, self).__init__(*args, **kwargs)  # 꼭 있어야 한다!
+        self.fields['username'].label = '아이디'
+        self.fields['password'].label = '비밀번호'
+
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
     username = auth_forms.UsernameField(label="사용자ID")  # CharField 대신 사용
