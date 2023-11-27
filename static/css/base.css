@@ -34,18 +34,15 @@ a{
     gap:14px;
 }
 
-.h_nav {
+.h_menu_item {
     display: flex;
     gap: 5px;
     padding-top: 28px;
 }
 
-.h_nav a,
-.h_nav a:hover {
+.h_menu_item a{
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: bold;
-    text-decoration: none;
-	color: #000;
 }
 
 .h_logo{
@@ -61,51 +58,33 @@ a{
     padding-top: 41px;
 }
 
-.h_logo a,
-.h_logo a:hover{
+.h_logo a{
     font-family: 'Schoolbell';
     font-size: 65px;
     color: rgb(0, 104, 56);
-    text-decoration: none;
 }
-
 .h_logo a img{
     width: 180px;
 }
 
-.nav-menu1{
+.h_login{
     display:flex;
     align-items: center;
     padding-right: 15px;
     align-items: center;
 }
 
-.nav-menu1 img{
+.h_login img{
     height: 25px;
     padding-right: 2px;
 }
 
-.nav-menu2{
+.h_signup{
     display:flex;
     align-items: center;
 }
 
-.nav-menu2 img{
+.h_signup img{
     height: 25px;
     padding-right: 1px;
-}
-
-#form-button {
-    border: none;
-    opacity: 0.7;
-    background-color: rgb(0, 104, 56);
-}
-
-.form-container {
-    text-align: left;
-    max-width: 500px;
-    margin: 3rem auto;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: 'IBM Plex Sans KR', sans-serif;
 }
