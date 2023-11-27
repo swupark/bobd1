@@ -7,187 +7,358 @@
     <title>{{ menu.RCP_NM }}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+
     <style>
-        .recipe-item {
-            margin-bottom: 20px;
+        body{
+            max-width: 1500px;
+            font-family: 'IBM Plex Sans KR', sans-serif;
         }
-        .recipe-item img {
-            max-width: 100%;
-            height: auto;
+
+        #ch_color{
+            float: left;
+            margin-left: 151.9px;
+            margin-top: 50px;
+            width: 50px;
+            height: 80px;
+            border: 2px solid rgb(141,185,170,0.7);
+            border-right: none;
+            border-radius: 20px 0px 0px 20px;
+            background-color: #fff;
+            font-size: 30px;
+            color: rgb(250,6,68);
+        }
+        #ch_color:hover{
+            color: rgb(250,6,68,0.5);
         }
         .container {
             margin-bottom: 20px;
+            margin-left: 200px;
+            margin-right: 100px;
+            border-left: 2px solid rgb(141,185,170,0.7);
+            max-width: 1200px;
         }
-        .container h1,
+        .container .main_menu,
         .container p {
             margin-bottom: 20px;
         }
-        .details {
-            display: none;
+        .upper{
+            display: flex;
+            margin: 50px 0px 0px 115px;
+            width: 900px;
         }
-        .toggle-details {
-            margin-top: 20px;
+        .upper_right{
+            width: 530px;
         }
-        #all-details p {
-        margin-bottom: 10px;
+        .img-container img{
+            width: 370px;
+            height: auto;
+            margin-top: 40px;
+            margin-right: 50px;
+            border-radius: 5px;
         }
         .hashtags {
-        margin-top: 10px;
-        margin-left: 20px;
+            margin-top: 10px;
         }
         .hashtags span {
-        margin-right: 5px;
-        color: #888;
+            margin-right: 5px;
+            color: #888;
+            font-size: 15px;
         }
-        .toggle-details {
-         margin-top: 20px;
-         display: flex;
-         align-items: center;
+        .main_menu{
+            font-size: 35px;
         }
-        .additional-content {
-         margin-left: auto;
+        .ingredient{
+            width: 80%;
+            height: auto;
+            margin-top: 70px;
+            margin-bottom: 50px;
+        }
+        .main_ingre{
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+        }
+        .detail_ingre{
+            font-size: 16px;
+        }
+        .details{
+            margin-top: 15px;
+        }
+        .nourish{
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+            margin-bottom: 10px;
+        }
+        .details b{
+            color: rgb(30, 143, 90);
+        }
+        .details p{
+            margin-bottom: 10px;
+            font-size: 15px;
         }
 
-        .additional-content-container {
-         margin-left: auto;
-         padding: 10px;
-         border: 1px solid #ccc;
-         border-radius: 5px;
-         max-width: 300px;
-         word-wrap: break-word;
+        .hr1{
+            width: 1000px;
+            margin-left: 65px;
+        }
+        .hr2{
+            width: 1000px;
+            margin-left: 65px;
+        }
+
+        .recipe_step{
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+            margin-left: 65px;
+        }
+        .step_add{
+            display: flex;
+            justify-content: space-between;
+        }
+        .additional-content {
+            position: relative;
+            max-width: 200px;
+            height:auto;
+            word-wrap: break-word;
+            margin: 50px 0px;
+            padding: 10px;
+            color: black;
+            border-radius: 10px;
+        }
+        .additional-content p{
+            font-size: 13px;
+        }
+        .additional-content:after{
+            content:"Tip";
+            position: absolute;
+            top: 5px;
+            left: -15px;
+            font-size: 15px;
+        }
+        .additional-content:hover{
+            transition: 0.3s;
+	        transform: scale(1.1);
+        }
+        .row{
+            max-width: 1000px;
+            margin-left: 65px;
+            text-align: left;
+        }
+        .left{
+            display: inline-block;
+            width: 500px;
+            height: 100%;
+        }
+        .right{
+            display: inline-block;
+            width: 500px;
+            height: 100%;
+        }
+        .recipe-item{
+            height: 500px;
+            margin: 0px 0px 10px 37.5px;
+        }
+        .recipe-item img {
+            width: 395px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .recipe-item p{
+            width: 365px;
+            height: auto;
+            margin-bottom: 50px;
+        }
+
+        .comment{
+            width: 950px;
+            margin-left: 117px;
+        }
+        .comment_name{
+            font-size: 20px;
+            color: rgb(30, 143, 90);
+            margin-left: 65px;
+            margin-bottom: 20px;
+        }
+        .user_name{
+            color: rgb(141,185,170);
+            font-weight: bold;
+        }
+        .c_content{
+            display: flex;
+            margin-top: 10px;
+        }
+        .c_text{
+            width: 830px;
+            border: 1px solid rgb(141,185,170);
+            border-radius: 10px;
+        }
+        .c_text:focus{
+            outline: none;
+            box-shadow: 0px 0px 3px 2px rgb(30, 143, 90, 0.3);
+        }
+        .c_btn{
+            width: 50px;
+            height: 30px;
+            margin-top: 15.8px;
+            margin-left: 10px;
+            background-color: rgb(141,185,170);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 13.5px;
         }
     </style>
 </head>
 <body>
+    <input type="button" id="ch_color" name="empty" value="&#x2661;" onclick="
+        if(this.name==='empty'){
+            this.value='&#x2661;';
+            this.name='fill';
+        }else{
+            this.value='&#x2665;';
+            this.name='empty';
+        }
+    ">
+
     <div class="container">
-        <h1>{{ menu.RCP_NM }}</h1>
-
-         <p> * 주요 재료: {{ menu.RCP_PARTS_DTLS }}</p>
-
-        <div class="row">
-            <div class="col-md-3 recipe-item">
-                <img src="{{ menu.MANUAL_IMG01 }}" alt="Recipe Image">
-                <p>{{ menu.MANUAL01 }}</p>
+        <div class="upper">
+            <div class="img-container">
+                <img src="{{ menu.ATT_FILE_NO_MK }}">
             </div>
-
-            <div class="col-md-3 recipe-item">
-                <img src="{{ menu.MANUAL_IMG02 }}" alt="Recipe Image">
-                <p>{{ menu.MANUAL02 }}</p>
-            </div>
-
-            <div class="col-md-3 recipe-item">
-                <img src="{{ menu.MANUAL_IMG03 }}" alt="Recipe Image">
-                <p>{{ menu.MANUAL03 }}</p>
-            </div>
-
-            {% if menu.MANUAL_IMG04 != "0" %}
-                <div class="col-md-3 recipe-item">
-                    <img src="{{ menu.MANUAL_IMG04 }}" alt="Recipe Image">
-                    <p>{{ menu.MANUAL04 }}</p>
+            <div class="upper_right">
+                <div class="hashtags">
+                        {% if menu.LOW_NA != 0 %}
+                            <span>#저염식</span>
+                        {% endif %}
+                        {% if menu.HIGH_PRO != 0 %}
+                            <span>#고단백식</span>
+                        {% endif %}
+                        {% if menu.VEGAN != 0 %}
+                            <span>#비건식</span>
+                        {% endif %}
+                        {% if menu.DIETS != 0 %}
+                            <span>#식단조절식</span>
+                        {% endif %}
                 </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG05 != "0" %}
+                <div class="main_menu">{{ menu.RCP_NM }}</div>
+                <div class="ingredient">
+                    <div class="main_ingre">
+                         |재료
+                    </div>
+                    <div class="detail_ingre">
+                         {{ menu.RCP_PARTS_DTLS }}
+                    </div>
+                </div>
+                <div id="all-details" class="details">
+                    <div class="nourish">
+                         |영양성분
+                    </div>
+                    <p><b>탄수화물</b>&nbsp;&nbsp;{{ menu.INFO_CAR_x }} g</p>
+                    <p><b>에너지</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_ENG_x }} g</p>
+                    <p><b>지방량</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_FAT_x }} g</p>
+                    <p><b>나트륨</b>&nbsp;&nbsp;&nbsp;{{ menu.INFO_NA }} g</p>
+                </div>
+            </div>
+        </div>
+        <hr class="hr1">
+        <div class="step_add">
+            <p class="recipe_step">|조리 과정</p>
+            <div class="additional-content-container">
+                <div class="additional-content">
+                    {% if menu.RCP_NA_TIP != "0" %}
+                    <p><mark>{{ menu.RCP_NA_TIP }}</mark></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="left">
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG01 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL01 }}</p>
+                </div>
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG03 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL03 }}</p>
+                </div>
+                {% if menu.MANUAL_IMG05 != "0" %}
                 <div class="col-md-3 recipe-item">
                     <img src="{{ menu.MANUAL_IMG05 }}" alt="Recipe Image">
                     <p>{{ menu.MANUAL05 }}</p>
                 </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG06 != "0" %}
-                <div class="col-md-3 recipe-item">
-                    <img src="{{ menu.MANUAL_IMG06 }}" alt="Recipe Image">
-                    <p>{{ menu.MANUAL06 }}</p>
-                </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG07 != "0" %}
+                {% endif %}
+                {% if menu.MANUAL_IMG07 != "0" %}
                 <div class="col-md-3 recipe-item">
                     <img src="{{ menu.MANUAL_IMG07 }}" alt="Recipe Image">
                     <p>{{ menu.MANUAL07 }}</p>
                 </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG08 != "0" %}
-                <div class="col-md-3 recipe-item">
-                    <img src="{{ menu.MANUAL_IMG08 }}" alt="Recipe Image">
-                    <p>{{ menu.MANUAL08 }}</p>
-                </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG09 != "0" %}
+                {% endif %}
+                {% if menu.MANUAL_IMG09 != "0" %}
                 <div class="col-md-3 recipe-item">
                     <img src="{{ menu.MANUAL_IMG09 }}" alt="Recipe Image">
                     <p>{{ menu.MANUAL09 }}</p>
                 </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG10 != "0" %}
-                <div class="col-md-3 recipe-item">
-                    <img src="{{ menu.MANUAL_IMG10 }}" alt="Recipe Image">
-                    <p>{{ menu.MANUAL10 }}</p>
-                </div>
-            {% endif %}
-
-            {% if menu.MANUAL_IMG11 != "0.0" %}
+                {% endif %}
+                {% if menu.MANUAL_IMG11 != "0.0" %}
                 <div class="col-md-3 recipe-item">
                     <img src="{{ menu.MANUAL_IMG11 }}" alt="Recipe Image">
                     <p>{{ menu.MANUAL11 }}</p>
                 </div>
-            {% endif %}
-        </div>
-
-        <div class="toggle-details">
-            <button class="btn btn-primary" onclick="toggleAllDetails()">상세정보</button>
-
-            <div class="hashtags">
-                {% if menu.LOW_NA != 0 %}
-                    <span>#저염식</span>
-                {% endif %}
-                {% if menu.HIGH_PRO != 0 %}
-                    <span>#고단백식</span>
-                {% endif %}
-                {% if menu.VEGAN != 0 %}
-                    <span>#비건식</span>
-                {% endif %}
-                {% if menu.DIETS != 0 %}
-                    <span>#식단조절식</span>
                 {% endif %}
             </div>
 
-            <div class="additional-content-container">
-                <div class="additional-content">
-                    {% if menu.RCP_NA_TIP != "0" %}
-                        <p> {{ menu.RCP_NA_TIP }} </p>
-                    {% endif %}
+            <div class="right">
+                <div class="col-md-3 recipe-item">
+                    <img src="{{ menu.MANUAL_IMG02 }}" alt="Recipe Image">
+                    <p>{{ menu.MANUAL02 }}</p>
+                </div>
+                {% if menu.MANUAL_IMG04 != "0" %}
+                    <div class="col-md-3 recipe-item">
+                        <img src="{{ menu.MANUAL_IMG04 }}" alt="Recipe Image">
+                        <p>{{ menu.MANUAL04 }}</p>
+                    </div>
+                {% endif %}
+                {% if menu.MANUAL_IMG06 != "0" %}
+                    <div class="col-md-3 recipe-item">
+                        <img src="{{ menu.MANUAL_IMG06 }}" alt="Recipe Image">
+                        <p>{{ menu.MANUAL06 }}</p>
+                    </div>
+                {% endif %}
+                {% if menu.MANUAL_IMG08 != "0" %}
+                    <div class="col-md-3 recipe-item">
+                        <img src="{{ menu.MANUAL_IMG08 }}" alt="Recipe Image">
+                        <p>{{ menu.MANUAL08 }}</p>
+                    </div>
+                {% endif %}{% if menu.MANUAL_IMG10 != "0" %}
+                    <div class="col-md-3 recipe-item">
+                        <img src="{{ menu.MANUAL_IMG10 }}" alt="Recipe Image">
+                        <p>{{ menu.MANUAL10 }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <hr class="hr2">
+        <div class="comment_name">
+            |댓글
+        </div>
+        <div class="comment">
+            <div class="user_name">작성자명</div>
+                <div class="c_content">
+                    <form class="c_form"><textarea class="c_text" rows="2" placeholder=" 댓글 작성"></textarea></form>
+                    <input type="submit" value="입력" class="c_btn">
                 </div>
             </div>
-
         </div>
-        <div id="all-details" class="details" style="display: none;">
-            <p>영양성분 상세정보</p>
-            <p>탄수화물: {{ menu.INFO_CAR_x }} g</p>
-            <p>에너지: {{ menu.INFO_ENG_x }} g</p>
-            <p>지질량: {{ menu.INFO_FAT_x }} g</p>
-            <p>나트륨: {{ menu.INFO_CAR_x }} g</p>
-            <p>지질량: {{ menu.INFO_NA }} g</p>
-        </div>
-    </div>
 
-    <!-- Bootstrap JS and Popper.js CDN (for some Bootstrap functionality) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function toggleDetails(detailsId) {
-            var details = document.getElementById(detailsId);
-            if (details.style.display === "none") {
-                details.style.display = "block";
-            } else {
-                details.style.display = "none";
-            }
-        }
         function toggleAllDetails() {
             var allDetails = document.getElementById('all-details');
             if (allDetails.style.display === "none") {
