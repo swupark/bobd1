@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Details for Image ID: {{ post }}</h1>
+<p>{{rcp.RCP_NM}}
+  {% if list %}
+        <ul>
+            {% for result in list %}
+                <li>
+                    <strong>Recipe Name:</strong> {{ result.recipe_name }}<br>
+
+                    <!-- Add more fields as needed -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No similar recipes found.</p>
+    {% endif %}
+</body>
+</html>

@@ -22,9 +22,9 @@
                     <li class="p">고단백식</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="vegun" name="chk_list" onclick="
+                    <input type="checkbox" id="vegan" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('vegan_img');
+                        displayImage('VEGAN');
                         $('.name .v').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -45,10 +45,10 @@
                         });
                     }
                      enableBtnOk();">
-                    <label for="vegun"></label>
+                    <label for="vegan"></label>
                     <input type="checkbox" id="l_fat" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('dt_img');
+                        displayImage('DIETS');
                         $('.name .f').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -72,7 +72,7 @@
                     <label for="l_fat"></label>
                     <input type="checkbox" id="l_salt" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('ln_img');
+                        displayImage('LOW_NA');
                         $('.name .s').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -96,7 +96,7 @@
                     <label for="l_salt"></label>
                     <input type="checkbox" id="h_protein" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('hp_img');
+                        displayImage('HIGH_PRO');
                         $('.name .p').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -118,15 +118,6 @@
                      }
                      enableBtnOk();">
                     <label for="h_protein"></label>
-                </div>
-                <div class="dislike_ingredient">
-                    <form method="get" id="di_form" >
-                        <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
-                        <label for="dislike_ingredient"></label>
-                        <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
-                        onclick="this.style.borderColor='rgb(93,186,109)';" onsubmit="handleFormSubmit(event)">
-                        <button type="submit">확인</button>
-                    </form>
                 </div>
                 <div class="buttons">
                   <button class="btn_ok" disabled onclick="
@@ -166,9 +157,7 @@
                         'color': 'rgb(140,140,140)',
                         'backgroundColor': 'rgb(246,246,246)'
                     });
-                    $('.dislike_ingredient input').css({
-                        'borderColor': 'rgb(234,234,234)'
-                    });
+
                   ">초기화</button>
                 </div>
                 <!-- 이미지가 나타나는 부분 -->
@@ -187,10 +176,10 @@
                  }
 
                  var imageLists = {
-                    'vegan_img': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
-                    'hp_img': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
-                    'ln_img': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
-                    'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'VEGAN': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
+                    'HIGH_PRO': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'LOW_NA': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'DIETS': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
 
                 function shuffleArray(array) {
@@ -212,20 +201,19 @@
                         var imageId = categoryImages[i];
                         var imageUrl = categoryImages[i+1];
                         var imageNm = categoryImages[i+2];
-                        imageSet.push({imageId, imageUrl, imageNm});
+                        imageSet.push({imageId: imageId, imageUrl: imageUrl, imageNm: imageNm});
                     }
 
-                    var shuffledImages = shuffleArray(imageSet);
+
                     var page = $('<div class="imagePage">');
 
                     for(var i=0; i<6; i++){
-                        var imageSet = shuffledImages[i];
-                        var imageId = imageSet.imageId;
-                        var imageUrl = imageSet.imageUrl;
-                        var imageNm = imageSet.imageNm;
+                        var imageId = imageSet[i].imageId;
+                        var imageUrl = imageSet[i].imageUrl;
+                        var imageNm = imageSet[i].imageNm;
                         var imageElement = `
                              <div class="imageElement">
-                               <a href="http://127.0.0.1:8000/account/details/${imageId}/">
+                               <a href="http://127.0.0.1:8000/account/train-doc2vec-model/${imageId}/${category}">
                                <img src="${imageUrl}" alt="Image">
                                <p>${imageNm}</p>
                                </a>
@@ -258,15 +246,13 @@
                             $('#pageContainer a').removeClass('active');
                             $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
                         }
-
-                        async function onSubmit() {
-                            console.log("Form submitted!");
+                        function enableBtnOk() {
+                            var atLeastOneChecked = $('.check input:checked').length > 0;
+                            $('.btn_ok').prop('disabled', !atLeastOneChecked);
                         }
 
-                        function handleFormSubmit(event) {
-                            event.preventDefault();
-                            onSubmit();
-                        }
+
+
 
             </script>
         </div>
