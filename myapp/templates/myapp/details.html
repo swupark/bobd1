@@ -9,13 +9,13 @@
 <p>{{rcp.RCP_NM}}
   {% if list %}
         <ul>
-            {% for result in list %}
-                <li>
-                    <strong>Recipe Name:</strong> {{ result.recipe_name }}<br>
-
-                    <!-- Add more fields as needed -->
-                </li>
-            {% endfor %}
+           {% for item in list %}
+  <div>
+    <p>Recipe Name: {{ item.recipe_name }}</p>
+    <p>New Train: {{ item.new_train }}</p>
+    <p>Recipe Way2: {{ item.recipe_way2 }}</p>
+  </div>
+{% endfor %}
         </ul>
     {% else %}
         <p>No similar recipes found.</p>
