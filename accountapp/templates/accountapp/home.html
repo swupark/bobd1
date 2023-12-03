@@ -9,12 +9,14 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="wrapper">
+        <div class="loader">
+            <img src="{% static 'image/ldImg.gif' %}">
+         </div>
         <div class="search">
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             <div id='checkbox'>
-                <p>1. 원하는 카테고리를 모두 선택하세요</p>
+                <p>원하는 카테고리를 모두 선택하세요</p>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
@@ -119,15 +121,6 @@
                      enableBtnOk();">
                     <label for="h_protein"></label>
                 </div>
-                <div class="dislike_ingredient">
-                    <form method="get" id="di_form" >
-                        <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
-                        <label for="dislike_ingredient"></label>
-                        <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
-                        onclick="this.style.borderColor='rgb(93,186,109)';">
-                        <button type="submit">확인</button>
-                    </form>
-                </div>
                 <div class="buttons">
                   <button class="btn_ok" disabled onclick="
                     $('.check input').prop('disabled', true);
@@ -166,17 +159,15 @@
                         'color': 'rgb(140,140,140)',
                         'backgroundColor': 'rgb(246,246,246)'
                     });
-                    $('.dislike_ingredient input').css({
-                        'borderColor': 'rgb(234,234,234)'
-                    });
                   ">초기화</button>
                 </div>
                 <!-- 이미지가 나타나는 부분 -->
-                <div id="imageContainer" style="display: none"></div>
-                <div id="pageContainer" class="pagination" style="display: none"></div>
+                    <div id="imageContainer" style="display: none"></div>
+                    <div id="pageContainer" class="pagination" style="display: none"></div>
             </div>
-            </div>
+        </div>
 
+            <script src="http://code.jquery.com/jquery-latest.min.js"></script>
             <script  type="text/javascript">
                 function dis(){
                       if($('#checkbox').css('display') == 'none'){
@@ -263,6 +254,11 @@
                          var atLeastOneChecked = $('.check input:checked').length > 0;
                          $('.btn_ok').prop('disabled', !atLeastOneChecked);
                     }
+
+                    $(window).load(function(){
+                        $('.loader').fadeOut();
+                    });
+
             </script>
         </div>
 
