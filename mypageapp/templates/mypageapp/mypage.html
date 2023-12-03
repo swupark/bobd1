@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}?after">
+{% endblock %}
+
+
+{% block content %}
+<div class="mypage_wrapper" style="display: flex; justify-content: center; margin: 0 auto;">
+    <div class="tabs">
+        <div class="tab-header">
+            <div class="tab-header-item active">개인정보수정</div>
+            <div class="tab-header-item">찜 목록</div>
+            <div class="tab-header-item">작성 후기</div>
+            <div class="tab-header-item">작성 댓글</div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-content-item active">
+                {% include 'mypageapp/detail.html' %}
+            </div>
+
+            <div class="tab-content-item">
+                {% include 'mypageapp/dib_list.html' %}
+            </div>
+
+            <div class="tab-content-item">
+                {% include 'mypageapp/review_list.html' %}
+            </div>
+
+            <div class="tab-content-item">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/tab.js' %}"></script>
+{% endblock %}
