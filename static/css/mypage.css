@@ -26,46 +26,52 @@
   color:#006838;
 }
 
-.tabs .tab-content {
+.tabs #tab-content {
   width: 820px;
   height: 550px;
   overflow:auto;
 }
 
-.tabs .tab-content > div {
-  text-align:center;
-  padding:40px 20px;
-  display: none;
-}
-
-.tabs .tab-content > div.active {
-  top:0px;
-  display: block;
-}
-
-.dib-item {
+.like-item{
     display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.recipe-content{
+    text-align: left;
+}
+.recipe-image img{
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.recipe-short {
+    color: #BBC1C7;
+}
+
+.recipe-delete img{
+    width: 30px;
+    height: 30px;
+    filter: invert(51%) sepia(20%) saturate(219%) hue-rotate(169deg) brightness(95%) contrast(93%);
+}
+
+.review-item{
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     padding-top: 20px;
 }
 
-.recipe_content{
-    text-align: left;
-}
-.recipe_image img{
-    width: 90px;
-    height: 90px;
-    overflow: hidden;
-    border-radius: 7px;
+.review-top, .review-content {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.recipe_short {
-    color: #BBC1C7;
-}
-
-.recipe_delete img{
+.recommend img {
     width: 30px;
     height: 30px;
-    filter: invert(51%) sepia(20%) saturate(219%) hue-rotate(169deg) brightness(95%) contrast(93%);
 }

@@ -1,8 +1,11 @@
 from django.urls import path
+
+from likeapp.views import toggle_like, check_like_status
 from .views import menu_detail
-from .views import menu_list
 
 urlpatterns = [
-    path('menu/<int:FOOD_ID>/', menu_detail, name='menu_detail'),
-    path('list/', menu_list, name='menu_list'),
+    path('menu/<int:food_id>/', menu_detail, name='menu_detail'),
+    path('menu/<int:food_id>/like/', toggle_like, name='api_toggle_like'),
+    path('menu/<int:food_id>/like-status/', check_like_status, name='api_like_status'),
+    # 다른 URL 패턴 추가
 ]

@@ -1,0 +1,18 @@
+{% load static %}
+
+<div class="like-item">
+    <div class="recipe-image"> <!--이미지-->
+        <img src="{{ food.ATT_FILE_NO_MK }}">
+    </div>
+    <div class="recipe-content">
+        <div class="recipe-name"> <!--레시피 이름-->
+            <h4>{{ food.RCP_NM }}</h4>
+        </div>
+        <div class="recipe-short"> <!--레시피 재료-->
+            <p>{{ food.RCP_PARTS_DTLS }}</p>
+        </div>
+    </div>
+    <div class="recipe-delete"> <!--삭제버튼-->
+        <img src="{% static 'image/trash-can.svg' %}">
+    </div>
+</div>
