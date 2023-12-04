@@ -52,11 +52,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accountapp',
-    'signupapp',
     'mypageapp',
     'bootstrap4',
     'excel_import',
     'recipesapp',
+    'rest_framework',
+    'likeapp',
 ]
 
 MIDDLEWARE = [

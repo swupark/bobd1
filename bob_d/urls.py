@@ -24,11 +24,11 @@ import accountapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', include('signupapp.urls')),
     path('account/',include('accountapp.urls')),
     path('mypage/',include('mypageapp.urls')),
     path('excel_import/', include('excel_import.urls')),
     path('recipes/', include('recipesapp.urls')),
+    path('likes/', include('likeapp.urls')),
 
     path('password_reset/', accountapp.views.PasswordResetView.as_view(), name="password_reset"),
     path('password_reset_done/', accountapp.views.PasswordResetDoneView.as_view(), name="password_reset_done"),

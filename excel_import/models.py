@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -47,6 +48,8 @@ class FoodModel(models.Model):
     HIGH_PRO = models.IntegerField(null=True, blank=True)
     VEGAN = models.IntegerField(null=True, blank=True)
     DIETS = models.IntegerField(null=True, blank=True)
+
+    liked_users = models.ManyToManyField(User, related_name='liked_foods', blank=True)
 
 
 field2 = models.IntegerField(

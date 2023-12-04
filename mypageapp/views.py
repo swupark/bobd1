@@ -1,53 +1,40 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView, DetailView, DeleteView
-from django.contrib.auth.hashers import check_password
+from django.shortcuts import render
+from django.views.generic import DetailView,  ListView
+from excel_import.models import FoodModel
 
-
-#from mypageapp.decorators import account_ownership_required
-from django.contrib.auth.decorators import login_required
-
-from signupapp.forms import UserInfoForm
-from signupapp.models import UserInfo
-
-
-#has_ownership = [account_ownership_required, login_required]
 # Create your views here.
 
-class AccountDetailView(DetailView):
+class MyPageView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'mypageapp/mypage.html'
 
-def change_pw(request,pk):
-    context = {}
-    if request.method == "POST":
-        current_password = request.POST.get("origin_password")
-        user = request.user
-        if check_password(current_password, user.password):
-            new_password = request.POST.get("password1")
-            password_confirm = request.POST.get("password2")
-            if new_password == password_confirm:
-                user.set_password(new_password)
-                user.save()
-                return redirect("accountapp:home")
-
-    return render(request,"mypageapp/update.html")
-
-
-class AccountDeleteView(DeleteView):
+class InfoDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:home')
-    template_name = 'mypageapp/delete.html'
+    template_name = 'mypageapp/detail.html'
+    def get(self, request, pk):
+        # Ajax 요청에 대한 응답을 리턴
+        return render(request, 'mypageapp/detail.html')
 
-class UserInfoUpdateView(UpdateView):
-    model = UserInfo
-    form_class = UserInfoForm
-    context_object_name = 'target_userinfo'
-    template_name = 'mypageapp/infoupdate.html'
 
-    def get_success_url(self):
-        return reverse('mypageapp:mypage', kwargs={'pk': self.object.pk})
+class LikeListView(ListView):
+    template_name = 'mypageapp/like_list.html'
+    def get(self, request, pk):
+        # Ajax 요청에 대한 응답을 리턴
+        liked_foods = FoodModel.objects.filter(liked_users=request.user)
+        context = {'liked_foods': liked_foods}
+        return render(request, self.template_name, context)
+
+class ReviewListlView(ListView):
+    template_name = 'mypageapp/review_list.html'
+    def get(self, request, pk):
+        # Ajax 요청에 대한 응답을 리턴
+        return render(request, 'mypageapp/review_list.html')
+class CommentListView(ListView):
+    template_name = 'mypageapp/comment_list.html'
+    def get(self, request, pk):
+        # Ajax 요청에 대한 응답을 리턴
+        return render(request, 'mypageapp/comment_list.html')
+
