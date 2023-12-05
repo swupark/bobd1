@@ -2,9 +2,6 @@ from random import shuffle
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
-from django.shortcuts import render, get_object_or_404
-from django.utils.decorators import method_decorator
-
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy, reverse
 from django.core.mail import EmailMessage
@@ -21,49 +18,62 @@ from django.conf import settings
 from accountapp.forms import PasswordResetForm, CustomAuthenticationForm, UserForm, UserInfoForm
 from accountapp.models import UserInfo
 from excel_import.models import FoodModel
+from accountapp.models import UserInfo
+
 
 def homepage(request):
-    vegan_img = list(FoodModel.objects.filter(VEGAN=1).all())
-    hp_img = list(FoodModel.objects.filter(HIGH_PRO=1).all())
-    ln_img = list(FoodModel.objects.filter(LOW_NA=1).all())
-    dt_img = list(FoodModel.objects.filter(DIETS=1).all())
-    # vegan = list(FoodModel.objects.values('VEGAN'))
-    # vegan = list(FoodModel.objects.values('VEGAN'))
-    # vegan = list(FoodModel.objects.values('VEGAN'))
-    # vegan = list(FoodModel.objects.values('VEGAN'))
-    shuffle(vegan_img)
-    shuffle(hp_img)
-    shuffle(ln_img)
-    shuffle(dt_img)
-    return render(request, 'accountapp/home.html',{'vegan_img': vegan_img, 'hp_img': hp_img, 'ln_img': ln_img, 'dt_img': dt_img})
-def details(request,imageId):
-    rcp = get_object_or_404(FoodModel, id=imageId)
-    return render(request,'accountapp/details.html',{'post':imageId, 'rcp':rcp})
+    VEGAN = list(FoodModel.objects.filter(VEGAN=1).all())
+    HIGH_PRO = list(FoodModel.objects.filter(HIGH_PRO=1).all())
+    LOW_NA = list(FoodModel.objects.filter(LOW_NA=1).all())
+    DIETS = list(FoodModel.objects.filter(DIETS=1).all())
+    #dislike_ingredient = request.GET.get('dislike_ingredient', '')
+    #vegan_img,hp_img,ln_img,dt_img=dislike()
+    # if dislike_ingredient:
+    #     vegan_img = [recipe for recipe in vegan_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    shuffle(VEGAN)
+    shuffle(HIGH_PRO)
+    shuffle(LOW_NA)
+    shuffle(DIETS)
+    if request.user.is_authenticated:
+        user_id = request.user.id
+        user_profile = get_object_or_404(UserInfo, user_id=user_id)
+        return render(request, 'accountapp/home.html',{'vegan_img': VEGAN, 'hp_img': HIGH_PRO, 'ln_img': LOW_NA, 'dt_img': DIETS,'user_profile':user_profile})
+    else:
+        return render(request, 'accountapp/home.html')
+class CustomLoginView(auth_views.LoginView):
+    form_class = CustomAuthenticationForm
 
-def dislike(dislike_igt):
+
+# def dislike():
     # 싫어하는 재료를 입력받습니다.
-    dislike_ingredient = dislike_igt
+    #dislike_ingredient = dislike_igt
 
     # 모든 레시피를 가져옵니다.
-    vegan_img = list(FoodModel.objects.filter(VEGAN=1).all())
-    hp_img = list(FoodModel.objects.filter(HIGH_PRO=1).all())
-    ln_img = list(FoodModel.objects.filter(LOW_NA=1).all())
-    dt_img = list(FoodModel.objects.filter(DIETS=1).all())
+
 
     # 사용자가 입력한 싫어하는 재료가 있을 경우 해당하는 레시피를 제거합니다.
-    if dislike_ingredient:
-        vegan_img = [recipe for recipe in vegan_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-        hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-        ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-        dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
-
-    # 레시피 리스트를 섞습니다.
-    shuffle(vegan_img)
-    shuffle(hp_img)
-    shuffle(ln_img)
-    shuffle(dt_img)
-
-    return (vegan_img,  hp_img,  ln_img, dt_img)
+    # if dislike_ingredient:
+    #     vegan_img = [recipe for recipe in vegan_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    # return (vegan_img,  hp_img,  ln_img, dt_img)
+    # if dislike_ingredient:
+    #     vegan_img = [recipe for recipe in vegan_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     hp_img = [recipe for recipe in hp_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
+    #
+    # # 레시피 리스트를 섞습니다.
+    # shuffle(vegan_img)
+    # shuffle(hp_img)
+    # shuffle(ln_img)
+    # shuffle(dt_img)
+    #
+    # return (vegan_img,  hp_img,  ln_img, dt_img)
 
 #회원가입
 def signup(request):
@@ -167,4 +177,3 @@ class PasswordResetDoneView(auth_views.PasswordResetDoneView):
 class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = 'accountapp/password_reset_confirm.html'
     success_url = reverse_lazy('accountapp:login')
-

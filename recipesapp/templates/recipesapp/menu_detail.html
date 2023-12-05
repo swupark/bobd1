@@ -224,5 +224,14 @@
             }
         }
     </script>
+<h2>Recommendations</h2>
+<p>Image ID: {{ imageId }}</p>
+{% for item in list %}
+    <p>Index: {{ item.index }}</p>
+    <p>Recipe Name: {{ item.recipe_name }}</p>
+    <img src="{{ item.img_food}}">
+    <!-- Add other recommendation details as needed -->
+{% endfor %}
+
 </body>
 </html>

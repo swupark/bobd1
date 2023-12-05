@@ -8,10 +8,7 @@ import pandas as pd
 from gensim.models import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
 
-from django.shortcuts import render
-from .models import FoodModel
-
-df = pd.read_csv('C:/Users/golds/Downloads/2train.csv')
+df = pd.read_csv('C:/Users/82102/PycharmProjects/bob_d/accountapp/2train.csv')
 
 class Predict(APIView):
     def get(self, request,imageId, category, format=None):
@@ -36,16 +33,4 @@ class Predict(APIView):
 
         rcp = get_object_or_404(FoodModel, id=imageId)
         serializer = RecommendListSerializer(result_list, many=True)
-        return render(request, 'myapp/details.html', {'post': imageId, 'rcp': rcp, 'list': serializer.data})
-
-def menu_detail(request, FOOD_ID):
-    menu = FoodModel.objects.get(pk=FOOD_ID)
-
-    return render(request, 'menu_detail.html', {'menu': menu})
-def menu_list(request):
-    menus = FoodModel.objects.all()
-    return render(request, 'menu_list.html', {'menus': menus})
-
-def details(request, imageId, category):
-    menus = FoodModel.objects.all()
-    return render(request, 'details.html', {'list': list})
+        return render(request, 'recipesapp/templates/recipesapp/menu_list.html', {'post': imageId, 'rcp': rcp, 'list': serializer.data})

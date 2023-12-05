@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
 class RecommendListSerializer(serializers.Serializer):
-    index = serializers.IntegerField()
-    recipe_name = serializers.CharField(max_length=255)
-    similarity = serializers.FloatField()
-    new_train = serializers.CharField(max_length=255)
-    recipe_way2 = serializers.CharField(max_length=10)
+    index = serializers.IntegerField(write_only=True)
+
+    recipe_name = serializers.CharField(write_only=True,max_length=255)
+    img_url=serializers.CharField(write_only=True,max_length=255)

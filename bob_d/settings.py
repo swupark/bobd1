@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'bootstrap4',
     'excel_import',
     'recipesapp',
-    'rest_framework',
     'likeapp',
 ]
 
