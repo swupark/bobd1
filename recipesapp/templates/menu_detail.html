@@ -15,7 +15,14 @@
 {% block content %}
     <form id="like-form" method="post" action="{% url 'api_toggle_like' food_id=food_id %}">
     {% csrf_token %}
-    <button type="submit" id="like-button" value="&#x2661;" name="empty"></button>
+    <button type="submit" id="like-button" name="empty" onclick="
+        if(this.name==='empty'){
+            this.innerText='&#x2661;';
+            this.name='fill';
+        }else{
+            this.innerText='&#x2665;';
+            this.name='empty';
+        }">&#x2661;</button>
     </form>
     <script>
         $(document).ready(function () {

@@ -19,7 +19,7 @@ body{
     color: rgb(250,6,68,0.5);
 }
 
-.likeToggle{
+.like-button{
     float: left;
     margin-left: 151.9px;
     margin-top: 50px;
@@ -32,17 +32,17 @@ body{
     font-size: 30px;
     color: #000;
 }
-.likeToggle:hover{
+#like-button:hover{
     color: rgb(250,6,68,0.5);
 }
-.likeToggleBtn.active {
+#like-button.active {
     color: rgb(250,6,68); /* 클릭 시 색상 */
 }
 
 #like-form {
     float: left;
-    margin-left: 151.9px;
-    margin-top: 50px;
+    margin-left: 131.9px;
+    margin-top: 90px;
     width: 50px;
     height: 80px;
     border: 2px solid rgb(141,185,170,0.7);
@@ -50,6 +50,16 @@ body{
     border-radius: 20px 0px 0px 20px;
     background-color: #fff;
     font-size: 30px;
+    color: rgb(250,6,68);
+}
+#like-button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: white;
+    margin-top: 9px;
+    margin-left: 2px;
+    font-size: 38px;
     color: rgb(250,6,68);
 }
 
