@@ -13,10 +13,10 @@
 <div style="text-align: left; max-width: 500px; margin: 3rem auto; font-size: 12px; color: rgb(34, 116, 28);
     font-weight: bold">
     <div style="text-align: middle">
-        <h2>사용자 정보 초기 입력</h2>
+        <h2>사용자 정보 수정</h2>
     </div>
 <!--함수 기반에서 reverse와 유사-->
-  <form action="{% url 'signupapp:info' %}" method="post">
+  <form action="{% url 'accountapp:infoupdate' pk=target_userinfo.pk %}" method="post">
       {% csrf_token%}
       {% bootstrap_form form %}
       <div style="text-align: center; margin-top: 50px">

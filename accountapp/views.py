@@ -1,14 +1,15 @@
 from random import shuffle
-
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 
 from django.contrib.auth import views as auth_views
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.views.generic import View
+from django.views.generic import View, DeleteView, UpdateView, CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, get_object_or_404, redirect
@@ -17,7 +18,8 @@ from django.contrib import messages
 
 from django.conf import settings
 
-from accountapp.forms import PasswordResetForm, CustomAuthenticationForm
+from accountapp.forms import PasswordResetForm, CustomAuthenticationForm, UserForm, UserInfoForm
+from accountapp.models import UserInfo
 from excel_import.models import FoodModel
 
 def homepage(request):
@@ -63,8 +65,70 @@ def dislike(dislike_igt):
 
     return (vegan_img,  hp_img,  ln_img, dt_img)
 
+#회원가입
+def signup(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save()        # 반환값 받아서 user에 저장
+            auth_login(request, user) # 반환값 user를 인자로 auth_login() 해서 바로 로그인
+            return redirect('accountapp:infocreate')
+    else:
+        form = UserForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accountapp/signup.html', context)
+
+#회원가입 시 개인정보 입력
+class UserInfoCreateView(CreateView):
+    model = UserInfo
+    form_class = UserInfoForm
+    context_object_name = 'target_userinfo'
+    success_url = reverse_lazy('accountapp:home')
+    template_name = 'accountapp/infocreate.html'
+    def form_valid(self, form):
+        info = form.save(commit=False)
+        info.user = self.request.user
+        info.save()
+        return super().form_valid(form)
+
+#개인정보 페이지에서 개인정보 수정 기능
+class UserInfoUpdateView(UpdateView):
+    model = UserInfo
+    form_class = UserInfoForm
+    context_object_name = 'target_userinfo'
+    template_name = 'accountapp/infoupdate.html'
+
+    def get_success_url(self):
+        return reverse('mypageapp:mypage', kwargs={'pk': self.object.pk})
+
+#로그인뷰
 class CustomLoginView(auth_views.LoginView):
     form_class = CustomAuthenticationForm
+
+#회원 탈퇴하기
+class AccountDeleteView(DeleteView):
+    model = User
+    context_object_name = 'target_user'
+    success_url = reverse_lazy('accountapp:home')
+    template_name = 'accountapp/delete.html'
+
+#마이페이지 내 비밀번호 변경 (기존 비밀번호 확인)
+def change_pw(request,pk):
+    context = {}
+    if request.method == "POST":
+        current_password = request.POST.get("origin_password")
+        user = request.user
+        if check_password(current_password, user.password):
+            new_password = request.POST.get("password1")
+            password_confirm = request.POST.get("password2")
+            if new_password == password_confirm:
+                user.set_password(new_password)
+                user.save()
+                return redirect("accountapp:home")
+
+    return render(request,"accountapp/pw_update.html")
 
 #아이디 찾기
 def FindIDview(request):
@@ -74,7 +138,7 @@ def FindIDview(request):
         try:
             user = User.objects.get(email=email)
             if user is not None:
-                template = render_to_string('accountapp/email_template.html', {'nickname':user.userinfo.nickname, 'id':user.username})
+                template = render_to_string('email_template.html', {'nickname':user.userinfo.nickname, 'id':user.username})
                 method_email = EmailMessage(
                     'Your ID is in the email', #메일 제목
                     template, #메일 내용 html
@@ -103,3 +167,4 @@ class PasswordResetDoneView(auth_views.PasswordResetDoneView):
 class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = 'accountapp/password_reset_confirm.html'
     success_url = reverse_lazy('accountapp:login')
+
