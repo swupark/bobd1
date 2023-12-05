@@ -9,7 +9,7 @@
         <div style="text-align:center; margin-bottom:1rem;">
             Change Password
         </div>
-        <form method="POST" action="{% url 'mypageapp:update' user.pk %}" class="login_form">
+        <form method="POST" action="{% url 'accountapp:pwupdate' user.pk %}" class="login_form">
             {% csrf_token %}
 
             <div class="login_input_container">

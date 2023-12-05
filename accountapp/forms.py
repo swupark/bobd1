@@ -3,6 +3,37 @@ from django.core.exceptions import ValidationError
 import django.contrib.auth.forms as auth_forms
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
+from django.forms import ModelForm
+
+from accountapp.models import UserInfo
+
+
+class UserForm(auth_forms.UserCreationForm):
+
+    username = forms.CharField(label="ID")
+    email = forms.EmailField(label="Email")
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2", )
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('이미 등록된 아이디입니다.')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('이미 등록된 이메일입니다.')
+        return email
+
+class UserInfoForm(ModelForm):
+    class Meta:
+        model=UserInfo
+        fields=['nickname','age','gender','issue_ln','issue_hp',
+               'issue_vg','issue_di']
 
 class CustomAuthenticationForm(auth_forms.AuthenticationForm):
     error_messages = {
