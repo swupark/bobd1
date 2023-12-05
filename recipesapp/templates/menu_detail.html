@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/menu_detail.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 {% endblock %}
 
@@ -16,8 +17,6 @@
     {% csrf_token %}
     <button type="submit" id="like-button" value="&#x2661;" name="empty"></button>
     </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function () {
         var userId = response.user_id;
@@ -28,36 +27,12 @@
                     'Authorization': 'Bearer ' + '{user_id: userId}'
                 },
                 success: function(data) {
-                    // 성공적으로 처리된 경우의 동작
-                    if (data.is_liked) {
-                        $('#like-button').value='&#x2665;';
-                        $('#like-button').name='empty';
-                    } else {
-                        $('#like-button').value='&#x2661;';
-                        $('#like-button').name='fill';
-                    }
+
                 },
                 error: function(error) {
                     console.log(error);
                 }
             });
-
-            // 좋아요 버튼 클릭 시
-            //$('#like-form').submit(function (event) {
-            //    event.preventDefault();
-
-                // AJAX를 사용하여 좋아요 토글
-            //    $.post('{% url 'api_toggle_like' food_id=food_id %}', function (data) {
-           //         if (data.message == '좋아요가 추가되었습니다.') {
-            //            $('#like-button').css('background-color', 'green');
-            //        } else {
-            //            $('#like-button').css('background-color', 'gray');
-            //        }
-
-                    // 좋아요 수 업데이트
-            //        $('#like-status').text('Likes: ' + data.likes);
-            //    });
-            //}//);
         });
     </script>
 

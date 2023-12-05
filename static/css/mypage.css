@@ -34,12 +34,15 @@
 
 .like-item{
     display: flex;
-    gap: 2rem;
+    justify-content: space-evenly;
+    gap: 1rem;
     align-items: center;
+    margin: 1rem 0;
 }
 
 .recipe-content{
     text-align: left;
+    min-width: 25rem;
 }
 .recipe-image img{
     width: 90px;

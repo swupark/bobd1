@@ -7,12 +7,10 @@
   <h3> 내가 담은 <span style="color: #fce33d;">{{ liked_foods.count }}</span>개의 레시피 </h3>
 </div>
 <hr>
-<div style="margin: 0 3rem">
+<div style="margin: 2rem 3rem">
   <div class="text-center">
     {% for food in liked_foods %}
-    <a href="{% url 'menu_detail' food_id=food.id%}">
       {% include 'snippets/like.html' with menu=menu %}
-    </a>
     {% endfor %}
   </div>
 </div>
