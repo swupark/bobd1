@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Details for Image ID: {{ post }}</h1>
+
+    {% if rcp %}
+        <h2>Recipe Information</h2>
+        <ul>
+                <li>Manual Image: <img src="{{ rcp.MANUAL_IMG01 }}" alt="Image"></li>
+                <li>Manual: {{ rcp.MANUAL01 }}</li>
+                <!-- 추가 필요한 칼럼들을 필요한 만큼 추가 -->
+        </ul>
+    {% else %}
+        <p>No recipe information found for this image.</p>
+    {% endif %}
+</body>
+</html>

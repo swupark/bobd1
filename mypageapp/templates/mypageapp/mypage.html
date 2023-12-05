@@ -4,6 +4,7 @@
 
 {% block static %}
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}?after">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 {% endblock %}
 
 
@@ -11,30 +12,48 @@
 <div class="mypage_wrapper" style="display: flex; justify-content: center; margin: 0 auto;">
     <div class="tabs">
         <div class="tab-header">
-            <div class="active">개인정보수정</div>
-            <div>찜 목록</div>
-            <div>작성 후기</div>
-            <div>작성 댓글</div>
+            <div class="tab-link active" data-url="{% url 'mypageapp:likelist' pk=user.pk %}" >찜 목록</div>
+            <div class="tab-link" data-url="{% url 'mypageapp:reviewlist' pk=user.pk %}">작성 후기</div>
+            <div class="tab-link" data-url="{% url 'mypageapp:commentlist' pk=user.pk %}">작성 댓글</div>
+            <div class="tab-link" data-url="{% url 'mypageapp:detail' pk=user.pk %}">개인정보수정</div>
         </div>
-        <div class="tab-content">
-            <div class="active">
-                {% include 'mypageapp/info-modify.html' %}
-            </div>
-
-            <div>
-                {% include 'mypageapp/dib-list.html' %}
-            </div>
-
-            <div>
-                {% include 'mypageapp/info-modify.html' %}
-            </div>
-
-            <div>
-                {% include 'mypageapp/dib-list.html' %}
-            </div>
+        <div class="tab-content" id="tab-content">
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="{% static 'js/tab.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        // 초기로딩 시에 첫 번째 탭을 미리 로드
+        loadTabContent('{% url "mypageapp:likelist" pk=user.pk %}', '#tab-content');
+
+        // 탭 클릭 이벤트
+        $('.tab-link').click(function (e) {
+            e.preventDefault();
+            var url = $(this).data('url');
+
+            $('.tab-link').removeClass('active');
+            $(this).addClass('active');
+
+            // Ajax 요청
+            loadTabContent(url, '#tab-content');
+        });
+    });
+
+    function loadTabContent(url, contentContainer) {
+        // Ajax 요청
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
+                // 받아온 데이터로 내용을 업데이트
+                $(contentContainer).html(data);
+            },
+            error: function () {
+                alert('Error loading content.');
+            }
+        });
+    }
+</script>
 {% endblock %}

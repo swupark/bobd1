@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+{% block static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="form-container px-5 py-5 my-5 shadow" style="border-radius: 1.25rem;">
+    <div style="text-align: center; padding-bottom: 1rem;">
+        <h2 style="font-weight: bold; padding-bottom: 1rem;">아이디 찾기</h2>
+        <p style="font-size: 0.9rem;"> 찾고자 하는 ID로 가입한 이메일을 작성하면 <br> 해당 이메일로 ID를 전송합니다. </p>
+    </div>
+    <form method="post" class="post-form">
+        {% csrf_token %}
+
+        {% for message in messages %}
+        <div class="alert alert-danger">
+                {{message}}
+        </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <label class="sr-only" for="email">Email</label>
+            <div class="">
+                <input type="text" class="form-control shadow-sm" name="email" id="email"
+                       value="{{ form.email.value|default_if_none:'' }}" placeholder="Email">
+            </div>
+        </div>
+
+        <div style="padding-top: 2rem; display: flex; justify-content: center;">
+            <button type="submit"  class="btn btn-primary shadow" id="form-button">이메일 전송</button>
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock %}

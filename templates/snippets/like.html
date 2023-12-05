@@ -1,0 +1,52 @@
+{% load static %}
+
+<div class="like-item">
+        <div class="recipe-image"> <!--이미지-->
+            <a href="{% url 'menu_detail' food_id=food.id %}"><img src="{{ food.ATT_FILE_NO_MK }}"></a>
+        </div>
+        <div class="recipe-content">
+            <div class="recipe-name"> <!--레시피 이름-->
+                <a href="{% url 'menu_detail' food_id=food.id %}"><h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4></a>
+            </div>
+            <div class="recipe-short"> <!--레시피 태그-->
+                <div class="hashtags">
+                        {% if food.LOW_NA != 0 %}
+                            <span>#저염식</span>
+                        {% endif %}
+                        {% if food.HIGH_PRO != 0 %}
+                            <span>#고단백식</span>
+                        {% endif %}
+                        {% if food.VEGAN != 0 %}
+                            <span>#비건식</span>
+                        {% endif %}
+                        {% if food.DIETS != 0 %}
+                            <span>#식단조절식</span>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    <div class="recipe-delete"> <!--삭제버튼-->
+        <form id="like-form" method="post" action="{% url 'delete_like' food_id=food.id %}">
+            {% csrf_token %}
+            <button type="submit" id="like-button" style="background: none; border: none; cursor: pointer; outline: none"><img src="{% static 'image/trash-can.svg' %}"></button>
+        </form>
+        <script>
+            $(document).ready(function () {
+            var userId = response.user_id;
+                $.ajax({
+                    url: '{% url 'api_like_status' food_id=food.id %}',
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + '{user_id: userId}'
+                    },
+                    success: function(data) {
+
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        </script>
+    </div>
+</div>

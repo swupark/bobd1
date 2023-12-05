@@ -1,0 +1,59 @@
+{% block content %}
+<div style="text-align: center; max-width: 500px; margin: 3rem auto; height: 320px;">
+    <div>
+
+        <h2>ID | {{ user.username }}</h2>
+        <p>Email | {{ user.email }}</p>
+        <p>닉네임 | {{ user.userinfo.nickname }}</p>
+
+        {% if user.userinfo.age == 18 %}
+            <p>나이대 | 청소년</p>
+        {% elif user.userinfo.age == 29 %}
+            <p>나이대 | 청년</p>
+        {% elif user.userinfo.age == 64 %}
+            <p>나이대 | 중장년</p>
+        {% else %}
+            <p>나이대 | 노년</p>
+        {% endif %}
+
+        {% if user.userinfo.gender == 'M' %}
+            <p>성별 | 남성 </p>
+        {% else %}
+            <p>성별 | 여성</p>
+        {% endif %}
+
+        {% if user.userinfo.issue_ln == 0 %}
+            <p>저염식 | 아니오 </p>
+        {% else %}
+            <p>저염식 | 예</p>
+        {% endif %}
+
+        {% if user.userinfo.issue_hp == 0 %}
+            <p>고단백식 | 아니오 </p>
+        {% else %}
+            <p>고단백식 | 예</p>
+        {% endif %}
+
+
+        {% if user.userinfo.issue_vg == 0 %}
+            <p>비건식 | 아니오 </p>
+        {% else %}
+            <p>비건식 | 예</p>
+        {% endif %}
+
+        {% if user.userinfo.issue_di == 0 %}
+            <p>식단 조절 | 아니오 </p>
+        {% else %}
+            <p>식단 조절 | 예</p>
+        {% endif %}
+
+
+    </div>
+    <hr>
+    <div style="margin: 2rem auto; text-decoration: underline;">
+        <a href="{% url 'accountapp:infoupdate' pk=user.pk %}">사용자정보수정</a>|
+        <a href="{% url 'accountapp:pwupdate' pk=user.pk %}">비밀번호변경</a>|
+        <a href="{% url 'accountapp:delete' pk=user.pk %}">탈퇴하기</a>
+    </div>
+</div>
+{% endblock %}

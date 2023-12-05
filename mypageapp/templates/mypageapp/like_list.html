@@ -1,0 +1,26 @@
+{% block content %}
+
+
+{% if liked_foods %}
+
+<div style="text-align: left; padding-left: 20px;">
+  <h3> 내가 담은 <span style="color: #fce33d;">{{ liked_foods.count }}</span>개의 레시피 </h3>
+</div>
+<hr>
+<div style="margin: 2rem 3rem">
+  <div class="text-center">
+    {% for food in liked_foods %}
+      {% include 'snippets/like.html' with menu=menu %}
+    {% endfor %}
+  </div>
+</div>
+
+{% else %}
+
+<div style="text-align: center; margin: 5rem;">
+  <h1>찜한 레시피가 없습니다!</h1>
+</div>
+
+{% endif %}
+
+{% endblock %}

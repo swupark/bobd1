@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+<div class="form-container" style="" >
+  <div class="mb-4">
+<!--    Sign up-->
+  </div>
+<!--함수 기반에서 reverse와 유사-->
+  <form method="post">
+      {% csrf_token%}
+      {% bootstrap_form form %}
+      <div style="text-align: center; margin-top: 50px">
+    <input type="submit" class="btn btn-dark rounded-pill col-2" style="background-color: rgb(0, 104, 56);
+     opacity: 0.8; border: none;">
+      </div>
+  </form>
+</div>
+{% endblock %}
