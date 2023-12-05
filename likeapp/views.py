@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
@@ -40,17 +40,9 @@ def check_like_status(request, food_id):
         is_liked = False
     return Response({'is_liked': is_liked})
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def delete_like(request, food_id):
     food = FoodModel.objects.get(pk=food_id)
     food.liked_users.remove(request.user)
-    return redirect('menu_detail', food_id=food_id)
-
-def delete_food(request, food_id):
-    try:
-        food = FoodModel.objects.get(pk=food_id)
-        food.liked_users.remove(request.user)
-        return JsonResponse({'message': 'Successfully unliked the food.'})
-    except FoodModel.DoesNotExist:
-        return JsonResponse({'error': 'Food not found.'}, status=404)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+    return redirect('mypageapp:mypage', pk=request.user.id)
