@@ -9,12 +9,15 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="wrapper">
         <div class="search">
+            {% if not user.is_authenticated %}
+            <img id='searchbar2' src="{% static 'image/searchbar.png' %}">
+            {% else %}
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            {% endif %}
             <div id='checkbox'>
-                <p>1. 원하는 카테고리를 모두 선택하세요</p>
+                <p>원하는 카테고리를 모두 선택하세요</p>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
@@ -22,29 +25,50 @@
                     <li class="p">고단백식</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="vegan" name="chk_list" onclick="
+                    <input type="checkbox" id="vegan" name="chk_list"onclick="
                     if(this.checked==true){
-                        displayImage('VEGAN');
-                        $('.name .v').css({
-                            'borderColor': 'rgb(93,186,109)',
-                            'color': 'white',
-                            'backgroundColor': 'rgb(132,206,145)'
-                        });
-                        $('.btn_ok').css({
-                            'borderColor': 'rgb(232,170,61)',
-                            'color': 'white',
-                            'backgroundColor': 'rgb(232,170,61)'
-                        });
-                        this.disabled = true;
-                       }
-                    else{
-                        $('.name .v').css({
-                            'borderColor': 'rgb(234,234,234)',
-                            'color': 'rgb(140,140,140)',
-                            'backgroundColor': 'rgb(246,246,246)'
-                        });
-                    }
-                     enableBtnOk();">
+                     displayImage('VEGAN');
+                     $('.name .v').css({
+            'borderColor': 'rgb(93,186,109)',
+            'color': 'white',
+            'backgroundColor': 'rgb(132,206,145)'
+        });
+        $('.btn_ok').css({
+            'borderColor': 'rgb(232,170,61)',
+            'color': 'white',
+            'backgroundColor': 'rgb(232,170,61)'
+        });
+        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
+        this.disabled = true;
+    } else {
+        $('.name .v').css({
+            'borderColor': 'rgb(234,234,234)',
+            'color': 'rgb(140,140,140)',
+            'backgroundColor': 'rgb(246,246,246)'
+        });
+    }
+    enableBtnOk();
+">
+                    {% if user_profile.issue_vg == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#vegan').prop('checked', true);
+            displayImage('VEGAN');
+            $('.name .v').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#vegan').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="vegan"></label>
                     <input type="checkbox" id="l_fat" name="chk_list" onclick="
                     if(this.checked==true){
@@ -59,6 +83,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -69,6 +94,26 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_di == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#l_fat').prop('checked', true);
+            displayImage('DIETS');
+            $('.name .f').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#l_fat').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="l_fat"></label>
                     <input type="checkbox" id="l_salt" name="chk_list" onclick="
                     if(this.checked==true){
@@ -83,6 +128,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -93,9 +139,30 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_ln == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#l_salt').prop('checked', true);
+            displayImage('LOW_NA');
+            $('.name .s').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#l_salt').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="l_salt"></label>
                     <input type="checkbox" id="h_protein" name="chk_list" onclick="
                     if(this.checked==true){
+                        this.checked = true;
                         displayImage('HIGH_PRO');
                         $('.name .p').css({
                             'borderColor': 'rgb(93,186,109)',
@@ -107,6 +174,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -117,6 +185,26 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_hp == 1 %}
+    <script>
+        $(document).ready(function() {*
+            $('#vegan').prop('checked', true);
+            displayImage('HIGH_PRO');
+            $('.name .p').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#h_protein').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="h_protein"></label>
                 </div>
                 <div class="buttons">
@@ -165,7 +253,6 @@
                 <div id="pageContainer" class="pagination" style="display: none"></div>
             </div>
             </div>
-
             <script  type="text/javascript">
                 function dis(){
                       if($('#checkbox').css('display') == 'none'){
@@ -174,6 +261,7 @@
                       $('#checkbox').hide();
                     }
                  }
+
 
                  var imageLists = {
                     'VEGAN': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],

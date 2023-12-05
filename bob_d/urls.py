@@ -18,12 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
-from signupapp.views import Signupview
+import accountapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/',Signupview.as_view(), name='signup'),
+    path('mypage/',include('mypageapp.urls')),
+    path('signup/',include('signupapp.urls')),
     path('account/',include('accountapp.urls')),
     path('excel_import/', include('excel_import.urls')),
     path('api/', include('myapp.urls')),
+    path('password_reset/', accountapp.views.PasswordResetView.as_view(), name="password_reset"),
+    path('password_reset_done/', accountapp.views.PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path('password_reset_confirm/<uidb64>/<token>/', accountapp.views.PasswordResetConfirmView.as_view(),
+         name="password_reset_confirm"),
 ]

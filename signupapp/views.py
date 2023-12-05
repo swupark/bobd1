@@ -7,11 +7,11 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
 from django.urls import reverse, reverse_lazy
 
-from signupapp.decorators import account_ownership_required
+# from signupapp.decorators import account_ownership_required
 from signupapp.forms import UserInfoForm, UserForm
 from signupapp.models import UserInfo
 
-has_ownership = [account_ownership_required, login_required]
+# has_ownership = [account_ownership_required, login_required]
 
 #class SignupView(CreateView):
 #    model = User  # 장고 기본 제공 모델

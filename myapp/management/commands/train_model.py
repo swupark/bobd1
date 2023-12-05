@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
     help = 'Train the model'
     def handle(self, *args, **options):
-        df = pd.read_csv('C:/Users/82102/PycharmProjects/bob_d/accountapp/train.csv')
+        df = pd.read_csv('C:/Users/82102/PycharmProjects/bob_d/accountapp/2train.csv')
         doc_df = df[['RCP_NM', 'new_train']].values.tolist()
         tagged_data = [TaggedDocument(words=_d, tags=[uid]) for uid, _d in doc_df]
 
