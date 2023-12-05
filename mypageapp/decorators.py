@@ -7,10 +7,10 @@ from django.shortcuts import redirect
 import accountapp
 
 
-def login_message_required(function):
-    def wrap(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.info(request, "로그인한 사용자만 이용할 수 있습니다.")
-            return redirect(accountapp.login)
-        return function(request, *args, **kwargs)
-    return wrap
+def account_ownership_required(func):
+    def decorated(request, *args, **kwargs):
+        user = User.objects.get(pk=kwargs['pk'])
+        if not user == request.user:
+            return HttpResponseForbidden()
+        return func(request, *args, **kwargs)
+    return decorated
