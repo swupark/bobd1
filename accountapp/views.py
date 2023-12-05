@@ -86,4 +86,3 @@ def recommendlist(request,imageId,category):
     #     ln_img = [recipe for recipe in ln_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
     #     dt_img = [recipe for recipe in dt_img if dislike_ingredient not in recipe.RCP_PARTS_DTLS]
     # return (vegan_img,  hp_img,  ln_img, dt_img)
-

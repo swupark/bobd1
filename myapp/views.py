@@ -7,10 +7,11 @@ from excel_import.models import FoodModel
 import pandas as pd
 from gensim.models import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
+
 from django.shortcuts import render
 from .models import FoodModel
 
-df = pd.read_csv('C:/Users/82102/PycharmProjects/bob_d/accountapp/2train.csv')
+df = pd.read_csv('C:/Users/golds/Downloads/2train.csv')
 
 class Predict(APIView):
     def get(self, request,imageId, category, format=None):
