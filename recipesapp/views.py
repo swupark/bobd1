@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from .models import FoodModel
 
-def menu_detail(request, FOOD_ID):
-    menu = FoodModel.objects.get(pk=FOOD_ID)
+def menu_detail(request, food_id):
+    menu = FoodModel.objects.get(pk=food_id)
 
-    return render(request, 'menu_detail.html', {'menu': menu})
-def menu_list(request):
-    menus = FoodModel.objects.all()
-    return render(request, 'menu_list.html', {'menus': menus})
+    return render(request, 'menu_detail.html', {'menu': menu, 'food_id': food_id})
