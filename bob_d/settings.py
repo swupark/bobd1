@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 
 import accountapp.apps
 
+import sys
 import environ
 import os
 
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'excel_import',
     'recipesapp',
+    'rest_framework',
+    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'account/login/'
 LOGOUT_REDIRECT_URL=reverse_lazy('accountapp:login')
 LOGIN_REDIRECT_URL = reverse_lazy('accountapp:home')
+RUNNING_DEV_SERVER = 'runserver' in sys.argv

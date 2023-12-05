@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Details for Image ID: {{ post }}</h1>
+<p>{{rcp.RCP_NM}}
+  {% if list %}
+        <ul>
+           {% for item in list %}
+  <div>
+    <p>Recipe Name: {{ item.recipe_name }}</p>
+    <p>New Train: {{ item.new_train }}</p>
+    <p>Recipe Way2: {{ item.recipe_way2 }}</p>
+  </div>
+{% endfor %}
+        </ul>
+    {% else %}
+        <p>No similar recipes found.</p>
+    {% endif %}
+</body>
+</html>

@@ -26,5 +26,5 @@ urlpatterns = [
     path('account/',include('accountapp.urls')),
     path('excel_import/', include('excel_import.urls')),
     path('recipes/', include('recipesapp.urls')),
-
+    path('api/', include('myapp.urls')),
 ]
