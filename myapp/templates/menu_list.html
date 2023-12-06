@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        li {
+            width: calc(40% - 20px);
+            box-sizing: border-box;
+            margin: 0 10px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            border: 2px solid #2ecc71; /* 녹색 테두리 추가 */
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            width: 100%;
+        }
+
+        .img-container {
+            margin-right: 10px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            border-radius: 8px 0 0 8px;
+            width: 50%;
+        }
+
+        img {
+            width: 60%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .menu-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 10px;
+            max-width: calc(100% - 20px);
+            margin: 0 auto;
+            box-sizing: border-box;
+            margin-left: -130px;
+        }
+
+        .menu-info p {
+            margin: 0;
+            white-space: pre-wrap;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .toggle-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin-top: 10px;
+            position: relative;
+            margin-left: 0px;
+        }
+
+        .toggle-background {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            position: absolute;
+            top: 0; /* 수정: top 값 변경 */
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            display: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            max-height: 200px;
+        }
+
+        .toggle-content {
+            display: none;
+        }
+
+        .toggle-button {
+            cursor: pointer;
+            color: #3498db;
+            text-decoration: underline;
+            margin-top: 5px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .toggle-button:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menu List</h1>
+    <ul>
+        {% for menu in menus %}
+        <li>
+            <a href="{% url 'menu_detail' menu.id %}">
+                <div class="img-container">
+                    <img src="{{ menu.ATT_FILE_NO_MK }}" alt="{{ menu.RCP_NM }}">
+                </div>
+                <div class="menu-info">
+                    <p>{{ menu.RCP_NM }}</p>
+                    <div class="toggle-container">
+                        <div class="toggle-background">
+                            <p class="toggle-content">{{ menu.RCP_PARTS_DTLS }}</p>
+                        </div>
+                        <div class="toggle-button" onclick="toggleContent(event, this)">주요재료</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function toggleContent(event, button) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            var container = button.parentElement;
+            var background = container.querySelector('.toggle-background');
+            var content = background.querySelector('.toggle-content');
+
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                background.style.display = "block";
+                button.style.marginTop = "0";
+            } else {
+                content.style.display = "none";
+                background.style.display = "none";
+                button.style.marginTop = "5px";
+            }
+        }
+    </script>
+</body>
+
+</html>

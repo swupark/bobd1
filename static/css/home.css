@@ -1,4 +1,9 @@
+body{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
 .wrapper {
+    max-width: 1500px;
+    max-height: 1200px;
 	display:flex;
 	flex-direction: column;
 	align-items: center;
@@ -26,10 +31,18 @@
     height: 70px;
     padding-top: 20px;
 }
+.search>img{
+    opacity: 1;
+    -webkit-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+}
+.search>img:hover{
+    opacity: 0.6;
+}
 
 #checkbox{
     width: 770px;
-    height: 780px;
+    height: 750px;
     border-radius: 25px;
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -88,14 +101,6 @@
     left: 20px;
 }
 
-.dislike_ingredient input{
-    width: 400px;
-    height: 30px;
-    margin-bottom: 20px;
-    border: none;
-    border-bottom: solid 2px rgb(234,234,234);
-}
-
 .buttons{
     margin-bottom: 50px;
 }
@@ -123,6 +128,24 @@
      font-weight: bold;
 }
 
+.loader{
+   position: fixed;
+   width: 1500px;
+   height: 1200px;
+   display: block;
+   opacity: 0.5;
+   background-color: black;
+   z-index: 10000;
+}
+.loader img{
+   width: 500px;
+   height: 500px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform:translate(-50%, -50%);
+}
+
 .imagePage{
     display: flex;
     flex-wrap: wrap;
@@ -131,7 +154,7 @@
 }
 .imageElement{
     width: 195px;
-    height: 180px;
+    height: 220px;
     margin-bottom: 40px;
 }
 .imageElement a{
@@ -139,14 +162,14 @@
     text-align: center;
 }
 .imageElement img {
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 170px;
     margin-bottom: 3px;
     border-radius: 3px;
 }
 .imageElement img:hover{
     transition: 0.2s;
-	transform: scale(1.15);
+	transform: scale(1.1);
 }
 .imageElement p{
     margin-top: 5px;
@@ -154,8 +177,17 @@
 }
 
 #pageContainer a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
     font-size: 15px;
     margin-right: 10px;
+    border-radius: 50%;
+    border-color: none;
+    background-color: rgb(249,226,192,0.7);
+}
+#pageContainer a:hover{
+    opacity: 0.6;
 }
 
 .slider{
@@ -335,10 +367,10 @@ ul.imgs li img{
 }
 .member{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     gap: 40px;
     margin-top: 20px;
-    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .member div{
@@ -352,4 +384,10 @@ ul.imgs li img{
 .member div a img{
     width: 34px;
     height: 34px;
+    opacity: 1;
+    -webkit-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+}
+.member div a img:hover{
+    opacity: 0.6;
 }

@@ -9,12 +9,15 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="wrapper">
         <div class="search">
+            {% if not user.is_authenticated %}
+            <img id='searchbar2' src="{% static 'image/searchbar.png' %}">
+            {% else %}
             <img id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            {% endif %}
             <div id='checkbox'>
-                <p>1. 원하는 카테고리를 모두 선택하세요</p>
+                <p>원하는 카테고리를 모두 선택하세요</p>
                 <div class="name">
                     <li class="v">비건식</li>
                     <li class="f">식단 조절</li>
@@ -22,33 +25,54 @@
                     <li class="p">고단백식</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="vegun" name="chk_list" onclick="
+                    <input type="checkbox" id="vegan" name="chk_list"onclick="
                     if(this.checked==true){
-                        displayImage('vegan_img');
-                        $('.name .v').css({
-                            'borderColor': 'rgb(93,186,109)',
-                            'color': 'white',
-                            'backgroundColor': 'rgb(132,206,145)'
-                        });
-                        $('.btn_ok').css({
-                            'borderColor': 'rgb(232,170,61)',
-                            'color': 'white',
-                            'backgroundColor': 'rgb(232,170,61)'
-                        });
-                        this.disabled = true;
-                       }
-                    else{
-                        $('.name .v').css({
-                            'borderColor': 'rgb(234,234,234)',
-                            'color': 'rgb(140,140,140)',
-                            'backgroundColor': 'rgb(246,246,246)'
-                        });
-                    }
-                     enableBtnOk();">
-                    <label for="vegun"></label>
+                     displayImage('VEGAN');
+                     $('.name .v').css({
+            'borderColor': 'rgb(93,186,109)',
+            'color': 'white',
+            'backgroundColor': 'rgb(132,206,145)'
+        });
+        $('.btn_ok').css({
+            'borderColor': 'rgb(232,170,61)',
+            'color': 'white',
+            'backgroundColor': 'rgb(232,170,61)'
+        });
+        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
+        this.disabled = true;
+    } else {
+        $('.name .v').css({
+            'borderColor': 'rgb(234,234,234)',
+            'color': 'rgb(140,140,140)',
+            'backgroundColor': 'rgb(246,246,246)'
+        });
+    }
+    enableBtnOk();
+">
+                    {% if user_profile.issue_vg == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#vegan').prop('checked', true);
+            displayImage('VEGAN');
+            $('.name .v').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#vegan').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
+                    <label for="vegan"></label>
                     <input type="checkbox" id="l_fat" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('dt_img');
+                        displayImage('DIETS');
                         $('.name .f').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -59,6 +83,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -69,10 +94,30 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_di == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#l_fat').prop('checked', true);
+            displayImage('DIETS');
+            $('.name .f').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#l_fat').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="l_fat"></label>
                     <input type="checkbox" id="l_salt" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('ln_img');
+                        displayImage('LOW_NA');
                         $('.name .s').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -83,6 +128,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -93,10 +139,31 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_ln == 1 %}
+    <script>
+        $(document).ready(function() {
+            $('#l_salt').prop('checked', true);
+            displayImage('LOW_NA');
+            $('.name .s').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#l_salt').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="l_salt"></label>
                     <input type="checkbox" id="h_protein" name="chk_list" onclick="
                     if(this.checked==true){
-                        displayImage('hp_img');
+                        this.checked = true;
+                        displayImage('HIGH_PRO');
                         $('.name .p').css({
                             'borderColor': 'rgb(93,186,109)',
                             'color': 'white',
@@ -107,6 +174,7 @@
                             'color': 'white',
                             'backgroundColor': 'rgb(232,170,61)'
                         });
+                        $('#vegan').prop('checked', true); // jQuery를 사용해 체크
                         this.disabled = true;
                     }
                     else{
@@ -117,16 +185,27 @@
                         });
                      }
                      enableBtnOk();">
+                    {% if user_profile.issue_hp == 1 %}
+    <script>
+        $(document).ready(function() {*
+            $('#vegan').prop('checked', true);
+            displayImage('HIGH_PRO');
+            $('.name .p').css({
+                'borderColor': 'rgb(93,186,109)',
+                'color': 'white',
+                'backgroundColor': 'rgb(132,206,145)'
+            });
+            $('.btn_ok').css({
+                'borderColor': 'rgb(232,170,61)',
+                'color': 'white',
+                'backgroundColor': 'rgb(232,170,61)'
+            });
+            $('#h_protein').prop('disabled', true);
+            enableBtnOk();
+        });
+    </script>
+{% endif %}
                     <label for="h_protein"></label>
-                </div>
-                <div class="dislike_ingredient">
-                    <form method="get" id="di_form" >
-                        <p>2. 빼고 싶은 재료가 있다면 입력해 주세요</p>
-                        <label for="dislike_ingredient"></label>
-                        <input type="search" name="dislike_ingredient" id="dislike_ingredient" placeholder="예시) 부추 당근"
-                        onclick="this.style.borderColor='rgb(93,186,109)';">
-                        <button type="submit">확인</button>
-                    </form>
                 </div>
                 <div class="buttons">
                   <button class="btn_ok" disabled onclick="
@@ -166,9 +245,7 @@
                         'color': 'rgb(140,140,140)',
                         'backgroundColor': 'rgb(246,246,246)'
                     });
-                    $('.dislike_ingredient input').css({
-                        'borderColor': 'rgb(234,234,234)'
-                    });
+
                   ">초기화</button>
                 </div>
                 <!-- 이미지가 나타나는 부분 -->
@@ -176,7 +253,6 @@
                 <div id="pageContainer" class="pagination" style="display: none"></div>
             </div>
             </div>
-
             <script  type="text/javascript">
                 function dis(){
                       if($('#checkbox').css('display') == 'none'){
@@ -186,11 +262,12 @@
                     }
                  }
 
+
                  var imageLists = {
-                    'vegan_img': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
-                    'hp_img': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
-                    'ln_img': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
-                    'dt_img': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'VEGAN': [{% for item in vegan_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}", "{{ item.RCP_NM }}",{% endfor %}],
+                    'HIGH_PRO': [{% for item in hp_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'LOW_NA': [{% for item in ln_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
+                    'DIETS': [{% for item in dt_img %}"{{ item.id }}", "{{ item.ATT_FILE_NO_MAIN }}","{{ item.RCP_NM }}", {% endfor %}],
                 };
 
                 function shuffleArray(array) {
@@ -215,6 +292,7 @@
                         imageSet.push({imageId: imageId, imageUrl: imageUrl, imageNm: imageNm});
                     }
 
+
                     var page = $('<div class="imagePage">');
 
                     for(var i=0; i<6; i++){
@@ -223,7 +301,7 @@
                         var imageNm = imageSet[i].imageNm;
                         var imageElement = `
                              <div class="imageElement">
-                               <a href="http://127.0.0.1:8000/recipes/menu/${imageId}/">
+                               <a href="http://127.0.0.1:8000/recipes/menu/${imageId}/${category}">
                                <img src="${imageUrl}" alt="Image">
                                <p>${imageNm}</p>
                                </a>
@@ -237,30 +315,32 @@
                     showPage(1);
                 }
 
-                    function createPagination(request) {
-                         var paginationContainer = $('#pageContainer');
-                         paginationContainer.empty();
-                         for (var i=1;i<=request;i++){
-                         var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
-                         paginationContainer.append(pageLink);
-                         }
-                    }
+                        function createPagination(request) {
+                            var paginationContainer = $('#pageContainer');
+                            paginationContainer.empty();
+                            for (var i=1;i<=request;i++){
+                                 var pageLink = $('<a href="#" onclick="showPage(' + i + ');">' +i+ '</a>');
+                                 paginationContainer.append(pageLink);
+                            }
+                        }
 
-                    function showPage(pageNumber) {
-                         var pages = $('.imagePage');
+                        function showPage(pageNumber) {
+                            var pages = $('.imagePage');
 
-                         pages.hide();
-                         $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
+                            pages.hide();
+                            $('#imageContainer .imagePage:nth-child(' + pageNumber + ')').show();
 
-                         // 페이지네이션 활성화 스타일 설정
-                         $('#pageContainer a').removeClass('active');
-                         $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
-                    }
+                            // 페이지네이션 활성화 스타일 설정
+                            $('#pageContainer a').removeClass('active');
+                            $('#pageContainer a:nth-child(' + pageNumber + ')').addClass('active');
+                        }
+                        function enableBtnOk() {
+                            var atLeastOneChecked = $('.check input:checked').length > 0;
+                            $('.btn_ok').prop('disabled', !atLeastOneChecked);
+                        }
 
-                    function enableBtnOk() {
-                         var atLeastOneChecked = $('.check input:checked').length > 0;
-                         $('.btn_ok').prop('disabled', !atLeastOneChecked);
-                    }
+
+
             </script>
         </div>
 

@@ -15,16 +15,16 @@ class ExcelUploadView(View):
     def post(self, request):
         form = ExcelUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            excel_data = pd.read_excel(request.FILES['excel_file']).fillna(0)
+            excel_data = pd.read_csv(request.FILES['excel_file']).fillna(0)
             for index, row in excel_data.iterrows():
                 FoodModel.objects.create(
                     ATT_FILE_NO_MAIN=row['ATT_FILE_NO_MAIN'],
                     ATT_FILE_NO_MK=row['ATT_FILE_NO_MK'],
                     HASH_TAG=row['HASH_TAG'],
 
-                    INFO_CAR_x=row['INFO_CAR_x'],
-                    INFO_ENG_x=row['INFO_ENG_x'],
-                    INFO_FAT_x=row['INFO_FAT_x'],
+                    INFO_CAR_x=row['INFO_CAR_x_x'],
+                    INFO_ENG_x=row['INFO_ENG_x_x'],
+                    INFO_FAT_x=row['INFO_FAT_x_x'],
                     INFO_NA=row['INFO_NA'],
                     INFO_PRO=row['INFO_PRO'],
                     INFO_WGT=row['INFO_WGT'],

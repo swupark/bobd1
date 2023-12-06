@@ -2,11 +2,11 @@
 
 <div class="like-item">
         <div class="recipe-image"> <!--이미지-->
-            <a href="{% url 'menu_detail' food_id=food.id %}"><img src="{{ food.ATT_FILE_NO_MK }}"></a>
+            <a href="{% url 'menu_detail' imageId=food.id %}"><img src="{{ food.ATT_FILE_NO_MK }}"></a>
         </div>
         <div class="recipe-content">
             <div class="recipe-name"> <!--레시피 이름-->
-                <a href="{% url 'menu_detail' food_id=food.id %}"><h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4></a>
+                <a href="{% url 'menu_detail' imageId=food.id %}"><h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4></a>
             </div>
             <div class="recipe-short"> <!--레시피 태그-->
                 <div class="hashtags">
