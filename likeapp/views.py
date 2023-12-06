@@ -18,8 +18,9 @@ class FoodModelViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def toggle_like(request, food_id):
+def toggle_like(request, food_id, category):
     food = FoodModel.objects.get(pk=food_id)
+    category = category
 
     if request.user in food.liked_users.all():
         # 이미 좋아요를 눌렀으면 좋아요 해제
@@ -28,7 +29,7 @@ def toggle_like(request, food_id):
         # 좋아요 추가
         food.liked_users.add(request.user)
 
-    return redirect('menu_detail', food_id=food_id)
+    return redirect('menu_detail', imageId=food_id, category=category)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

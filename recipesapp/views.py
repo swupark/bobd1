@@ -28,7 +28,6 @@ class Predict(APIView):
         return (imageId, result_list)
 def menu_detail(request, imageId, category):
     menu = FoodModel.objects.get(pk=imageId)
-    print(menu)
     rcmd = Predict()
     image_num,list_data = rcmd.get(request, imageId, category)
-    return render(request, 'recipesapp/menu_detail.html' ,{'menu':menu,'num':image_num,'list':list_data})
+    return render(request, 'recipesapp/menu_detail.html' ,{'menu':menu,'food_id':image_num,'list':list_data, 'category':category})

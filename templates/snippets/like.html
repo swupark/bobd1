@@ -2,25 +2,25 @@
 
 <div class="like-item">
         <div class="recipe-image"> <!--이미지-->
-            <a href="{% url 'menu_detail' imageId=food.id %}"><img src="{{ food.ATT_FILE_NO_MK }}"></a>
+            <img src="{{ food.ATT_FILE_NO_MK }}">
         </div>
         <div class="recipe-content">
             <div class="recipe-name"> <!--레시피 이름-->
-                <a href="{% url 'menu_detail' imageId=food.id %}"><h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4></a>
+                <h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4>
             </div>
             <div class="recipe-short"> <!--레시피 태그-->
                 <div class="hashtags">
                         {% if food.LOW_NA != 0 %}
-                            <span>#저염식</span>
+                        <a href="{% url 'menu_detail' imageId=food.id category='LOW_NA' %}"><span>#저염식</span></a>
                         {% endif %}
                         {% if food.HIGH_PRO != 0 %}
-                            <span>#고단백식</span>
+                        <a href="{% url 'menu_detail' imageId=food.id category='HIGH_PRO' %}"><span>#고단백식</span></a>
                         {% endif %}
                         {% if food.VEGAN != 0 %}
-                            <span>#비건식</span>
+                        <a href="{% url 'menu_detail' imageId=food.id category='VEGAN' %}"><span>#비건식</span></a>
                         {% endif %}
                         {% if food.DIETS != 0 %}
-                            <span>#식단조절식</span>
+                        <a href="{% url 'menu_detail' imageId=food.id category='DIETS' %}"><span>#식단조절</span></a>
                         {% endif %}
                 </div>
             </div>
