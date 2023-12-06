@@ -4,23 +4,41 @@
 {% load bootstrap4 %}
 
 {% block static %}
-    <title>{{ menu.RCP_NM }}</title>
-    <link rel="stylesheet" href="{% static 'css/menu_detail.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 {% endblock %}
 
 {% block content %}
-    <input type="button" id="ch_color" name="empty" value="&#x2661;" onclick="
+    <form id="like-form" method="post" action="{% url 'api_toggle_like' food_id=food_id %}">
+    {% csrf_token %}
+    <button type="submit" id="like-button" name="empty" onclick="
         if(this.name==='empty'){
-            this.value='&#x2661;';
+            this.innerText='&#x2661;';
             this.name='fill';
         }else{
-            this.value='&#x2665;';
+            this.innerText='&#x2665;';
             this.name='empty';
-        }
-    ">
+        }">&#x2661;</button>
+    </form>
+    <script>
+        $(document).ready(function () {
+        var userId = response.user_id;
+            $.ajax({
+                url: '{% url 'api_like_status' food_id=food_id %}',
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + '{user_id: userId}'
+                },
+                success: function(data) {
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
 
     <div class="container">
         <div class="upper">
