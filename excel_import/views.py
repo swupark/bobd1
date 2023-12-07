@@ -22,9 +22,9 @@ class ExcelUploadView(View):
                     ATT_FILE_NO_MK=row['ATT_FILE_NO_MK'],
                     HASH_TAG=row['HASH_TAG'],
 
-                    INFO_CAR_x=row['INFO_CAR_x_x'],
-                    INFO_ENG_x=row['INFO_ENG_x_x'],
-                    INFO_FAT_x=row['INFO_FAT_x_x'],
+                    INFO_CAR_x=row['INFO_CAR_x'],
+                    INFO_ENG_x=row['INFO_ENG_x'],
+                    INFO_FAT_x=row['INFO_FAT_x'],
                     INFO_NA=row['INFO_NA'],
                     INFO_PRO=row['INFO_PRO'],
                     INFO_WGT=row['INFO_WGT'],

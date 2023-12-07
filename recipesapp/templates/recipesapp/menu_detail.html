@@ -218,7 +218,7 @@ function loadLike() {
 
                 function moveSlider(direction) {
                     const itemWidth = 950;
-                    const maxIndex = Math.floor(re_info.length / 5) - 1;
+                    const maxIndex = Math.floor(re_info.length) - 1;
 
                     if (direction === 'left') {
                         currentIndex = currentIndex > 0 ? currentIndex - 1 : 0;

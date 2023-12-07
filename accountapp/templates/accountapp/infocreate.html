@@ -16,57 +16,8 @@
     </div>
 
     <form action="{% url 'accountapp:infocreate' %}" method="post">
-        {% csrf_token%}
-        <div class="form-group">
-            <label for="id_nickname">닉네임</label>
-            <input type="text" name="nickname" maxlength="40" class="form-control"
-                   placeholder="닉네임" title="" required id="id_nickname"></div>
-
-        <div class="form-group">
-            <label for="id_age">나이대</label>
-            <select name="나이대" class="form-control" id="id_age">
-                <option value="18">청소년(13세 ~ 18세)</option>
-                <option value="29" selected>청년(19세 ~ 29세)</option>
-                <option value="64">중장년(30 ~ 64세)</option>
-                <option value="65">노년(65세 이상 ~)</option>
-            </select></div>
-
-        <div class="form-group">
-            <label for="id_gender">성별</label>
-            <select name="성별" class="form-control" title="" id="id_gender">
-                <option value="M">남성</option>
-                <option value="F" selected>여성</option>
-            </select></div>
-
-        <p class="mt-5" style="text-align: center; font-size:1.5rem; "> 건강 이슈 </p>
-        <div class="form-group">
-            <label for="id_issue_di">식단 조절</label>
-            <select name="issue_di" class="form-control" title="" id="id_issue_di">
-                <option value="1">네</option>
-                <option value="0" selected>아니오</option>
-            </select></div>
-
-        <div class="form-group">
-            <label for="id_issue_vg">비건식</label>
-            <select name="issue_vg" class="form-control" title="" id="id_issue_vg">
-                <option value="1">네</option>
-                <option value="0" selected>아니오</option>
-            </select></div>
-
-        <div class="form-group">
-            <label for="id_issue_ln">저염식</label>
-            <select name="issue_ln" class="form-control" title="" id="id_issue_ln">
-                <option value="1">네</option>
-                <option value="0" selected>아니오</option>
-            </select></div>
-
-        <div class="form-group">
-            <label for="id_issue_hp">고단백식</label>
-            <select name="issue_hp" class="form-control" title="" id="id_issue_hp">
-                <option value="1">네</option>
-                <option value="0" selected>아니오</option>
-            </select></div>
-
+      {% csrf_token%}
+      {% bootstrap_form form %}
       <div style="text-align: center; margin-top: 50px">
           <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3" style="background-color: rgb(0, 104, 56);
      opacity: 0.8; border: none; width:80px">
