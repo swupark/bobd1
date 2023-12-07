@@ -1,56 +1,58 @@
 {% block content %}
 <div style="text-align: center; max-width: 500px; margin: 3rem auto; height: 320px;">
     <div>
+        <div style="text-align: left;">
+            <p style="font-weight: bold;">아이디 | {{ user.username }}</p>
+            <p style="font-weight: bold;">이메일 | {{ user.email }}</p>
+            <p style="font-weight: bold;">닉네임 | {{ user.userinfo.nickname }}</p>
 
-        <h2>ID | {{ user.username }}</h2>
-        <p>Email | {{ user.email }}</p>
-        <p>닉네임 | {{ user.userinfo.nickname }}</p>
+            {% if user.userinfo.age == 18 %}
+                <p>나이대 | 청소년</p>
+            {% elif user.userinfo.age == 29 %}
+                <p>나이대 | 청년</p>
+            {% elif user.userinfo.age == 64 %}
+                <p>나이대 | 중장년</p>
+            {% else %}
+                <p>나이대 | 노년</p>
+            {% endif %}
 
-        {% if user.userinfo.age == 18 %}
-            <p>나이대 | 청소년</p>
-        {% elif user.userinfo.age == 29 %}
-            <p>나이대 | 청년</p>
-        {% elif user.userinfo.age == 64 %}
-            <p>나이대 | 중장년</p>
-        {% else %}
-            <p>나이대 | 노년</p>
-        {% endif %}
+            {% if user.userinfo.gender == 'M' %}
+                <p>성별 | 남성 </p>
+            {% else %}
+                <p>성별 | 여성</p>
+            {% endif %}
+        </div>
+        <hr>
+        <h4 style="color: rgb(34, 116, 28)"> {{user.userinfo.nickname}}님이 선택한 건강 이슈 </h4>
 
-        {% if user.userinfo.gender == 'M' %}
-            <p>성별 | 남성 </p>
-        {% else %}
-            <p>성별 | 여성</p>
-        {% endif %}
+        <div class="name" style="margin: 2rem auto;">
+            {% if user.userinfo.issue_vg == 0 %}
+            <li class="no">비건식</li>
+            {% else %}
+            <li class="yes">비건식</li>
+            {% endif %}
 
-        {% if user.userinfo.issue_ln == 0 %}
-            <p>저염식 | 아니오 </p>
-        {% else %}
-            <p>저염식 | 예</p>
-        {% endif %}
+            {% if user.userinfo.issue_di == 0 %}
+            <li class="no">식단 조절</li>
+            {% else %}
+            <li class="yes">식단 조절</li>
+            {% endif %}
 
-        {% if user.userinfo.issue_hp == 0 %}
-            <p>고단백식 | 아니오 </p>
-        {% else %}
-            <p>고단백식 | 예</p>
-        {% endif %}
+            {% if user.userinfo.issue_ln == 0 %}
+            <li class="no">저염식</li>
+            {% else %}
+            <li class="yes">저염식</li>
+            {% endif %}
 
-
-        {% if user.userinfo.issue_vg == 0 %}
-            <p>비건식 | 아니오 </p>
-        {% else %}
-            <p>비건식 | 예</p>
-        {% endif %}
-
-        {% if user.userinfo.issue_di == 0 %}
-            <p>식단 조절 | 아니오 </p>
-        {% else %}
-            <p>식단 조절 | 예</p>
-        {% endif %}
-
-
+            {% if user.userinfo.issue_hp == 0 %}
+            <li class="no">고단백식</li>
+            {% else %}
+            <li class="yes">고단백식</li>
+            {% endif %}
+        </div>
     </div>
     <hr>
-    <div style="margin: 2rem auto; text-decoration: underline;">
+    <div style="margin: 2rem auto; text-decoration: underline; ">
         <a href="{% url 'accountapp:infoupdate' pk=user.pk %}">사용자정보수정</a>|
         <a href="{% url 'accountapp:pwupdate' pk=user.pk %}">비밀번호변경</a>|
         <a href="{% url 'accountapp:delete' pk=user.pk %}">탈퇴하기</a>
