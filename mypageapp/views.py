@@ -1,21 +1,27 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView,  ListView
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
+from accountapp.decorators import account_ownership_required
 from excel_import.models import FoodModel
 from likeapp.serializers import FoodSerializer
 
 
 # Create your views here.
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 class MyPageView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'mypageapp/mypage.html'
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 class InfoDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
@@ -38,7 +44,8 @@ class CommentListView(ListView):
 def loading(request) :
     return render(request, 'loading.html', {})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 class LikeListAPIView(ListAPIView):
     serializer_class = FoodSerializer
     template_name = 'mypageapp/like_list.html'

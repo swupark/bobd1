@@ -19,6 +19,7 @@ from django.contrib import messages
 
 from django.conf import settings
 
+from accountapp.decorators import account_ownership_required
 from accountapp.forms import PasswordResetForm, CustomAuthenticationForm, UserForm, UserInfoForm
 from accountapp.models import UserInfo
 from excel_import.models import FoodModel
@@ -104,6 +105,8 @@ class UserInfoCreateView(CreateView):
         return super().form_valid(form)
 
 #개인정보 페이지에서 개인정보 수정 기능
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 class UserInfoUpdateView(UpdateView):
     model = UserInfo
     form_class = UserInfoForm
@@ -118,6 +121,8 @@ class CustomLoginView(auth_views.LoginView):
     form_class = CustomAuthenticationForm
 
 #회원 탈퇴하기
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
@@ -125,6 +130,8 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 #마이페이지 내 비밀번호 변경 (기존 비밀번호 확인)
+@method_decorator(login_required, name='dispatch')
+@method_decorator(account_ownership_required, name='dispatch')
 def change_pw(request,pk):
     context = {}
     if request.method == "POST":
