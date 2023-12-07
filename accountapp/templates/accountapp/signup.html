@@ -8,18 +8,30 @@
 {% endblock %}
 
 {% block content %}
-<div class="form-container" style="" >
-  <div class="mb-4">
-<!--    Sign up-->
-  </div>
-<!--함수 기반에서 reverse와 유사-->
+<div class="form-container" style="color: rgb(34, 116, 28);" >
+    <div style="text-align: center; padding-bottom: 1rem;">
+        <h2 style="font-weight: bold; padding-bottom: 1rem;">회원 가입</h2>
+    </div>
+
   <form method="post">
       {% csrf_token%}
-      {% bootstrap_form form %}
-      <div style="text-align: center; margin-top: 50px">
-    <input type="submit" class="btn btn-dark rounded-pill col-2" style="background-color: rgb(0, 104, 56);
-     opacity: 0.8; border: none;">
-      </div>
+       <div class="form-group">
+           <label for="id_username">아이디</label>
+           <input type="text" name="username" autofocus class="form-control"
+                  placeholder="아이디" title="" required id="id_username"></div>
+       <div class="form-group">
+            <label for="id_email">이메일</label>
+            <input type="email" name="email" maxlength="320" class="form-control" placeholder="이메일" title="" required id="id_email"></div>
+       <div class="form-group">
+            <label for="id_password1">비밀번호 입력</label>
+            <input type="password" name="password1" placeholder="비밀번호 입력" class="form-control" title="" required id="id_password1"></div>
+       <div class="form-group">
+            <label for="id_password2">비밀번호 재확인</label>
+            <input type="password" name="password2" placeholder="비밀번호 재확인" class="form-control" title="" required id="id_password2"></div>
+       <div style="text-align: center; margin-top: 50px">
+            <input type="submit" class="btn btn-dark rounded-pill col-2" style="background-color: rgb(0, 104, 56);
+             opacity: 0.8; border: none;">
+       </div>
   </form>
 </div>
 {% endblock %}

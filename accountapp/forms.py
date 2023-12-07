@@ -10,9 +10,6 @@ from accountapp.models import UserInfo
 
 class UserForm(auth_forms.UserCreationForm):
 
-    username = forms.CharField(label="ID")
-    email = forms.EmailField(label="Email")
-
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2", )
@@ -30,6 +27,7 @@ class UserForm(auth_forms.UserCreationForm):
         return email
 
 class UserInfoForm(ModelForm):
+
     class Meta:
         model=UserInfo
         fields=['nickname','age','gender','issue_ln','issue_hp',
