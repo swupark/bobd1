@@ -12,22 +12,21 @@ from excel_import.models import FoodModel
 # Create your views here.
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def toggle_like(request, food_id, category):
+def toggle_like(request, food_id):
     food = FoodModel.objects.get(pk=food_id)
-    category = category
 
     if request.user in food.liked_users.all():
         # 이미 좋아요를 눌렀으면 좋아요 해제
         food.liked_users.remove(request.user)
+        is_liked = False
     else:
         # 좋아요 추가
         food.liked_users.add(request.user)
+        is_liked = True
 
-    return redirect('menu_detail', imageId=food_id, category=category)
+    return JsonResponse({'is_liked': is_liked})
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@api_view(['GET'])
 def check_like_status(request, food_id):
     food = FoodModel.objects.get(pk=food_id)
     if food.liked_users.filter(pk=request.user.id).exists():
@@ -37,7 +36,6 @@ def check_like_status(request, food_id):
     return Response({'is_liked': is_liked})
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def delete_like(request, food_id):
     food = FoodModel.objects.get(pk=food_id)
     food.liked_users.remove(request.user)

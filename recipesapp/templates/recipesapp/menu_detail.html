@@ -12,34 +12,57 @@
 {% endblock %}
 
 {% block content %}
-    <form id="like-form" method="post" action="{% url 'api_toggle_like' food_id=food_id category=category %}">
-    {% csrf_token %}
-    <button type="submit" id="like-button" name="empty" onclick="
-        if(this.name==='empty'){
-            this.innerText='&#x2661;';
-            this.name='fill';
-        }else{
-            this.innerText='&#x2665;';
-            this.name='empty';
-        }">&#x2661;</button>
-    </form>
+    <button type="submit" id="like-button" name="empty">&#x2661;</button>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).ready(function () {
-        var userId = response.user_id;
-            $.ajax({
-                url: '{% url 'api_like_status' food_id=food_id %}',
-                type: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + '{user_id: userId}'
-                },
-                success: function(data) {
 
-                },
-                error: function(error) {
-                    console.log(error);
+    $(document).ready(function () {
+    loadLike();
+
+    // 좋아요 버튼 클릭 이벤트
+    $("#like-button").click(function () {
+        // Ajax 요청
+        $.ajax({
+            url: "{% url 'api_toggle_like' food_id=food_id %}",
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            },
+            success: function (data) {
+                // 서버에서 받은 응답에 따라 버튼을 업데이트
+                if (data.is_liked) {
+                    $("#like-button").html("&#x2665;");
+                } else {
+                    $("#like-button").html("&#x2661;");
                 }
-            });
+            },
+            error: function (error) {
+                console.log(error);
+                alert("에러 발생");
+            }
         });
+    });
+});
+
+function loadLike() {
+    // Ajax 요청
+    $.ajax({
+        url: '{% url 'api_like_status' food_id=food_id %}',
+        type: 'GET',
+        success: function (data) {
+            var isLiked = data.is_liked;
+            if (isLiked) {
+                $("#like-button").html("&#x2665;");
+            } else {
+                $("#like-button").html("&#x2661;");
+            }
+        },
+        error: function () {
+            alert('Error');
+        }
+    });
+}
+
     </script>
 
     <div class="container">
@@ -172,9 +195,7 @@
             </div>
         </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
     <script>
         function toggleDetails(detailsId) {

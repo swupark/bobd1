@@ -29,7 +29,6 @@ urlpatterns = [
     path('excel_import/', include('excel_import.urls')),
     path('recipes/', include('recipesapp.urls')),
     path('api/', include('myapp.urls')),
-    path('likes/', include('likeapp.urls')),
 
     path('password_reset/', accountapp.views.PasswordResetView.as_view(), name="password_reset"),
     path('password_reset_done/', accountapp.views.PasswordResetDoneView.as_view(), name="password_reset_done"),
