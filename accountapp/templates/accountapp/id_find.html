@@ -2,11 +2,12 @@
 {% load static %}
 {% load bootstrap4 %}
 
-
 {% block static %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+<!--bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {% endblock %}
+
 {% block content %}
 <div class="form-container px-5 py-5 my-5 shadow" style="border-radius: 1.25rem;">
     <div style="text-align: center; padding-bottom: 1rem;">
@@ -26,7 +27,7 @@
             <label class="sr-only" for="email">Email</label>
             <div class="">
                 <input type="text" class="form-control shadow-sm" name="email" id="email"
-                       value="{{ form.email.value|default_if_none:'' }}" placeholder="Email">
+                       value="{{ form.email.value|default_if_none:'' }}" placeholder="이메일">
             </div>
         </div>
 

@@ -20,7 +20,7 @@
             <div class="idbox">
                 <img src="{% static 'image/id.png' %}" alt="#">
                 <input type="text" class="form-control shadow-sm form-input" name="username" id="username"
-                       value="{{ form.email.value|default_if_none:'' }}" placeholder="ID">
+                       value="{{ form.email.value|default_if_none:'' }}" placeholder="아이디">
             </div>
         </div>
         <div class="form-group">
@@ -28,12 +28,12 @@
             <div class="pwdbox">
                 <img src="{% static 'image/pwd.png' %}" alt="#">
                 <input type="password" class="form-control shadow-sm form-input" name="password" id="password"
-                       value="{{ form.email.value|default_if_none:'' }}" placeholder="PASSWORD">
+                       value="{{ form.email.value|default_if_none:'' }}" placeholder="비밀번호">
             </div>
         </div>
 
         <div style="padding-top: 1rem; display: flex; justify-content: center;">
-            <button type="submit"  class="btn btn-primary shadow" id="form-button">LOGIN</button>
+            <button type="submit"  class="btn btn-primary shadow" id="form-button">로그인</button>
         </div>
 
     </form>

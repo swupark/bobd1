@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block static %}
+<!--bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% endblock %}
+
 {% block content %}
   <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
     <div class="mb-4">
-      <h4>Quit</h4>
+      <div style="text-align: center; padding-bottom: 1rem;">
+        <h2 style="font-weight: bold; padding-bottom: 1rem;">회원 탈퇴하기</h2>
+        <p style="font-size: 0.9rem;"> 회원을 탈퇴하시면 회원님의 정보가 전부 삭제됩니다. <br> 탈퇴하시겠습니까? </p>
     </div>
-    <form action="{% url 'mypageapp:delete' pk=target_user.pk %}" method="post">
+    </div>
+    <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
       {% csrf_token %}
-        <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3">
+      <button type="submit" class="btn btn-danger rounded-pill col-6 mt-3">회원 탈퇴하기</button>
     </form>
+    <a href="{% url 'accountapp:home' %}"><button type="submit" class="btn text-white rounded-pill col-6 mt-3" id="form-button">회원 유지하기</button></a>
   </div>
 
 {% endblock %}

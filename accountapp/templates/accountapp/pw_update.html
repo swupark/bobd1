@@ -1,35 +1,54 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+
+{% block static %}
+<!--bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% endblock %}
+
 {% block content %}
+
 <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-    <div class="login_container">
+    <div class="form-container">
         <div class="error_message">
                 {{error}}
         </div>
-        <div style="text-align:center; margin-bottom:1rem;">
-            Change Password
+        <div style="text-align: center; padding-bottom: 1rem;">
+            <h2 style="font-weight: bold; padding-bottom: 1rem;">비밀번호 변경</h2>
         </div>
-        <form method="POST" action="{% url 'accountapp:pwupdate' user.pk %}" class="login_form">
+        <form method="POST" action="{% url 'accountapp:pwupdate' user.pk %}" class="post-form">
             {% csrf_token %}
 
-            <div class="login_input_container">
-                <div class="username_form_text">Origin Password</div>
-                <div class="input_container">
-                    <input class="login_input" name="origin_password" type="password">
+            <div class="form-group">
+                <label class="" for="origin_password">기존 비밀번호</label>
+                <div>
+                    <input type="password" class="form-control shadow-sm form-input" name="origin_password" id="origin_password"
+                            placeholder="기존 비밀번호">
                 </div>
+            </div>
 
-                <div class="password_form_text"> New Password</div>
-                <div class="input_container">
-                    <input class="login_input" name="password1" type="password">
-                </div>
-                <div class="confirm_password_form_text">Confirm Password</div>
-                <div class="input_container">
-                    <input class="login_input" name="password2" type="password">
+            <div class="form-group">
+                <label class="" for="password1">새로운 비밀번호</label>
+                <div>
+                    <input type="password" class="form-control shadow-sm form-input" name="password1" id="password1"
+                           placeholder="새로운 비밀번호">
                 </div>
             </div>
-            <div class="login_btn_container">
-                <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3" value="Submit">
+
+            <div class="form-group">
+                <label class="" for="password2">비밀번호 확인</label>
+                <div>
+                    <input type="password" class="form-control shadow-sm form-input" name="password2" id="password2"
+                           placeholder="비밀번호 확인">
+                </div>
             </div>
+
+            <div style="padding-top: 1rem; display: flex; justify-content: center;">
+                <button type="submit"  class="btn btn-primary shadow" id="form-button">제출</button>
+            </div>
+
         </form>
     </div>
 </div>
