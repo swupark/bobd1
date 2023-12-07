@@ -21,7 +21,7 @@ class Predict(APIView):
             for index, row in matching_rows.iterrows():
                 if (row['RCP_WAY2'] == df.iloc[i - 1]['RCP_WAY2']) and (row[category] == 1):
                     result_list.append({
-                        'index': index,
+                        'index': (index+1),
                         'recipe_name': rd[0],
                         'img_food': row['ATT_FILE_NO_MAIN'],
                     })
