@@ -9,6 +9,8 @@ from accountapp.models import UserInfo
 
 
 class UserForm(auth_forms.UserCreationForm):
+    username = forms.CharField(label="아이디")
+    email = forms.EmailField(label="이메일")
 
     class Meta:
         model = User
