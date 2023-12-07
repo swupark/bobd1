@@ -372,7 +372,7 @@ ul.imgs li img{
     justify-content: center;
     text-align: center;
     gap: 40px;
-    margin-top: 20px;
+    margin: 5rem auto;
 }
 
 .member div{
