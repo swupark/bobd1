@@ -1,7 +1,13 @@
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.shortcuts import render
 from django.views.generic import DetailView,  ListView
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+
 from excel_import.models import FoodModel
+from likeapp.serializers import FoodSerializer
+
 
 # Create your views here.
 
@@ -18,15 +24,6 @@ class InfoDetailView(DetailView):
         # Ajax 요청에 대한 응답을 리턴
         return render(request, 'mypageapp/detail.html')
 
-
-class LikeListView(ListView):
-    template_name = 'mypageapp/like_list.html'
-    def get(self, request, pk):
-        # Ajax 요청에 대한 응답을 리턴
-        liked_foods = FoodModel.objects.filter(liked_users=request.user)
-        context = {'liked_foods': liked_foods}
-        return render(request, self.template_name, context)
-
 class ReviewListlView(ListView):
     template_name = 'mypageapp/review_list.html'
     def get(self, request, pk):
@@ -41,3 +38,24 @@ class CommentListView(ListView):
 def loading(request) :
     return render(request, 'loading.html', {})
 
+
+class LikeListAPIView(ListAPIView):
+    serializer_class = FoodSerializer
+    template_name = 'mypageapp/like_list.html'
+
+    @transaction.atomic
+    def get_queryset(self):
+        user_id = self.kwargs['pk']
+        # user_id에 해당하는 유저의 좋아하는 레시피들을 가져오기
+        user_liked_recipes = FoodModel.objects.filter(liked_users=user_id)
+        return user_liked_recipes
+
+    def list(self, request, *args, **kwargs):
+        user_id = self.kwargs['pk']
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        context = {
+            'user_id': user_id,
+            'liked_recipes': serializer.data
+        }
+        return render(request, self.template_name, context)

@@ -7,14 +7,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from excel_import.models import FoodModel
-from likeapp.serializers import FoodModelSerializer
 
 
 # Create your views here.
-
-class FoodModelViewSet(viewsets.ModelViewSet):
-    queryset = FoodModel.objects.all()
-    serializer_class = FoodModelSerializer
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -47,3 +42,5 @@ def delete_like(request, food_id):
     food = FoodModel.objects.get(pk=food_id)
     food.liked_users.remove(request.user)
     return redirect('mypageapp:mypage', pk=request.user.id)
+
+

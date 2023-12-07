@@ -2,39 +2,40 @@
 
 <div class="like-item">
         <div class="recipe-image"> <!--이미지-->
-            <img src="{{ food.ATT_FILE_NO_MK }}">
+            <img src="{{ recipe.ATT_FILE_NO_MAIN }}">
         </div>
         <div class="recipe-content">
             <div class="recipe-name"> <!--레시피 이름-->
-                <h4 style="margin: 0.6rem 0">{{ food.RCP_NM }}</h4>
+                <h4 style="margin: 0.6rem 0">{{ recipe.RCP_NM }}</h4>
             </div>
             <div class="recipe-short"> <!--레시피 태그-->
                 <div class="hashtags">
-                        {% if food.LOW_NA != 0 %}
-                        <a href="{% url 'menu_detail' imageId=food.id category='LOW_NA' %}"><span>#저염식</span></a>
+                        {% if recipe.LOW_NA != 0 %}
+                        <a href="{% url 'menu_detail' imageId=recipe.id category='LOW_NA' %}"><span>#저염식</span></a>
                         {% endif %}
-                        {% if food.HIGH_PRO != 0 %}
-                        <a href="{% url 'menu_detail' imageId=food.id category='HIGH_PRO' %}"><span>#고단백식</span></a>
+                        {% if recipe.HIGH_PRO != 0 %}
+                        <a href="{% url 'menu_detail' imageId=recipe.id category='HIGH_PRO' %}"><span>#고단백식</span></a>
                         {% endif %}
-                        {% if food.VEGAN != 0 %}
-                        <a href="{% url 'menu_detail' imageId=food.id category='VEGAN' %}"><span>#비건식</span></a>
+                        {% if recipe.VEGAN != 0 %}
+                        <a href="{% url 'menu_detail' imageId=recipe.id category='VEGAN' %}"><span>#비건식</span></a>
                         {% endif %}
-                        {% if food.DIETS != 0 %}
-                        <a href="{% url 'menu_detail' imageId=food.id category='DIETS' %}"><span>#식단조절</span></a>
+                        {% if recipe.DIETS != 0 %}
+                        <a href="{% url 'menu_detail' imageId=recipe.id category='DIETS' %}"><span>#식단조절</span></a>
                         {% endif %}
                 </div>
             </div>
         </div>
     <div class="recipe-delete"> <!--삭제버튼-->
-        <form id="like-form" method="post" action="{% url 'delete_like' food_id=food.id %}">
+        <form id="like-form" method="post" action="{% url 'delete_like' food_id=recipe.id %}">
             {% csrf_token %}
             <button type="submit" id="like-button" style="background: none; border: none; cursor: pointer; outline: none"><img src="{% static 'image/trash-can.svg' %}"></button>
         </form>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
             $(document).ready(function () {
             var userId = response.user_id;
                 $.ajax({
-                    url: '{% url 'api_like_status' food_id=food.id %}',
+                    url: '{% url 'api_like_status' food_id=recipe.id %}',
                     type: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + '{user_id: userId}'
