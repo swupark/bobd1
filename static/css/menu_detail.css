@@ -3,14 +3,14 @@ body{
 }
 
 #like-button{
-    width: 40px;
+    width: 48px;
     height: 80px;
     border: 2px solid rgb(141,185,170,0.7);
     border-right: none;
     background-color: white;
     border-radius: 20px 0px 0px 20px;
     float: left;
-    margin-left: 141.9px;
+    margin-left: 133.9px;
     margin-top: 90px;
     font-size: 38px;
     color: rgb(250,6,68);
