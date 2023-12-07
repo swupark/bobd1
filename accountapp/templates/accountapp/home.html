@@ -12,9 +12,9 @@
     <div class="wrapper">
         <div class="search">
             {% if not user.is_authenticated %}
-            <img class="sch" id='searchbar2' src="{% static 'image/searchbar.png' %}">
+            <img class='searchbar' src="{% static 'image/searchbar.png' %}">
             {% else %}
-            <img class="sch" id='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
+            <img class='searchbar' src="{% static 'image/searchbar.png' %}" onclick="dis()">
             {% endif %}
             <div id='checkbox'>
                 <p>원하는 카테고리를 모두 선택하세요</p>
@@ -338,9 +338,6 @@
                             var atLeastOneChecked = $('.check input:checked').length > 0;
                             $('.btn_ok').prop('disabled', !atLeastOneChecked);
                         }
-
-
-
             </script>
         </div>
 
@@ -350,10 +347,10 @@
             <input type="radio" name="slide" id="slide3">
             <input type="radio" name="slide" id="slide4">
             <ul id="imgholder" class="imgs">
-                <li><img src="{% static 'image/home.png' %}"></li>
-                <li><img src="{% static 'image/recipe_detail.png' %}"></li>
-                <li><img src="{% static 'image/likely_list.png' %}"></li>
-                <li><img src="{% static 'image/like_list.png' %}"></li>
+                <li><img src="{% static 'image/testimg1.jpg' %}"></li>
+                <li><img src="{% static 'image/testimg2.jpeg' %}"></li>
+                <li><img src="{% static 'image/testimg3.jpg' %}"></li>
+                <li><img src="{% static 'image/testimg4.jpg' %}"></li>
             </ul>
             <div class="bullets">
                 <label for="slide1">&nbsp;</label>
