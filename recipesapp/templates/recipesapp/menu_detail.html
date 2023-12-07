@@ -109,11 +109,11 @@ function loadLike() {
         <div class="step_add">
             <p class="recipe_step">|조리 과정</p>
             <div class="additional-content-container">
+                {% if menu.RCP_NA_TIP != "0" %}
                 <div class="additional-content">
-                    {% if menu.RCP_NA_TIP != "0" %}
                     <p><mark>{{ menu.RCP_NA_TIP }}</mark></p>
-                    {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="row">
