@@ -6,13 +6,13 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
     help = 'Train the model'
     def handle(self, *args, **options):
-        df = pd.read_csv('C:/Users/golds/Downloads/2train.csv')
+        df = pd.read_csv('C:/Users/gusth/PycharmProjects/bob_d/accountapp/2train.csv')
         doc_df = df[['RCP_NM', 'new_train']].values.tolist()
         tagged_data = [TaggedDocument(words=_d, tags=[uid]) for uid, _d in doc_df]
 
         max_epochs = 15
         model = Doc2Vec(
-            window=15,
+            window=3,
             vector_size=100,
             alpha=0.025,
             min_alpha=0.025,

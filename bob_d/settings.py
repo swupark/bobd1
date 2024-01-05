@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'recipesapp',
     'rest_framework',
     'likeapp',
+    'myapp'
+
 ]
 
 MIDDLEWARE = [
@@ -100,6 +102,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
